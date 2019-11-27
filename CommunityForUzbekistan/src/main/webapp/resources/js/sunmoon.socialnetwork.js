@@ -2,7 +2,7 @@ $(document).ready(function() {
 	
 	// function ~~~
 	
-	if(document.location.href == "http://localhost:8090/ssun/notice") {
+	if(document.location.href == "http://localhost:8888/notice") {
 		setUserInfo();
 		setAdmin();
 		showWritingArea();
@@ -35,19 +35,19 @@ $(document).ready(function() {
 		var dep_code;
 		var url = window.location.href.split("?");
 		if(url[1] == undefined) {
-			dep_code = "All";
+			dep_code = "M";
 		} else {
 			var param = url[1].split("=");
 			var code = param[1];
 			dep_code = code;	
 		}
 		
-		var user_dep = document.getElementById("user_dep").value;
+		/*var user_dep = document.getElementById("user_dep").value;
 		console.log("사용자 학과: " + user_dep);
 		if(dep_code != user_dep && dep_code != "All" && user_dep != "Admin") {
 			alert("다른 과 타임라인에는 글을 쓸 수 없습니다!");
 			return false;
-		}
+		}*/
 
 		document.getElementById("page_dep_code").value = dep_code;
 		console.log("dep_code: " + dep_code);
@@ -65,7 +65,7 @@ $(document).ready(function() {
 		// $("#post_content").value = textVal;
 		
 		$.ajax({
-			url : 'http://localhost:8090/ssun/post',
+			url : 'http://localhost:8888/post',
 			method : 'POST',
 			data : formData,
 			processData : false,
@@ -78,10 +78,10 @@ $(document).ready(function() {
 				var txt="";
 				var myObj = data;
 				
-				console.log("user_num value: " + $("#user_num").val());
+				console.log("user_id value: " + $("#user_id").val());
 				
-				var user_num = $("#user_num").val();
-				console.log("user_num: " + user_num);
+				var user_id = $("#user_id").val();
+				console.log("user_id: " + user_id);
 				var user_name = $("#user-name-info").html();
 				console.log("user_name: " + user_name);
 				var user_img = $("#user_img").val();
@@ -97,7 +97,7 @@ $(document).ready(function() {
 			    if(user_img=="" || user_img==null || myObj.anonymity=="Y") {
 			    	txt += "src='resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg'>";
 			    } else { 
-			    	txt += "src='http://localhost:8090/ssun/resources/userImage/"+user_img+"'>";
+			    	txt += "src='http://localhost:8888/resources/userImage/"+user_img+"'>";
 			    }
 			    //if(myObj.anonymity=="N") {
 			    	txt += "<div class='post-menu'>";
@@ -128,9 +128,9 @@ $(document).ready(function() {
 			    		
 			    		if(ext == "video") {
 			    			txt += "<video class='cam-video' controls>";
-			    			txt += "<source src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
+			    			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 			    		} else {
-			    			txt += "<img src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+"></div>";
+			    			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
 			    		}
 			    	}
 			    }         
@@ -201,7 +201,7 @@ $(document).ready(function() {
 		// $("#post_content").value = textVal;
 		
 		$.ajax({
-			url : 'http://localhost:8090/ssun/postNotice',
+			url : 'http://localhost:8888/postNotice',
 			method : 'POST',
 			data : formData,
 			processData : false,
@@ -214,10 +214,10 @@ $(document).ready(function() {
 				var txt="";
 				var myObj = data;
 				
-				console.log("user_num value: " + $("#user_num").val());
+				console.log("user_id value: " + $("#user_id").val());
 				
-				var user_num = $("#user_num").val();
-				console.log("user_num: " + user_num);
+				var user_id = $("#user_id").val();
+				console.log("user_id: " + user_id);
 				var user_name = $("#user-name-info").html();
 				console.log("user_name: " + user_name);
 				var user_img = $("#user_img").val();
@@ -233,9 +233,9 @@ $(document).ready(function() {
 			    if(user_img=="" || user_img==null || myObj.anonymity=="Y") {
 			    	txt += "src='resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg'>";
 			    } else { 
-			    	txt += "src='http://localhost:8090/ssun/resources/userImage/"+user_img+"'>";
+			    	txt += "src='http://localhost:8888/resources/userImage/"+user_img+"'>";
 			    }
-			    if(user_num == 1000000000) {
+			    if(user_id == "admin") {
 	            	txt += "<div class=post-menu>";
 		            txt += "<div class=dropdown>";
 		            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
@@ -278,9 +278,9 @@ $(document).ready(function() {
 			    		
 			    		if(ext == "video") {
 			    			txt += "<video class='cam-video' controls>";
-			    			txt += "<source src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
+			    			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 			    		} else {
-			    			txt += "<img src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+"></div>";
+			    			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
 			    		}
 			    	}
 			    }         
@@ -344,9 +344,9 @@ function getAllWriting() {
 	var dep_code = param[1];
 	console.log("url_dep_code: " + dep_code);*/
 	
-	var user_dep = document.getElementById("user_dep").value;
-	var user_num = document.getElementById("user_num").value;
-	console.log("유저어ㅓ어어넘버어어어ㅓ:" + user_num);
+	//var user_dep = document.getElementById("user_dep").value;
+	var user_id = document.getElementById("user_id").value;
+	console.log("유저어ㅓ어어아이ㅣ디ㅣㅣ:" + user_id);
 	
 	var user_img = $('#user_img').val();
 	console.log("유저 프로필 사진: " + user_img);
@@ -354,7 +354,7 @@ function getAllWriting() {
 	var dep_code;
 	var url = window.location.href.split("?");
 	if(url[1] == undefined) {
-		dep_code = "All";
+		dep_code = "M";
 	} else {
 		var param = url[1].split("=");
 		var code = param[1];
@@ -364,7 +364,7 @@ function getAllWriting() {
 	var sendData = {dep_code: dep_code};
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/postList',
+		url:'http://localhost:8888/postList',
 		method:'POST',
 		data:JSON.stringify(sendData),
 		processData:false,
@@ -386,20 +386,20 @@ function getAllWriting() {
 	            if(myObj[x].user_img=="" || myObj[x].user_img==null || myObj[x].anonymity=="Y") {
 	            	txt += "src=resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg>";
 	            } else { 
-	            	txt += "src=http://localhost:8090/ssun/resources/userImage/"+myObj[x].user_img+">";
+	            	txt += "src=http://localhost:8888/resources/userImage/"+myObj[x].user_img+">";
 	            }
 	            console.log("myObj[x].anonymity: " + myObj[x].anonymity);
-	            if(user_dep == "Admin" && myObj[x].anonymity=='N') {
+	            if(user_id == "admin" && myObj[x].anonymity=='N') {
 	            	txt += "<div class=post-menu>";
 		            txt += "<div class=dropdown>";
 		            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
 		            txt += "<i class='fa fa-sort-desc'></i></a>";
 		            txt += "<ul class='dropdown-menu multi-level' role=menu aria-labelledby=dropdownMenu>";
-		            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg("+myObj[x].user_num+");>글쓴이에게 쪽지 보내기</a></li>";
+		            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg("+myObj[x].user_id+");>글쓴이에게 쪽지 보내기</a></li>";
 		            txt += "<li><a id='post-edit-btn' class='post-control-edit ossn-wall-post-edit' data-guid="+myObj[x].w_num+" href=javascript:editPost_getContent("+myObj[x].w_num+");>수정</a></li>";
 		            txt += "<li><a id='post-delete-btn' class='post-control-delete ossn-wall-post-delete' data-guid="+myObj[x].w_num+" href='javascript:deletePost("+myObj[x].w_num+");'>삭제</a></li>";
 		            txt += "</ul></div></div>";
-	            } else if(user_dep == "Admin" && myObj[x].anonymity=='Y') {
+	            } else if(user_id == "admin" && myObj[x].anonymity=='Y') {
 	            	txt += "<div class=post-menu>";
 		            txt += "<div class=dropdown>";
 		            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
@@ -408,7 +408,7 @@ function getAllWriting() {
 		            txt += "<li><a id='post-edit-btn' class='post-control-edit ossn-wall-post-edit' data-guid="+myObj[x].w_num+" href=javascript:editPost_getContent("+myObj[x].w_num+");>수정</a></li>";
 		            txt += "<li><a id='post-delete-btn' class='post-control-delete ossn-wall-post-delete' data-guid="+myObj[x].w_num+" href='javascript:deletePost("+myObj[x].w_num+");'>삭제</a></li>";
 		            txt += "</ul></div></div>";
-	            } else if(myObj[x].user_num==user_num/* && myObj[x].anonymity=="N"*/) {
+	            } else if(myObj[x].user_id==user_id/* && myObj[x].anonymity=="N"*/) {
 	            	txt += "<div class=post-menu>";
 		            txt += "<div class=dropdown>";
 		            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
@@ -425,7 +425,7 @@ function getAllWriting() {
 		            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
 		            txt += "<i class='fa fa-sort-desc'></i></a>";
 		            txt += "<ul class='dropdown-menu multi-level' role=menu aria-labelledby=dropdownMenu>";
-		            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg("+myObj[x].user_num+");>글쓴이에게 쪽지 보내기</a></li>";
+		            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg("+myObj[x].user_id+");>글쓴이에게 쪽지 보내기</a></li>";
 		            txt += "</ul></div></div>";
 	            }
 	            txt += "<div class='user'>";
@@ -447,24 +447,24 @@ function getAllWriting() {
 	            		
 	            		if(ext == "video") {
 	            			txt += "<video class='cam-video' controls>";
-	            			txt += "<source src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
+	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
 	            		}
 	            	}
 	            }         
 	            txt += "<div class=comments-likes>";
 	            txt += "<div class=menu-likes-comments-share>";
-	            if(myObj[x].comment_num == 0) {
+	            if(myObj[x].comment_cnt == 0) {
 	            	txt += "<li><a id='comment-btn-"+myObj[x].w_num+"' class='post-control-comment comment-post' data-guid="+myObj[x].w_num+" href=javascript:showCommentBox("+myObj[x].w_num+")>댓글</a></li>";
 	            } else {
-	            	console.log("댓글몇개게!: "+ myObj[x].comment_num);
-	            	txt += "<li><a id='comment-btn-"+myObj[x].w_num+"' class='post-control-comment comment-post' data-guid="+myObj[x].w_num+" href=javascript:showCommentBox("+myObj[x].w_num+")>댓글 "+myObj[x].comment_num+"</a></li>";
+	            	console.log("댓글몇개게!: "+ myObj[x].comment_cnt);
+	            	txt += "<li><a id='comment-btn-"+myObj[x].w_num+"' class='post-control-comment comment-post' data-guid="+myObj[x].w_num+" href=javascript:showCommentBox("+myObj[x].w_num+")>댓글 "+myObj[x].comment_cnt+"</a></li>";
 	            }
-	            if(myObj[x].like_num == 0) {
+	            if(myObj[x].like_cnt == 0) {
 	            	txt += "<li><a id=ossn-like-"+myObj[x].w_num+" onclick='Ossn.PostLike("+myObj[x].w_num+");' class=post-control-like href=javascript:clickPostLike("+myObj[x].w_num+");>좋아요</a></li></div>";
 	            } else {
-	            	txt += "<li><a id=ossn-like-"+myObj[x].w_num+" onclick='Ossn.PostLike("+myObj[x].w_num+");' class=post-control-like href=javascript:clickPostLike("+myObj[x].w_num+");>좋아요 "+myObj[x].like_num+"</a></li></div>";
+	            	txt += "<li><a id=ossn-like-"+myObj[x].w_num+" onclick='Ossn.PostLike("+myObj[x].w_num+");' class=post-control-like href=javascript:clickPostLike("+myObj[x].w_num+");>좋아요 "+myObj[x].like_cnt+"</a></li></div>";
 	            }
 	            txt += "<div class=comments-list id=comments-list-"+myObj[x].w_num+" style='display: none;'>";
 	            txt += "<div class=ossn-comments-list-"+myObj[x].w_num+"></div>";
@@ -540,12 +540,12 @@ function showCommentBox(w_num){
 		
 		
 		// 해당 글의 댓글 로딩		
-		var user_num = document.getElementById("user_num").value;
+		var user_id = document.getElementById("user_id").value;
 		
 		var num_data = {w_num: w_num};
 		
 		$.ajax({
-			url : 'http://localhost:8090/ssun/commentList',
+			url : 'http://localhost:8888/commentList',
 			method : 'POST',
 			data : JSON.stringify(num_data),
 			dataType: 'json',
@@ -577,13 +577,13 @@ function showCommentBox(w_num){
 					txt += "<span class='comment-text-"+myObj[x].c_num+"'>"+myObj[x].c_content+"</span></p>";
 					txt += "<div class='comment-metadata'>";
 					txt += "<div class='time-created'>"+myObj[x].c_time+"</div>";
-					if(myObj[x].like_num == 0) {
+					if(myObj[x].like_cnt == 0) {
 						txt += "<a class='ossn-like-comment-"+myObj[x].c_num+"' data-type='Like' href='javascript:clickCommentLike("+myObj[x].c_num+")'>좋아요</a>";
 					} else {
-						txt += "<a class='ossn-like-comment-"+myObj[x].c_num+"' data-type='Like' href='javascript:clickCommentLike("+myObj[x].c_num+")'>좋아요 "+myObj[x].like_num+"</a>";
+						txt += "<a class='ossn-like-comment-"+myObj[x].c_num+"' data-type='Like' href='javascript:clickCommentLike("+myObj[x].c_num+")'>좋아요 "+myObj[x].like_cnt+"</a>";
 					}
 					txt += "<a onclick='Ossn.ViewLikes(3, 'annotation')' class='ossn-total-likes ossn-total-likes-3' data-likes='' href='javascript:void(0);'></a>";
-					if(myObj[x].user_num == user_num || user_num == 1000000000) {
+					if(myObj[x].user_id == user_id || user_id == 1000000000) {
 						txt += "<div class='ossn-comment-menu'>";
 						txt += "<div class='dropdown'>";
 						txt += "<a id='dLabel' role='button' data-toggle='dropdown' data-target='#'> <i class='fa fa-sort-desc'></i></a>";
@@ -639,15 +639,15 @@ function postComment(w_num){
 			var dep_code;
 			var url = window.location.href.split("?");
 			if(url[1] == undefined) {
-				dep_code = "All";
+				dep_code = "M";
 			} else {
 				var param = url[1].split("=");
 				var code = param[1];
 				dep_code = code;	
 			}
 			
-			var user_dep = $('#user_dep').val();
-			/*var user_dep = document.getElementById("user_dep").value;*/
+			/*var user_dep = $('#user_dep').val();
+			//var user_dep = document.getElementById("user_dep").value;
 			console.log("사용자 학과: " + user_dep);
 			if(dep_code != user_dep && dep_code != "All" && user_dep != "Admin") {
 				alert("다른 과 타임라인에는 댓글을 쓸 수 없습니다!");
@@ -656,14 +656,14 @@ function postComment(w_num){
 				$('#comment-box-'+w_num).attr("contenteditable", "true");
 				
 				return false;
-			}
+			}*/
 			
-			var user_num = document.getElementById("user_num").value;
+			var user_id = document.getElementById("user_id").value;
 			
-			var dataList = {w_num: w_num, user_num: user_num, c_content: c_content};
+			var dataList = {w_num: w_num, user_id: user_id, c_content: c_content};
 			
 			$.ajax({
-				url : 'http://localhost:8090/ssun/writeComment',
+				url : 'http://localhost:8888/writeComment',
 				method : 'POST',
 				data : JSON.stringify(dataList),
 				dataType: 'json',
@@ -676,7 +676,7 @@ function postComment(w_num){
 					var txt="";
 					var myObj = data;
 					
-					var user_num = $("#user_num").val();
+					var user_id = $("#user_id").val();
 					var user_name = $("#user-name-info").html();
 					var user_img = $("#user_img").val();
 					
@@ -696,10 +696,10 @@ function postComment(w_num){
 					txt += "<span class='comment-text-"+myObj.c_num+"'>"+myObj.c_content+"</span></p>";
 					txt += "<div class='comment-metadata'>";
 					txt += "<div class='time-created'>"+myObj.c_time+"</div>";
-					if(myObj.like_num == 0) {
+					if(myObj.like_cnt == 0) {
 						txt += "<a class='ossn-like-comment-"+myObj.c_num+"' data-type='Like' href='javascript:clickCommentLike("+myObj.c_num+")'>좋아요</a>";
 					} else {
-						txt += "<a class='ossn-like-comment-"+myObj.c_num+"' data-type='Like' href='javascript:clickCommentLike("+myObj.c_num+")'>좋아요 "+myObj.like_num+"</a>";
+						txt += "<a class='ossn-like-comment-"+myObj.c_num+"' data-type='Like' href='javascript:clickCommentLike("+myObj.c_num+")'>좋아요 "+myObj.like_cnt+"</a>";
 					}
 					txt += "<a onclick='Ossn.ViewLikes(3, 'annotation')' class='ossn-total-likes ossn-total-likes-3' data-likes='' href='javascript:void(0);'></a>";
 					txt += "<div class='ossn-comment-menu'>";
@@ -775,12 +775,12 @@ function loadWriting() {
 			
 			var sendData = {calledNum: num, dep_code: dep_code};
 			
-			var user_num = $('#user_num').val();
+			var user_id = $('#user_id').val();
 			var user_img = $('#user_img').val();
 			console.log("유저 프로필 사지이ㅣㅇㄴ인: " + user_img);
 			
 			$.ajax({
-				url : 'http://localhost:8090/ssun/extraPost',
+				url : 'http://localhost:8888/extraPost',
 				method : 'POST',
 				data : JSON.stringify(sendData),
 				dataType : 'json',
@@ -804,20 +804,20 @@ function loadWriting() {
 			            if(myObj[x].user_img=="" || myObj[x].user_img==null || myObj[x].anonymity=="Y") {
 			            	txt += "src=resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg>";
 			            } else { 
-			            	txt += "src=http://localhost:8090/ssun/resources/userImage/"+myObj[x].user_img+">";
+			            	txt += "src=http://localhost:8888/resources/userImage/"+myObj[x].user_img+">";
 			            }
-			            console.log("myObj[x].user_num: " + myObj[x].user_num);
-			            if(user_dep == "Admin" && myObj[x].anonymity=='N') {
+			            console.log("myObj[x].user_id: " + myObj[x].user_id);
+			            if(user_id == "admin" && myObj[x].anonymity=='N') {
 			            	txt += "<div class=post-menu>";
 				            txt += "<div class=dropdown>";
 				            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
 				            txt += "<i class='fa fa-sort-desc'></i></a>";
 				            txt += "<ul class='dropdown-menu multi-level' role=menu aria-labelledby=dropdownMenu>";
-				            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg("+myObj[x].user_num+");>글쓴이에게 쪽지 보내기</a></li>";
+				            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg("+myObj[x].user_id+");>글쓴이에게 쪽지 보내기</a></li>";
 				            txt += "<li><a id='post-edit-btn' class='post-control-edit ossn-wall-post-edit' data-guid="+myObj[x].w_num+" href=javascript:editPost_getContent("+myObj[x].w_num+");>수정</a></li>";
 				            txt += "<li><a id='post-delete-btn' class='post-control-delete ossn-wall-post-delete' data-guid="+myObj[x].w_num+" href='javascript:deletePost("+myObj[x].w_num+");'>삭제</a></li>";
 				            txt += "</ul></div></div>";
-			            } else if(user_dep == "Admin" && myObj[x].anonymity=='Y') {
+			            } else if(user_id == "admin" && myObj[x].anonymity=='Y') {
 			            	txt += "<div class=post-menu>";
 				            txt += "<div class=dropdown>";
 				            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
@@ -826,7 +826,7 @@ function loadWriting() {
 				            txt += "<li><a id='post-edit-btn' class='post-control-edit ossn-wall-post-edit' data-guid="+myObj[x].w_num+" href=javascript:editPost_getContent("+myObj[x].w_num+");>수정</a></li>";
 				            txt += "<li><a id='post-delete-btn' class='post-control-delete ossn-wall-post-delete' data-guid="+myObj[x].w_num+" href='javascript:deletePost("+myObj[x].w_num+");'>삭제</a></li>";
 				            txt += "</ul></div></div>";
-			            } else if(myObj[x].user_num==user_num /*&& myObj[x].anonymity=="N"*/) {
+			            } else if(myObj[x].user_id==user_id /*&& myObj[x].anonymity=="N"*/) {
 			            	txt += "<div class=post-menu>";
 				            txt += "<div class=dropdown>";
 				            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
@@ -843,7 +843,7 @@ function loadWriting() {
 				            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
 				            txt += "<i class='fa fa-sort-desc'></i></a>";
 				            txt += "<ul class='dropdown-menu multi-level' role=menu aria-labelledby=dropdownMenu>";
-				            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg("+myObj[x].user_num+");>글쓴이에게 쪽지 보내기</a></li>";
+				            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg("+myObj[x].user_id+");>글쓴이에게 쪽지 보내기</a></li>";
 				            txt += "</ul></div></div>";
 			            }
 			            txt += "<div class=user>";
@@ -865,23 +865,23 @@ function loadWriting() {
 			            		
 			            		if(ext == "video") {
 			            			txt += "<video class='cam-video' controls>";
-			            			txt += "<source src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
+			            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 			            		} else {
-			            			txt += "<img src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+"></div>";
+			            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
 			            		}
 			            	}
 			            }         
 			            txt += "<div class=comments-likes>";
 			            txt += "<div class=menu-likes-comments-share>";
-			            if(myObj[x].comment_num == 0) {
+			            if(myObj[x].comment_cnt == 0) {
 			            	txt += "<li><a id='comment-btn-"+myObj[x].w_num+"' class='post-control-comment comment-post' data-guid="+myObj[x].w_num+" href=javascript:showCommentBox("+myObj[x].w_num+")>댓글</a></li>";
 			            } else {
-			            	txt += "<li><a id='comment-btn-"+myObj[x].w_num+"' class='post-control-comment comment-post' data-guid="+myObj[x].w_num+" href=javascript:showCommentBox("+myObj[x].w_num+")>댓글 "+myObj[x].comment_num+"</a></li>";
+			            	txt += "<li><a id='comment-btn-"+myObj[x].w_num+"' class='post-control-comment comment-post' data-guid="+myObj[x].w_num+" href=javascript:showCommentBox("+myObj[x].w_num+")>댓글 "+myObj[x].comment_cnt+"</a></li>";
 			            }
-			            if(myObj[x].like_num == 0) {
+			            if(myObj[x].like_cnt == 0) {
 			            	txt += "<li><a id=ossn-like-"+myObj[x].w_num+" onclick='Ossn.PostLike("+myObj[x].w_num+");' class=post-control-like href=javascript:clickPostLike("+myObj[x].w_num+");>좋아요</a></li></div>";
 			            } else {
-			            	txt += "<li><a id=ossn-like-"+myObj[x].w_num+" onclick='Ossn.PostLike("+myObj[x].w_num+");' class=post-control-like href=javascript:clickPostLike("+myObj[x].w_num+");>좋아요 "+myObj[x].like_num+"</a></li></div>";
+			            	txt += "<li><a id=ossn-like-"+myObj[x].w_num+" onclick='Ossn.PostLike("+myObj[x].w_num+");' class=post-control-like href=javascript:clickPostLike("+myObj[x].w_num+");>좋아요 "+myObj[x].like_cnt+"</a></li></div>";
 			            }			            	
 			            txt += "<div class=comments-list id=comments-list-"+myObj[x].w_num+" style='display: none;'>";
 			            txt += "<div class=ossn-comments-list-"+myObj[x].w_num+"></div>";
@@ -940,7 +940,7 @@ function deletePost(w_num) {
 	var del_num = {w_num: w_num};
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/deletePost',
+		url:'http://localhost:8888/deletePost',
 		method:'POST',
 		data:JSON.stringify(del_num),
 		processData:false,
@@ -964,7 +964,7 @@ function deleteComment(c_num) {
 	var del_num = {c_num: c_num};
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/deleteComment',
+		url:'http://localhost:8888/deleteComment',
 		method:'POST',
 		data:JSON.stringify(del_num),
 		processData:false,
@@ -1016,7 +1016,7 @@ function editPost_getContent(w_num) {
 	var sendData = {w_num: w_num, dep_code: dep_code};
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/getPostContent',
+		url:'http://localhost:8888/getPostContent',
 		method:'POST',
 		data:JSON.stringify(sendData),
 		processData:false,
@@ -1075,7 +1075,7 @@ function editPost() {
 	var sendData = {w_num: w_num, w_content: content};
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/editPost',
+		url:'http://localhost:8888/editPost',
 		method:'POST',
 		data:JSON.stringify(sendData),
 		processData:false,
@@ -1118,7 +1118,7 @@ function editComment_getContent(c_num) {
 	console.log("c_num: " + c_num);
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/getCommentContent',
+		url:'http://localhost:8888/getCommentContent',
 		method:'POST',
 		data:JSON.stringify(sendData),
 		processData:false,
@@ -1172,7 +1172,7 @@ function editComment() {
 	var sendData = {c_num: c_num, c_content: content};
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/editComment',
+		url:'http://localhost:8888/editComment',
 		method:'POST',
 		data:JSON.stringify(sendData),
 		processData:false,
@@ -1203,7 +1203,7 @@ function clickPostLike(w_num) {
 	var data = {w_num: w_num};
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/postLike',
+		url:'http://localhost:8888/postLike',
 		method:'POST',
 		data:JSON.stringify(data),
 		processData:false,
@@ -1211,13 +1211,13 @@ function clickPostLike(w_num) {
 		success:function(data){
 			
 			console.log("넘겨받은 데이터!_!: " + data);
-			var like_num = parseInt(data) + 1;
-			console.log("좋아요 갯수: " + like_num);
+			var like_cnt = parseInt(data) + 1;
+			console.log("좋아요 갯수: " + like_cnt);
 			
 			if(data == 0) {
 				$('#ossn-like-'+w_num).text("좋아요 1");
 			} else {
-				$('#ossn-like-'+w_num).text("좋아요 "+like_num);
+				$('#ossn-like-'+w_num).text("좋아요 "+like_cnt);
 			}
 			
 			console.log("좋아요 성공:D")
@@ -1235,7 +1235,7 @@ function clickCommentLike(c_num) {
 	var data = {c_num: c_num};
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/commentLike',
+		url:'http://localhost:8888/commentLike',
 		method:'POST',
 		data:JSON.stringify(data),
 		processData:false,
@@ -1243,13 +1243,13 @@ function clickCommentLike(c_num) {
 		success:function(data){
 			
 			console.log("넘겨받은 데이터!_!: " + data);
-			var like_num = parseInt(data) + 1;
-			console.log("좋아요 갯수: " + like_num);
+			var like_cnt = parseInt(data) + 1;
+			console.log("좋아요 갯수: " + like_cnt);
 			
 			if(data == 0) {
 				$('.ossn-like-comment-'+c_num).text("좋아요 1");
 			} else {
-				$('.ossn-like-comment-'+c_num).text("좋아요 "+like_num);
+				$('.ossn-like-comment-'+c_num).text("좋아요 "+like_cnt);
 			}
 			
 			console.log("좋아요 성공:D")
@@ -1273,7 +1273,7 @@ function searchPost(){
 		var dep_code;
 		var url = window.location.href.split("?");
 		
-		if(window.location.href == "http://localhost:8090/ssun/notice") {
+		if(window.location.href == "http://localhost:8888/notice") {
 			dep_code = "N";
 		} else if(url[1] == undefined) {
 			dep_code = "All";
@@ -1289,21 +1289,21 @@ function searchPost(){
 			return false;
 		}
 		
-		window.location.href = "http://localhost:8090/ssun/searchPost?searchType="+selectBox+"&searchWord="+encodeURI(encodeURIComponent(search_word))+"&dep="+dep_code;
+		window.location.href = "http://localhost:8888/searchPost?searchType="+selectBox+"&searchWord="+encodeURI(encodeURIComponent(search_word))+"&dep="+dep_code;
 		
 	}
 }
 
 // 관리자로 로그인했을 시 관리자페이지 메뉴에 추가하기
 function setAdmin() {
-	var user_num = $('#user_num').val();
+	var user_id = $('#user_id').val();
 	
-	if(user_num == 1000000000) {
-		var txt = "<li><a class='' href='http://localhost:8090/ssun/admin/users'><i class='fa fa-user fa-lg'></i>관리자 페이지</a></li>"
+	if(user_id == "admin") {
+		var txt = "<li><a class='' href='http://localhost:8888/admin/users'><i class='fa fa-user fa-lg'></i>관리자 페이지</a></li>"
 		$('#sidebar-menu').append(txt);
 
 		var url = window.location.href;
-		if(url == "http://localhost:8090/ssun/mypage") {
+		if(url == "http://localhost:8888/mypage") {
 			$('#deleteUser').remove();
 		}
 	}
@@ -1311,16 +1311,16 @@ function setAdmin() {
 
 // 관리자일 경우에만 공지사항 올릴 수 있는 등록창 띄우기
 function showWritingArea() {
-	var user_dep = $('#user_dep').val();
-	var user_num = $('#user_num').val();
+	//var user_dep = $('#user_dep').val();
+	var user_id = $('#user_id').val();
 	var user_img = $('#user_img').val();
 
-	if(user_num == 1000000000) {
+	if(user_id == "admin") {
 		var txt="";
 		
 		txt += "<form id='ossn-wall-form' name='ossn-wall-form' class='ossn-form' method='post' enctype='multipart/form-data'>";
-		txt += "<fieldset><input type='hidden' id='user_dep' name='user_dep' value='"+user_dep+"'>";
-		txt += "<input type='hidden' id='user_num' name='user_num' value='"+user_num+"'>";
+		//txt += "<fieldset><input type='hidden' id='user_dep' name='user_dep' value='"+user_dep+"'>";
+		txt += "<fieldset><input type='hidden' id='user_id' name='user_id' value='"+user_id+"'>";
 		txt += "<input type='hidden' id='user_img' name='user_img' value='"+user_img+"'>";
 		txt += "<input type='hidden' id='page_dep_code' name='page_dep_code' value='>";
 		txt += "<input type='hidden' name='ossn_ts' value='1541646439'>";
@@ -1353,9 +1353,9 @@ function showWritingArea() {
 
 // 공지사항 글 10개 불러오기
 function getAllNotice() {
-	var user_dep = document.getElementById("user_dep").value;
-	var user_num = document.getElementById("user_num").value;
-	console.log("유저어ㅓ어어넘버어어어ㅓ:" + user_num);
+	//var user_dep = document.getElementById("user_dep").value;
+	var user_id = document.getElementById("user_id").value;
+	console.log("유저어ㅓ어어넘버어어어ㅓ:" + user_id);
 	
 	var user_img = $('#user_img').val();
 	console.log("유저 프로필 사진: " + user_img);
@@ -1365,7 +1365,7 @@ function getAllNotice() {
 	var sendData = {dep_code: dep_code};
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/postList',
+		url:'http://localhost:8888/postList',
 		method:'POST',
 		data:JSON.stringify(sendData),
 		processData:false,
@@ -1387,10 +1387,10 @@ function getAllNotice() {
 	            if(myObj[x].user_img=="" || myObj[x].user_img==null || myObj[x].anonymity=="Y") {
 	            	txt += "src=resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg>";
 	            } else { 
-	            	txt += "src=http://localhost:8090/ssun/resources/userImage/"+myObj[x].user_img+">";
+	            	txt += "src=http://localhost:8888/resources/userImage/"+myObj[x].user_img+">";
 	            }
 	            console.log("myObj[x].anonymity: " + myObj[x].anonymity);
-	            if(user_num == 1000000000) {
+	            if(user_id == "admin") {
 	            	txt += "<div class=post-menu>";
 		            txt += "<div class=dropdown>";
 		            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
@@ -1434,24 +1434,24 @@ function getAllNotice() {
 	            		
 	            		if(ext == "video") {
 	            			txt += "<video class='cam-video' controls>";
-	            			txt += "<source src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
+	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
 	            		}
 	            	}
 	            }         
 	            txt += "<div class=comments-likes>";
 	            txt += "<div class=menu-likes-comments-share>";
-	            if(myObj[x].comment_num == 0) {
+	            if(myObj[x].comment_cnt == 0) {
 	            	txt += "<li><a id='comment-btn-"+myObj[x].w_num+"' class='post-control-comment comment-post' data-guid="+myObj[x].w_num+" href=javascript:showCommentBox("+myObj[x].w_num+")>댓글</a></li>";
 	            } else {
-	            	console.log("댓글몇개게!: "+ myObj[x].comment_num);
-	            	txt += "<li><a id='comment-btn-"+myObj[x].w_num+"' class='post-control-comment comment-post' data-guid="+myObj[x].w_num+" href=javascript:showCommentBox("+myObj[x].w_num+")>댓글 "+myObj[x].comment_num+"</a></li>";
+	            	console.log("댓글몇개게!: "+ myObj[x].comment_cnt);
+	            	txt += "<li><a id='comment-btn-"+myObj[x].w_num+"' class='post-control-comment comment-post' data-guid="+myObj[x].w_num+" href=javascript:showCommentBox("+myObj[x].w_num+")>댓글 "+myObj[x].comment_cnt+"</a></li>";
 	            }
-	            /*if(myObj[x].like_num == 0) {
+	            /*if(myObj[x].like_cnt == 0) {
 	            	txt += "<li><a id=ossn-like-"+myObj[x].w_num+" onclick='Ossn.PostLike("+myObj[x].w_num+");' class=post-control-like href=javascript:clickPostLike("+myObj[x].w_num+");>좋아요</a></li></div>";
 	            } else {
-	            	txt += "<li><a id=ossn-like-"+myObj[x].w_num+" onclick='Ossn.PostLike("+myObj[x].w_num+");' class=post-control-like href=javascript:clickPostLike("+myObj[x].w_num+");>좋아요 "+myObj[x].like_num+"</a></li></div>";
+	            	txt += "<li><a id=ossn-like-"+myObj[x].w_num+" onclick='Ossn.PostLike("+myObj[x].w_num+");' class=post-control-like href=javascript:clickPostLike("+myObj[x].w_num+");>좋아요 "+myObj[x].like_cnt+"</a></li></div>";
 	            }*/
 	            txt += "</div>";
 	            txt += "<div class=comments-list id=comments-list-"+myObj[x].w_num+" style='display: none;'>";
@@ -1515,12 +1515,12 @@ $(window).scroll(function() {
 			
 			var sendData = {calledNum: num, dep_code: dep_code};
 			
-			var user_num = $('#user_num').val();
+			var user_id = $('#user_id').val();
 			var user_img = $('#user_img').val();
 			console.log("유저 프로필 사지이ㅣㅇㄴ인: " + user_img);
 			
 			$.ajax({
-				url : 'http://localhost:8090/ssun/extraPost',
+				url : 'http://localhost:8888/extraPost',
 				method : 'POST',
 				data : JSON.stringify(sendData),
 				dataType : 'json',
@@ -1544,10 +1544,10 @@ $(window).scroll(function() {
 			            if(myObj[x].user_img=="" || myObj[x].user_img==null || myObj[x].anonymity=="Y") {
 			            	txt += "src=resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg>";
 			            } else { 
-			            	txt += "src=http://localhost:8090/ssun/resources/userImage/"+myObj[x].user_img+">";
+			            	txt += "src=http://localhost:8888/resources/userImage/"+myObj[x].user_img+">";
 			            }
 			            console.log("myObj[x].anonymity: " + myObj[x].anonymity);
-			            if(user_num == 1000000000) {
+			            if(user_id == 1000000000) {
 			            	txt += "<div class=post-menu>";
 				            txt += "<div class=dropdown>";
 				            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
@@ -1591,24 +1591,24 @@ $(window).scroll(function() {
 			            		
 			            		if(ext == "video") {
 			            			txt += "<video class='cam-video' controls>";
-			            			txt += "<source src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
+			            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 			            		} else {
-			            			txt += "<img src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+"></div>";
+			            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
 			            		}
 			            	}
 			            }         
 			            txt += "<div class=comments-likes>";
 			            txt += "<div class=menu-likes-comments-share>";
-			            if(myObj[x].comment_num == 0) {
+			            if(myObj[x].comment_cnt == 0) {
 			            	txt += "<li><a id='comment-btn-"+myObj[x].w_num+"' class='post-control-comment comment-post' data-guid="+myObj[x].w_num+" href=javascript:showCommentBox("+myObj[x].w_num+")>댓글</a></li>";
 			            } else {
-			            	console.log("댓글몇개게!: "+ myObj[x].comment_num);
-			            	txt += "<li><a id='comment-btn-"+myObj[x].w_num+"' class='post-control-comment comment-post' data-guid="+myObj[x].w_num+" href=javascript:showCommentBox("+myObj[x].w_num+")>댓글 "+myObj[x].comment_num+"</a></li>";
+			            	console.log("댓글몇개게!: "+ myObj[x].comment_cnt);
+			            	txt += "<li><a id='comment-btn-"+myObj[x].w_num+"' class='post-control-comment comment-post' data-guid="+myObj[x].w_num+" href=javascript:showCommentBox("+myObj[x].w_num+")>댓글 "+myObj[x].comment_cnt+"</a></li>";
 			            }
-			            /*if(myObj[x].like_num == 0) {
+			            /*if(myObj[x].like_cnt == 0) {
 			            	txt += "<li><a id=ossn-like-"+myObj[x].w_num+" onclick='Ossn.PostLike("+myObj[x].w_num+");' class=post-control-like href=javascript:clickPostLike("+myObj[x].w_num+");>좋아요</a></li></div>";
 			            } else {
-			            	txt += "<li><a id=ossn-like-"+myObj[x].w_num+" onclick='Ossn.PostLike("+myObj[x].w_num+");' class=post-control-like href=javascript:clickPostLike("+myObj[x].w_num+");>좋아요 "+myObj[x].like_num+"</a></li></div>";
+			            	txt += "<li><a id=ossn-like-"+myObj[x].w_num+" onclick='Ossn.PostLike("+myObj[x].w_num+");' class=post-control-like href=javascript:clickPostLike("+myObj[x].w_num+");>좋아요 "+myObj[x].like_cnt+"</a></li></div>";
 			            }*/
 			            txt += "</div>";
 			            txt += "<div class=comments-list id=comments-list-"+myObj[x].w_num+" style='display: none;'>";
@@ -1658,7 +1658,7 @@ function putUpNotice(w_num) {
 	var sendData = {w_num: w_num}
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/putUpNotice',
+		url:'http://localhost:8888/putUpNotice',
 		method:'POST',
 		data:JSON.stringify(sendData),
 		processData:false,
@@ -1685,7 +1685,7 @@ function putDownNotice(w_num) {
 	var sendData = {w_num: w_num}
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/putDownNotice',
+		url:'http://localhost:8888/putDownNotice',
 		method:'POST',
 		data:JSON.stringify(sendData),
 		processData:false,
@@ -1708,15 +1708,15 @@ function putDownNotice(w_num) {
 
 // 각 페이지의 우측에 공지 설정한 글 띄우기
 function getNoticeInfo() {
-	var user_dep = document.getElementById("user_dep").value;
-	var user_num = document.getElementById("user_num").value;
-	console.log("유저어ㅓ어어넘버어어어ㅓ:" + user_num);
+	//var user_dep = document.getElementById("user_dep").value;
+	var user_id = document.getElementById("user_id").value;
+	console.log("유저어ㅓ어어아이ㅣ디이ㅣㅣ:" + user_id);
 	
 	var user_img = $('#user_img').val();
 	console.log("유저 프로필 사진: " + user_img);
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/noticePostList',
+		url:'http://localhost:8888/noticePostList',
 		method:'POST',
 		processData:false,
 		contentType:false,
@@ -1747,9 +1747,9 @@ function getNoticeInfo() {
 	            		
 	            		if(ext == "video") {
 	            			txt += "<video class='cam-video' controls>";
-	            			txt += "<source src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
+	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
 	            		}
 	            	}
 	            }
@@ -1765,15 +1765,15 @@ function getNoticeInfo() {
 
 // 좋아요 많은 글 세 개 각 페이지 우측에 띄우기 
 function bestLikePostInfo() {
-	var user_dep = document.getElementById("user_dep").value;
-	var user_num = document.getElementById("user_num").value;
-	console.log("유저어ㅓ어어넘버어어어ㅓ:" + user_num);
+	//var user_dep = document.getElementById("user_dep").value;
+	var user_id = document.getElementById("user_id").value;
+	console.log("유저어ㅓ어어아이디ㅣ이ㅣ:" + user_id);
 	
 	var user_img = $('#user_img').val();
 	console.log("유저 프로필 사진: " + user_img);
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/bestLikePostInfo',
+		url:'http://localhost:8888/bestLikePostInfo',
 		method:'POST',
 		processData:false,
 		contentType:false,
@@ -1804,9 +1804,9 @@ function bestLikePostInfo() {
 	            		
 	            		if(ext == "video") {
 	            			txt += "<video class='cam-video' controls>";
-	            			txt += "<source src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
+	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
 	            		}
 	            	}
 	            }
@@ -1824,15 +1824,15 @@ function bestLikePostInfo() {
 
 // 댓글 많은 글 세 개 각 페이지 우측에 띄우기 
 function bestCommentPostInfo() {
-	var user_dep = document.getElementById("user_dep").value;
-	var user_num = document.getElementById("user_num").value;
-	console.log("유저어ㅓ어어넘버어어어ㅓ:" + user_num);
+	//var user_dep = document.getElementById("user_dep").value;
+	var user_id = document.getElementById("user_id").value;
+	console.log("유저어ㅓ어어아이ㅣ디ㅣㅣ이ㅣ:" + user_id);
 	
 	var user_img = $('#user_img').val();
 	console.log("유저 프로필 사진: " + user_img);
 	
 	$.ajax({
-		url:'http://localhost:8090/ssun/bestCommentPostInfo',
+		url:'http://localhost:8888/bestCommentPostInfo',
 		method:'POST',
 		processData:false,
 		contentType:false,
@@ -1863,9 +1863,9 @@ function bestCommentPostInfo() {
 	            		
 	            		if(ext == "video") {
 	            			txt += "<video class='cam-video' controls>";
-	            			txt += "<source src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
+	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8090/ssun/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
 	            		}
 	            	}
 	            }

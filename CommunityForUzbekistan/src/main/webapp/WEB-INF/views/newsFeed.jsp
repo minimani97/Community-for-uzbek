@@ -197,18 +197,19 @@
 		var user_name = "${sessionScope.user_name}";
 		var user_id = "${sessionScope.user_id}";
 		var user_img = "${sessionScope.user_img}";
+		var user_type = "${sessionScope.usertype}"
 		
 		console.info("--user_img: " + user_img);
 		
-		if(user_dep == "Admin") {
+		/*if(user_type == "A") {
 			//document.getElementById("user-department-info").innerHTML = "선문대 귀는 당나귀 귀";
 		} else {
 			checkDepartment(user_dep);
-		}
+		}*/
 		
 		//document.getElementById("user_dep").value = user_dep;
 		document.getElementById("user-name-info").innerHTML = user_name;
-		document.getElementById("user_num").value = user_num;
+		document.getElementById("user_id").value = user_id;
 		document.getElementById("user_img").value = user_img;
 		
 		if(user_img=="" || user_img==null) {
@@ -260,18 +261,10 @@
 	         success : function(data) {
 
 	            console.log(data);
-	            console.log("값1:" + user_num);
+	            console.log("값1:" + user_id);
 
-	            loginCheckProc(data, user_num);
+	            loginCheckProc(data, user_id);
 	            alert("로그아웃 됩니다.");
-	            // window.location.href = "http://localhost:8888/";
-	            /* if("${sessionScope.user_num}" != null){
-	               console.log("값2:" + "${sessionScope.user_num}");
-	               loginCheckProc(data, user_num);
-	               console.log("값3:" + "${sessionScope.user_num}");
-	               alert("로그아웃 됩니다.");
-	               //window.location.href = "http://localhost:8888/";
-	            } */
 	 
 	         },
 	         error : function(data, status, err) {
@@ -281,7 +274,7 @@
 	      });         
 	      
 	   }
-	   console.log("뉴스피드 user_numuser_num: " + "${sessionScope.user_num}");
+	   console.log("뉴스피드 user_id: " + "${sessionScope.user_id}");
 	   console.log("password: " + "${sessionScope.password}");
 	   
 	   $(document).ready(function() {
@@ -483,157 +476,13 @@
 					<div id="sidebar-menu" name="sidebar-menu" class="sidebar-menu">
 						<ul id="menu-content" class="menu-content collapse out">
 							<li><a class="" href="http://localhost:8888/notice"><i
-									class="fa fa-bullhorn fa-lg"></i>공지사항</a></li>
+									class="fa fa-bullhorn fa-lg"></i>홍보공간</a></li>
 						
 							<li><a class="" href="http://localhost:8888/newsFeed"><i
-									class="fa fa-comments fa-lg"></i>메인 타임라인</a></li>
-
-							<li data-toggle="collapse"
-								data-target="#1471e4e05a4db95d353cc867fe317314"
-								class="menu-section-groups active collapsed"
-								aria-expanded="false"><a class=""
-								href="javascript:void(0);"><i class="fa fa-comments fa-lg"></i>과별
-									타임라인<span class="arrow"></span></a></li>
-							<ul class="su-menu collapse"
-								id="1471e4e05a4db95d353cc867fe317314" aria-expanded="false"
-								style="height: 0px;">
-								<li data-toggle="collapse" data-target="#1111"
-									class="menu-section-links active in collapsed"
-									aria-expanded="false"><a href="javascript:void(0);"><i
-										class="fa fa-university fa-lg"></i>인문사회대학<span class="arrow"></span></a></li>
-								<ul class="sub-sub-menu collapse" id="1111"
-									aria-expanded="false" style="height: 0px;">
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=AA">국어국문학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=AB">상담심리사회복지학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=AC">역사문화콘텐츠학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=AD">미디어커뮤니케이션학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=AE">법·경찰학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="https://localhost:8888/newsFeed?dep=AF">글로벌한국학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=AG">시각디자인학과</a></li>
-								</ul>
-								<li data-toggle="collapse" data-target="#2222"
-									class="menu-section-links active in collapsed"
-									aria-expanded="false"><a class=""
-									href="javascript:void(0);"><i
-										class="fa fa-university fa-lg"></i>글로벌비즈니스대학<span
-										class="arrow"></span></a></li>
-								<ul class="sub-sub-menu collapse" id="2222"
-									aria-expanded="false" style="height: 0px;">
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=BA">외국어자율전공학부</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=BB">글로벌경영학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=BC">IT경영학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=BD">국제경제통상학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=BE">국제레저관광학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=BF">국제관계·행정학부</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=BG">글로벌행정학과(야)</a></li>
-								</ul>
-								<li data-toggle="collapse" data-target="#3333"
-									class="menu-section-links active in collapsed"
-									aria-expanded="false"><a class=""
-									href="javascript:void(0);"><i
-										class="fa fa-university fa-lg"></i>신학순결대학<span class="arrow"></span></a></li>
-								<ul class="sub-sub-menu collapse" id="3333"
-									aria-expanded="false" style="height: 0px;">
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=CA">신학순결학과</a></li>
-								</ul>
-								<li data-toggle="collapse" data-target="#4444"
-									class="menu-section-links active in collapsed"
-									aria-expanded="false"><a class=""
-									href="javascript:void(0);"><i
-										class="fa fa-university fa-lg"></i>건강보건대학<span class="arrow"></span></a></li>
-								<ul class="sub-sub-menu collapse" id="4444"
-									aria-expanded="false" style="height: 0px;">
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=DA">제약생명공학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=DB">식품과학·수산생명의학부</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=DC">간호학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=DD">물리치료학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=DE">치위생학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=DF">응급구조학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=DG">스포츠과학부</a></li>
-								</ul>
-								<li data-toggle="collapse" data-target="#5555"
-									class="menu-section-links active in collapsed"
-									aria-expanded="false"><a class=""
-									href="javascript:void(0);"><i
-										class="fa fa-university fa-lg"></i>공과대학<span class="arrow"></span></a></li>
-								<ul class="sub-sub-menu collapse" id="5555"
-									aria-expanded="false" style="height: 0px;">
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=EA">건축사회환경공학부</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=EB">기계ICT융합공학부</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=EC">스마트자동차공학부</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=ED">전자공학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=EE">컴퓨터공학부</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=EF">글로벌소프트웨어학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=EG">신소재공학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=EH">환경생명화학공학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=EI">산업경영공학과</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=EJ">3D창의융합학과</a></li>
-								</ul>
-							</ul>
+									class="fa fa-comments fa-lg"></i>소통공간</a></li>
+									
+							<li><a class="" href="http://localhost:8888/newsFeed?dep=F"><i
+									class="fa fa-shopping-cart fa-lg"></i>플리마켓</a></li>
 
 							<li data-toggle="collapse" data-target="#1234"
 								class="menu-section-extra active collapsed" aria-expanded="true"><a
@@ -661,15 +510,6 @@
 									class="fa fa-user fa-lg"></i>마이페이지</a></li>
 					</div>
 				</div>
-				<!-- <form class="ossn-form ossn-search" autocomplete="off" method="get"
-					action="https://demo.opensource-socialnetwork.org/search"
-					enctype="multipart/form-data">
-					<fieldset>
-						<input type="text" name="q" placeholder="Search" style="margin-left:4px"
-							onblur="if (this.value=='') { this.value=Ossn.Print('ossn:search'); }"
-							onfocus="if (this.value==Ossn.Print('ossn:search')) { this.value='' };">
-					</fieldset>
-				</form> -->
 				<br>
 			</div>
 		</div>
@@ -784,8 +624,8 @@
 									<div id="writing-area" name="writing-area" class="ossn-wall-container">
 										<form id="ossn-wall-form" name="ossn-wall-form" class="ossn-form" method="post" enctype="multipart/form-data" >
 											<fieldset>
-												<input type="hidden" id="user_dep" name="user_dep" value="">
-												<input type="hidden" id="user_num" name="user_num" value="">
+												<!-- <input type="hidden" id="user_dep" name="user_dep" value=""> -->
+												<input type="hidden" id="user_id" name="user_id" value="">
 												<input type="hidden" id="user_img" name="user_img" value="">
 												<input type="hidden" id="page_dep_code" name="page_dep_code" value="">
 												<input type="hidden" name="ossn_ts" value="1541646439">

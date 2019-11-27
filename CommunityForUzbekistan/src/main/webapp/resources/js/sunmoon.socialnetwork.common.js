@@ -6,14 +6,14 @@ $(document).ready(function() {
 
 
 // 로그인 여부 체크 함수(newsFeed.jsp)
-function loginCheckProc(data, user_num) {
+function loginCheckProc(data, user_id) {
    
    console.log("loginCheckProc: 1(세션값 초기화) OR 2(실패): "+data);
    if ( data == "1" ){
-      console.log("loginCheckProc 세션값 없어야..:" + user_num);
-      window.location.href="http://localhost:8090/ssun";
+      console.log("loginCheckProc 세션값 없어야..:" + user_id);
+      window.location.href="http://localhost:8888/";
    }/*else{
-      window.location.href="http://localhost:8090/ssun/newsFeed";
+      window.location.href="http://localhost:8888/newsFeed";
          
    }*/
 }
@@ -32,7 +32,7 @@ function deleteMsg(num){
    console.log("삭제 쪽지 번호: " + num);
    
    $.ajax({
-          url : 'http://localhost:8090/ssun/deleteMsg',
+          url : 'http://localhost:8888/deleteMsg',
           method : 'POST',
           data : JSON.stringify(sendData),
           processData : false,
@@ -40,7 +40,7 @@ function deleteMsg(num){
           success : function(data) {
             // console.log("success 내 쪽지 개수: " + origin);
             alert("쪽지를 삭제했습니다 :)");
-            window.location.href="http://localhost:8090/ssun/Msg";
+            window.location.href="http://localhost:8888/Msg";
           },
           error : function(data, status, err) {
              //alert('error');
@@ -55,12 +55,12 @@ var origin="n";
 function countMyMsg(){
 	console.log("countMyMsg function called-");
 	
-	var to_user_num = document.getElementById("user_num").value;
+	var to_user_id = document.getElementById("user_id").value;
 	
-	var sendData = {to_user_num: to_user_num};
+	var sendData = {to_user_id: to_user_id};
 	
 	$.ajax({
-	       url : 'http://localhost:8090/ssun/countMyMsg',
+	       url : 'http://localhost:8888/countMyMsg',
 	       method : 'POST',
 	       data : JSON.stringify(sendData),
 	       processData : false,
@@ -87,13 +87,13 @@ function countMyMsg(){
 function notRead(){
 	console.log("notRead function called-");
 	
-	var to_user_num = document.getElementById("user_num").value;
-	console.log("notRead: " + to_user_num);
+	var to_user_id = document.getElementById("user_id").value;
+	console.log("notRead: " + to_user_id);
 	
-	var sendData = {to_user_num: to_user_num};
+	var sendData = {to_user_id: to_user_id};
 	
 	$.ajax({
-	       url : 'http://localhost:8090/ssun/notRead',
+	       url : 'http://localhost:8888/notRead',
 	       method : 'POST',
 	       data : JSON.stringify(sendData),
 	       processData : false,
@@ -116,14 +116,14 @@ function notRead(){
 function receiveList(){
 	
 
-	var to_user_num = document.getElementById("user_num").value;
+	var to_user_id = document.getElementById("user_id").value;
 	
 	
-	var sendData = {to_user_num: to_user_num};
+	var sendData = {to_user_id: to_user_id};
 	
 	
 	$.ajax({
-	       url : 'http://localhost:8090/ssun/receive',
+	       url : 'http://localhost:8888/receive',
 	       method : 'POST',
 	       data : JSON.stringify(sendData),
 	       processData : false,
@@ -166,14 +166,14 @@ function receiveList(){
 //보낸 쪽지함
 function List(){
 
-	var from_user_num = document.getElementById("user_num").value;
+	var from_user_id = document.getElementById("user_id").value;
 	
 	
-	var sendData = {from_user_num: from_user_num};
+	var sendData = {from_user_id: from_user_id};
 	
 	
 	$.ajax({
-	       url : 'http://localhost:8090/ssun/msg',
+	       url : 'http://localhost:8888/msg',
 	       method : 'POST',
 	       data : JSON.stringify(sendData),
 	       processData : false,
@@ -230,7 +230,7 @@ function MsgContent(num){
     var sendData = {num: num};
     
     $.ajax({
-		url : 'http://localhost:8090/ssun/open',
+		url : 'http://localhost:8888/open',
 		method : 'POST',
 		data : JSON.stringify(sendData),
 		processData : false,
@@ -263,14 +263,14 @@ function MsgContent(num){
 }
 
 //쪽지 보내기
-function sendMsg(user_num){
+function sendMsg(user_id){
 	console.log("sendMsg function called-");
 
 	$('.ossn-halt').addClass('ossn-light');
     $('.ossn-halt').attr('style', 'height:' + $(document).height() + 'px;');
     $('.ossn-halt').show();
     
-    var txt = "<input type='hidden' id='to_user_num' value='"+user_num+"'>";
+    var txt = "<input type='hidden' id='to_user_id' value='"+user_id+"'>";
     $('#send-post-popup').prepend(txt);
 	
     $('#ossn-message-box-send-msg').attr('style', 'display:block;');	
@@ -285,8 +285,8 @@ function send(){
 
 	var title = $("#title_input").val();
 	var msg = $("#post-send-msg").val();
-	var from_user_num=$("#user_num").val();
-	var to_user_num=$("#to_user_num").val();
+	var from_user_id = $("#user_id").val();
+	var to_user_id = $("#to_user_id").val();
 
 	if (title == "") {
 		alert("제목을 적어주세요 :)");
@@ -297,14 +297,14 @@ function send(){
 		var sendData = {
 			title : title,
 			msg : msg,
-			from_user_num : from_user_num,
-			to_user_num : to_user_num
+			from_user_id : from_user_id,
+			to_user_id : to_user_id
 		};
 
-		console.log("값아??" + title + "/" + msg + "/" + from_user_num + "/"
-				+ to_user_num);
+		console.log("값아??" + title + "/" + msg + "/" + from_user_id + "/"
+				+ to_user_id);
 		$.ajax({
-			url : 'http://localhost:8090/ssun/sendMsg',
+			url : 'http://localhost:8888/sendMsg',
 			method : 'POST',
 			data : JSON.stringify(sendData),
 			processData : false,
@@ -343,7 +343,7 @@ function getBusData_p_ca(){
 	$('.bus_timeTable').text("▶ "+ name);
 	
 	$.ajax({
-	       url : 'http://localhost:8090/ssun/bus_p_ca',
+	       url : 'http://localhost:8888/bus_p_ca',
 	       method : 'GET',
 	       data : name,
 	       processData : false,
@@ -396,7 +396,7 @@ function getBusData_p_ct(){
 	$('.bus_timeTable').text("▶ "+ name);
 
 	$.ajax({
-	       url : 'http://localhost:8090/ssun/bus_p_ct',
+	       url : 'http://localhost:8888/bus_p_ct',
 	       method : 'GET',
 	       data : name,
 	       processData : false,
@@ -443,7 +443,7 @@ function getBusData_p_ot(){
 	$('.bus_timeTable').text("▶ "+ name);
 	
 	$.ajax({
-	       url : 'http://localhost:8090/ssun/bus_p_ot',
+	       url : 'http://localhost:8888/bus_p_ot',
 	       method : 'GET',
 	       data : name,
 	       processData : false,
@@ -492,7 +492,7 @@ function getBusData_p_cc(){
 	$('.bus_timeTable').text("▶ "+ name);
 	
 	$.ajax({
-	       url : 'http://localhost:8090/ssun/bus_p_cc',
+	       url : 'http://localhost:8888/bus_p_cc',
 	       method : 'GET',
 	       data : name,
 	       processData : false,
@@ -572,7 +572,7 @@ function getBusData_t_ca(){
 	$('.bus_timeTable').text("▶ "+ name);
 	
 	$.ajax({
-	       url : 'http://localhost:8090/ssun/bus_h_ca',
+	       url : 'http://localhost:8888/bus_h_ca',
 	       method : 'GET',
 	       data : name,
 	       processData : false,
@@ -621,7 +621,7 @@ function getBusData_t_ct(){
 	$('.bus_timeTable').text("▶ "+ name);
 	
 	$.ajax({
-	       url : 'http://localhost:8090/ssun/bus_h_ct',
+	       url : 'http://localhost:8888/bus_h_ct',
 	       method : 'GET',
 	       data : name,
 	       processData : false,
@@ -667,7 +667,7 @@ function getBusData_i_ca(){
 	$('.bus_timeTable').text("▶ "+ name);
 
 	$.ajax({
-	       url : 'http://localhost:8090/ssun/bus_s_ca',
+	       url : 'http://localhost:8888/bus_s_ca',
 	       method : 'GET',
 	       data : name,
 	       processData : false,
@@ -716,7 +716,7 @@ function getBusData_i_ct(){
 	$('.bus_timeTable').text("▶ "+ name);
 	
 	$.ajax({
-	       url : 'http://localhost:8090/ssun/bus_s_ct',
+	       url : 'http://localhost:8888/bus_s_ct',
 	       method : 'GET',
 	       data : name,
 	       processData : false,
