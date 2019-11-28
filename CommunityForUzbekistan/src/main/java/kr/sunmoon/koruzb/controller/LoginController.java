@@ -61,7 +61,7 @@ public class LoginController {
 	         logger.info("세션~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ : " + request.getSession().getAttribute("user_name"));
 	         return  DBuserInfo;
 	      /*   
-	      } catch (Exception e) {
+	      } catch (Exception e) { 
 	         e.getMessage();
 	         //return "login";
 	      }*/

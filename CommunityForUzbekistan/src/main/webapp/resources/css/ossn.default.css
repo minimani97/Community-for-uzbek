@@ -1583,6 +1583,10 @@ a {
 	text-overflow: ellipsis
 }
 
+#user-name-area {
+	color: #FFF;
+}
+
 .ossn-profile-role {
 	font-size: 25px !important;
 	margin-top: -105px !important

@@ -68,7 +68,7 @@ public class MainTimelineController {
 		int index = 0;
 		
 		String root = request.getSession().getServletContext().getRealPath("/");
-	    String path = root + "resources/uploadFile/"; 
+	    String path = root + "/resources/uploadFile/"; 
 	         
 	    String newFileName = ""; // 업로드 되는 파일명
 	    String fileName    = "";
@@ -369,7 +369,7 @@ public class MainTimelineController {
 		int index = 0;
 
 		String root = request.getSession().getServletContext().getRealPath("/");
-		String path = root + "resources/uploadFile/";
+		String path = root + "/resources/uploadFile/";
 
 		String newFileName = ""; // 업로드 되는 파일명
 		String fileName = "";

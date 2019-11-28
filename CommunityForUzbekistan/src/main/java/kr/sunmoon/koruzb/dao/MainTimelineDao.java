@@ -284,6 +284,7 @@ public class MainTimelineDao {
 	public String getPostContent(int w_num, String dep_code) {
 
 		String sqlStatement = "select w_content from timeline_post where w_num = " + w_num + " and dep_code='"+dep_code+"'";
+		System.out.println("SQL: " + sqlStatement);
 		return jdbcTemplate.queryForObject(sqlStatement, String.class);
 	}
 	
@@ -377,8 +378,8 @@ public class MainTimelineDao {
 				post.setUser_img(rs.getString("profile"));
 				post.setW_date(rs.getString("w_time"));
 				post.setW_content(rs.getString("w_content"));
-				post.setLike_cnt(rs.getInt("like_num"));
-				post.setComment_cnt(rs.getInt("comment_num"));
+				post.setLike_cnt(rs.getInt("like_cnt"));
+				post.setComment_cnt(rs.getInt("comment_cnt"));
 
 				String sqlStatement2 = "select * from timeline_file where w_num = " + rs.getInt("w_num")
 						+ " and dep_code='"+dep_code+"' and save_filename is not null";

@@ -95,7 +95,7 @@ $(document).ready(function() {
 			    txt += "<div class='meta'>";
 			    txt += "<img class='user-img' ";
 			    if(user_img=="" || user_img==null || myObj.anonymity=="Y") {
-			    	txt += "src='resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg'>";
+			    	txt += "src='resources/img/default-user-icon-11.jpg'>";
 			    } else { 
 			    	txt += "src='http://localhost:8888/resources/userImage/"+user_img+"'>";
 			    }
@@ -191,6 +191,7 @@ $(document).ready(function() {
 			return false;
 		}
 		
+		var formData = new FormData($("#ossn-wall-form")[0]);
 		
 		e.preventDefault();
 
@@ -231,7 +232,7 @@ $(document).ready(function() {
 			    txt += "<div class='meta'>";
 			    txt += "<img class='user-img' ";
 			    if(user_img=="" || user_img==null || myObj.anonymity=="Y") {
-			    	txt += "src='resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg'>";
+			    	txt += "src='resources/img/default-user-icon-11.jpg'>";
 			    } else { 
 			    	txt += "src='http://localhost:8888/resources/userImage/"+user_img+"'>";
 			    }
@@ -280,9 +281,10 @@ $(document).ready(function() {
 			    			txt += "<video class='cam-video' controls>";
 			    			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 			    		} else {
-			    			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+			    			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 			    		}
 			    	}
+			    	txt += "</div>";
 			    }         
 			    txt += "<div class=comments-likes>";
 			    txt += "<div class=menu-likes-comments-share>";
@@ -384,7 +386,7 @@ function getAllWriting() {
 	            txt += "<div class=meta>";
 	            txt += "<img class=user-img ";
 	            if(myObj[x].user_img=="" || myObj[x].user_img==null || myObj[x].anonymity=="Y") {
-	            	txt += "src=resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg>";
+	            	txt += "src=resources/img/default-user-icon-11.jpg>";
 	            } else { 
 	            	txt += "src=http://localhost:8888/resources/userImage/"+myObj[x].user_img+">";
 	            }
@@ -438,20 +440,21 @@ function getAllWriting() {
 	            txt += "<span class=time-created>"+myObj[x].w_date+"</span>";
 	            txt += "<span class=time-created></span></div></div>";
 	            txt += "<div class=post-contents><p id='writing-"+myObj[x].w_num+"'>"+content+"</p>";
-	            if(myObj[x].save_filename.length == 0) {
+	            if(myObj[x].save_filenames.length == 0) {
 	            	txt += "</div>";
 	            } else {
-	            	for(key in myObj[x].save_filename){
-	            		var fileName = myObj[x].save_filename[key].save_filename;
+	            	for(key in myObj[x].save_filenames){
+	            		var fileName = myObj[x].save_filenames[key].save_filename;
 	            		var ext = checkExtension(fileName);
 	            		
 	            		if(ext == "video") {
 	            			txt += "<video class='cam-video' controls>";
 	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 	            		}
 	            	}
+	            	txt += "</div>"; //수정쓴
 	            }         
 	            txt += "<div class=comments-likes>";
 	            txt += "<div class=menu-likes-comments-share>";
@@ -766,7 +769,7 @@ function loadWriting() {
 			var dep_code;
 			var url = window.location.href.split("?");
 			if(url[1] == undefined) {
-				dep_code = "All";
+				dep_code = "M";
 			} else {
 				var param = url[1].split("=");
 				var code = param[1];
@@ -802,7 +805,7 @@ function loadWriting() {
 			            txt += "<div class=meta>";
 			            txt += "<img class=user-img ";
 			            if(myObj[x].user_img=="" || myObj[x].user_img==null || myObj[x].anonymity=="Y") {
-			            	txt += "src=resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg>";
+			            	txt += "src=resources/img/default-user-icon-11.jpg>";
 			            } else { 
 			            	txt += "src=http://localhost:8888/resources/userImage/"+myObj[x].user_img+">";
 			            }
@@ -856,11 +859,11 @@ function loadWriting() {
 			            txt += "<span class=time-created>"+myObj[x].w_date+"</span>";
 			            txt += "<span class=time-created></span></div></div>";
 			            txt += "<div class=post-contents><p id='writing-"+myObj[x].w_num+"'>"+content+"</p>";
-			            if(myObj[x].save_filename.length == 0) {
+			            if(myObj[x].save_filenames.length == 0) {
 			            	txt += "</div>";
 			            } else {
-			            	for(key in myObj[x].save_filename){
-			            		var fileName = myObj[x].save_filename[key].save_filename;
+			            	for(key in myObj[x].save_filenames){
+			            		var fileName = myObj[x].save_filenames[key].save_filename;
 			            		var ext = checkExtension(fileName);
 			            		
 			            		if(ext == "video") {
@@ -1006,7 +1009,7 @@ function editPost_getContent(w_num) {
 	var dep_code;
 	var url = window.location.href.split("?");
 	if(url[1] == undefined) {
-		dep_code = "All";
+		dep_code = "M";
 	} else {
 		var param = url[1].split("=");
 		var code = param[1];
@@ -1107,7 +1110,7 @@ function editComment_getContent(c_num) {
 	var dep_code;
 	var url = window.location.href.split("?");
 	if(url[1] == undefined) {
-		dep_code = "All";
+		dep_code = "M";
 	} else {
 		var param = url[1].split("=");
 		var code = param[1];
@@ -1276,7 +1279,7 @@ function searchPost(){
 		if(window.location.href == "http://localhost:8888/notice") {
 			dep_code = "N";
 		} else if(url[1] == undefined) {
-			dep_code = "All";
+			dep_code = "M";
 		} else {
 			var param = url[1].split("=");
 			var code = param[1];
@@ -1385,7 +1388,7 @@ function getAllNotice() {
 	            txt += "<div class=meta>";
 	            txt += "<img class=user-img ";
 	            if(myObj[x].user_img=="" || myObj[x].user_img==null || myObj[x].anonymity=="Y") {
-	            	txt += "src=resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg>";
+	            	txt += "src=resources/img/default-user-icon-11.jpg>";
 	            } else { 
 	            	txt += "src=http://localhost:8888/resources/userImage/"+myObj[x].user_img+">";
 	            }
@@ -1425,20 +1428,21 @@ function getAllNotice() {
 	            txt += "<span class=time-created>"+myObj[x].w_date+"</span>";
 	            txt += "<span class=time-created></span></div></div>";
 	            txt += "<div class=post-contents><p id='writing-"+myObj[x].w_num+"'>"+content+"</p>";
-	            if(myObj[x].save_filename.length == 0) {
+	            if(myObj[x].save_filenames.length == 0) {
 	            	txt += "</div>";
 	            } else {
-	            	for(key in myObj[x].save_filename){
-	            		var fileName = myObj[x].save_filename[key].save_filename;
+	            	for(key in myObj[x].save_filenames){
+	            		var fileName = myObj[x].save_filenames[key].save_filename;
 	            		var ext = checkExtension(fileName);
 	            		
 	            		if(ext == "video") {
 	            			txt += "<video class='cam-video' controls>";
 	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 	            		}
 	            	}
+	            	txt += "</div>";
 	            }         
 	            txt += "<div class=comments-likes>";
 	            txt += "<div class=menu-likes-comments-share>";
@@ -1542,7 +1546,7 @@ $(window).scroll(function() {
 			            txt += "<div class=meta>";
 			            txt += "<img class=user-img ";
 			            if(myObj[x].user_img=="" || myObj[x].user_img==null || myObj[x].anonymity=="Y") {
-			            	txt += "src=resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg>";
+			            	txt += "src=resources/img/default-user-icon-11.jpg>";
 			            } else { 
 			            	txt += "src=http://localhost:8888/resources/userImage/"+myObj[x].user_img+">";
 			            }
@@ -1582,11 +1586,11 @@ $(window).scroll(function() {
 			            txt += "<span class=time-created>"+myObj[x].w_date+"</span>";
 			            txt += "<span class=time-created></span></div></div>";
 			            txt += "<div class=post-contents><p id='writing-"+myObj[x].w_num+"'>"+content+"</p>";
-			            if(myObj[x].save_filename.length == 0) {
+			            if(myObj[x].save_filenames.length == 0) {
 			            	txt += "</div>";
 			            } else {
-			            	for(key in myObj[x].save_filename){
-			            		var fileName = myObj[x].save_filename[key].save_filename;
+			            	for(key in myObj[x].save_filenames){
+			            		var fileName = myObj[x].save_filenames[key].save_filename;
 			            		var ext = checkExtension(fileName);
 			            		
 			            		if(ext == "video") {
@@ -1736,13 +1740,13 @@ function getNoticeInfo() {
 				txt += "<span class='time-created'>"+myObj[x].w_date+"</span>";
 				txt += "<span class='time-created'></span></div></div>";
 				txt += "<div class='post-contents'><p id='writing-"+myObj[x].w_num+"'>"+content+"</p>";
-				if(myObj[x].save_filename.length == 0) {
+				if(myObj[x].save_filenames.length == 0) {
 	            	txt += "</div>";
 	            } else {
-	            	for(key in myObj[x].save_filename){
-	            		console.log("------파일 이름: " + myObj[x].save_filename[key].save_filename);
+	            	for(key in myObj[x].save_filenames){
+	            		console.log("------파일 이름: " + myObj[x].save_filenames[key].save_filenames);
 	            		
-	            		var fileName = myObj[x].save_filename[key].save_filename;
+	            		var fileName = myObj[x].save_filenames[key].save_filename;
 	            		var ext = checkExtension(fileName);
 	            		
 	            		if(ext == "video") {
@@ -1793,13 +1797,13 @@ function bestLikePostInfo() {
 				txt += "<span class='time-created'>"+myObj[x].w_date+"</span>";
 				txt += "<span class='time-created'></span></div></div>";
 				txt += "<div class='post-contents'><p id='writing"+myObj[x].w_num+"'>"+content+"</p>";
-				if(myObj[x].save_filename.length == 0) {
+				if(myObj[x].save_filenames.length == 0) {
 	            	txt += "</div>";
 	            } else {
-	            	for(key in myObj[x].save_filename){
-	            		console.log("------파일 이름: " + myObj[x].save_filename[key].save_filename);
+	            	for(key in myObj[x].save_filenames){
+	            		console.log("------파일 이름: " + myObj[x].save_filenames[key].save_filenames);
 	            		
-	            		var fileName = myObj[x].save_filename[key].save_filename;
+	            		var fileName = myObj[x].save_filenames[key].save_filename;
 	            		var ext = checkExtension(fileName);
 	            		
 	            		if(ext == "video") {
@@ -1852,13 +1856,13 @@ function bestCommentPostInfo() {
 				txt += "<span class='time-created'>"+myObj[x].w_date+"</span>";
 				txt += "<span class='time-created'></span></div></div>";
 				txt += "<div class='post-contents'><p id='writing"+myObj[x].w_num+"'>"+content+"</p>";
-				if(myObj[x].save_filename.length == 0) {
+				if(myObj[x].save_filenames.length == 0) {
 	            	txt += "</div>";
 	            } else {
-	            	for(key in myObj[x].save_filename){
-	            		console.log("------파일 이름: " + myObj[x].save_filename[key].save_filename);
+	            	for(key in myObj[x].save_filenames){
+	            		console.log("------파일 이름: " + myObj[x].save_filenames[key].save_filenames);
 	            		
-	            		var fileName = myObj[x].save_filename[key].save_filename;
+	            		var fileName = myObj[x].save_filenames[key].save_filename;
 	            		var ext = checkExtension(fileName);
 	            		
 	            		if(ext == "video") {
