@@ -32,6 +32,10 @@ public class MypageService {
 	public void editUserInfo(String u_id, String phone, String email) {
 		mypagedao.editUserInfo(u_id, phone, email);
 	}
+	
+	public UserInfo reSetSession(String user_id) {
+		return mypagedao.reSetSession(user_id);
+	}
 
 	public UserInfo myPageInfoService(String user_id) throws Exception {
 		return mypagedao.myPageInfoDao(user_id);
@@ -40,7 +44,6 @@ public class MypageService {
 	public void insertNewPassword(String user_id, String password) throws Exception {
 		mypagedao.insertNewPassword(user_id, password);
 	}
-
 	
 	public void deleteUser(String user_id) {
 		mypagedao.deleteUser(user_id);

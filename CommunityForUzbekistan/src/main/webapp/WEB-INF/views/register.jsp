@@ -126,8 +126,7 @@
 					<div class="row">
 						<div class="col-md-2 left-side left"></div>
 						<div class="col-md-7 site-name text-center ">
-							<span><a href="http://localhost:8090/ssun/">😄 선문대
-									귀는 당나귀 귀 😄</a></span>
+							<span><a href="http://localhost:8888/">😄 S.U.M Community 😄</a></span>
 						</div>
 						<div class="col-md-3 text-right right-side">
 							<div class="topbar-menu-right">

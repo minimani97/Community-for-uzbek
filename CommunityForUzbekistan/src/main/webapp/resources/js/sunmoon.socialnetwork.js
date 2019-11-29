@@ -13,6 +13,7 @@ $(document).ready(function() {
 		bestLikePostInfo();
 		bestCommentPostInfo();
 	} else {
+		//$(".ossn-page-loading-annimation").attr("style", "display:none;");
 		setUserInfo();
 		setAdmin();
 		getAllWriting();
@@ -870,9 +871,10 @@ function loadWriting() {
 			            			txt += "<video class='cam-video' controls>";
 			            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 			            		} else {
-			            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+			            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 			            		}
 			            	}
+			            	txt += "</div>";
 			            }         
 			            txt += "<div class=comments-likes>";
 			            txt += "<div class=menu-likes-comments-share>";
@@ -1597,9 +1599,10 @@ $(window).scroll(function() {
 			            			txt += "<video class='cam-video' controls>";
 			            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 			            		} else {
-			            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+			            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 			            		}
 			            	}
+			            	txt += "</div>";
 			            }         
 			            txt += "<div class=comments-likes>";
 			            txt += "<div class=menu-likes-comments-share>";
@@ -1744,8 +1747,7 @@ function getNoticeInfo() {
 	            	txt += "</div>";
 	            } else {
 	            	for(key in myObj[x].save_filenames){
-	            		console.log("------파일 이름: " + myObj[x].save_filenames[key].save_filenames);
-	            		
+
 	            		var fileName = myObj[x].save_filenames[key].save_filename;
 	            		var ext = checkExtension(fileName);
 	            		
@@ -1753,9 +1755,10 @@ function getNoticeInfo() {
 	            			txt += "<video class='cam-video' controls>";
 	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 	            		}
 	            	}
+	            	txt += "</div>";
 	            }
 				txt += "</div></div></div>";
 	        }
@@ -1801,7 +1804,6 @@ function bestLikePostInfo() {
 	            	txt += "</div>";
 	            } else {
 	            	for(key in myObj[x].save_filenames){
-	            		console.log("------파일 이름: " + myObj[x].save_filenames[key].save_filenames);
 	            		
 	            		var fileName = myObj[x].save_filenames[key].save_filename;
 	            		var ext = checkExtension(fileName);
@@ -1810,9 +1812,10 @@ function bestLikePostInfo() {
 	            			txt += "<video class='cam-video' controls>";
 	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 	            		}
 	            	}
+	            	txt += "</div>";
 	            }
 				txt += "</div></div></div>";
 	        }
@@ -1830,10 +1833,10 @@ function bestLikePostInfo() {
 function bestCommentPostInfo() {
 	//var user_dep = document.getElementById("user_dep").value;
 	var user_id = document.getElementById("user_id").value;
-	console.log("유저어ㅓ어어아이ㅣ디ㅣㅣ이ㅣ:" + user_id);
 	
 	var user_img = $('#user_img').val();
-	console.log("유저 프로필 사진: " + user_img);
+	
+	console.log("bestCommentPostInfo 함수!!!!!!!!!");
 	
 	$.ajax({
 		url:'http://localhost:8888/bestCommentPostInfo',
@@ -1860,7 +1863,6 @@ function bestCommentPostInfo() {
 	            	txt += "</div>";
 	            } else {
 	            	for(key in myObj[x].save_filenames){
-	            		console.log("------파일 이름: " + myObj[x].save_filenames[key].save_filenames);
 	            		
 	            		var fileName = myObj[x].save_filenames[key].save_filename;
 	            		var ext = checkExtension(fileName);
@@ -1869,9 +1871,10 @@ function bestCommentPostInfo() {
 	            			txt += "<video class='cam-video' controls>";
 	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 	            		}
 	            	}
+	            	txt += "</div>";
 	            }
 				txt += "</div></div></div>";
 	        }

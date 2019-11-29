@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- saved from url=(0046)https://demo.opensource-socialnetwork.org/home -->
 <html>
@@ -278,8 +277,8 @@
 	   console.log("password: " + "${sessionScope.password}");
 	   
 	   $(document).ready(function() {
-	         setTimeout("notRead()", 10);
-	         setInterval("countMyMsg()", 3000);
+	        //setTimeout("notRead()", 10);
+	        //setInterval("countMyMsg()", 3000);
 	   });
 	   
 </script>
@@ -481,7 +480,7 @@
 							<li><a class="" href="http://localhost:8888/newsFeed"><i
 									class="fa fa-comments fa-lg"></i>소통공간</a></li>
 									
-							<li><a class="" href="http://localhost:8888/newsFeed?dep=F"><i
+							<li><a class="" href="http://localhost:8888/fleaMarket"><i
 									class="fa fa-shopping-cart fa-lg"></i>플리마켓</a></li>
 
 							<!-- <li data-toggle="collapse" data-target="#1234"
@@ -531,7 +530,7 @@
 										href="https://eps.hrdkorea.or.kr/e9/index.do?method=index">EPS 외국인고용지원</a></li>
 									<li class="menu-section-item-friends"><a
 										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=BE">블라블라아~</a></li>
+										href="https://www.liveinkorea.kr/portal/main/intro.do">다누리(다문화가족지원포털)</a></li>
 								</ul>
 							</ul>
 
@@ -555,8 +554,7 @@
 							</div>
 						</div>
 						<div class="col-md-4 mainTl-site-name text-center hidden-xs hidden-sm">
-							<span><a href="http://localhost:8888/newsFeed" style="margin">😄 선문대
-									귀는 당나귀 귀 😄</a></span>
+							<span><a href="http://localhost:8888/newsFeed" style="margin">😄 S.M.U Community 😄</a></span>
 						</div>
 						<div>
 						<div id="topbar-search-area" name="topbar-search-area" class="col-md-5">
@@ -668,7 +666,7 @@
 													</div>
 												</div>
 												<div class="ossn-wall-container-data ossn-wall-container-data-post" data-type="post">
-													<textarea placeholder="무슨 생각해? 내 생각? :)" id="post_content" name="post_content"style="margin-bottom: 0px;"></textarea>
+													<textarea placeholder="" id="post_content" name="post_content"style="margin-bottom: 0px;"></textarea>
 													<div id="ossn-wall-photo" class="ossn-wall-photo-area" style="display: none;">
 														<input type="file" name="ossn_photo" multiple accept='image/*'>
 													</div>

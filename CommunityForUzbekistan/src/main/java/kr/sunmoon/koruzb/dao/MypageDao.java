@@ -66,6 +66,24 @@ public class MypageDao {
 		System.out.println("SQL: " + sql);
 		jdbcTemplate.update(sql);
 	}
+	
+	public UserInfo reSetSession(String user_id) {
+		String sql = "select * from user_info where id='"+user_id+"'";
+		
+		return jdbcTemplate.queryForObject(sql, new RowMapper<UserInfo>() {
+			@Override
+			public UserInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				
+				UserInfo info = new UserInfo();
+				
+				info.setEmail(rs.getString("email"));
+				info.setPhone(rs.getString("phone"));
+				
+				return info;
+				
+			}
+		});
+	}
 
 	public UserInfo myPageInfoDao(String user_id) throws Exception {
 		// UserInformation info = new UserInformation();

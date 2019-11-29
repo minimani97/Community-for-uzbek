@@ -135,7 +135,7 @@
 					<div class="row">
 						<div class="col-md-2 left-side left"></div>
 						<div class="col-md-7 site-name text-center ">
-							<span><a href="http://localhost:8888/">😄 선문대 귀는 당나귀 귀 😄</a></span>
+							<span><a href="http://localhost:8888/">😄 S.U.M Community 😄</a></span>
 						</div>
 						<div class="col-md-3 text-right right-side">
 							<div class="topbar-menu-right">
@@ -163,11 +163,11 @@
 										<div class="col-md-6 col-center ossn-page-contents">
 
 											<div class="logo">
-												<img src="resources/img/SGDG_icon.png" width="450" height = "185">
+												<img src="resources/img/logo.png" width="375" height="160" style="margin-top:20px;">
 											</div>
 											<br>
 											<br>
-											<div class="description">선귀당귀에 오신것을 환영합니다:D</div>
+											<div class="description" style="margin-top:0px;">환영합니다! 아산시 신창면의 우즈베키스탄인들의 한국 적응과 소통을 위한 커뮤니티입니다:)</div>
 											<br>
 											<br>
 											<br>

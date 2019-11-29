@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,6 +104,17 @@ public class MyPageController {
 		
 		mypageService.editUserInfo(user_id, user_tel, user_email);
 		
+	}
+	
+	// 회원 정보 변경 후 세션값 재설정하는 함수
+	@ResponseBody
+	@RequestMapping(value = "/reSetSession")
+	public void reSetSession(@RequestBody Map<String, Object> user_info, HttpServletRequest request) throws Exception {
+		String user_id = user_info.get("user_id").toString();
+		
+		UserInfo info = mypageService.reSetSession(user_id);
+		request.getSession().setAttribute("email", info.getEmail());
+		request.getSession().setAttribute("phone", info.getPhone());
 	}
 	
 	@RequestMapping(value = "/mypageInfomation")

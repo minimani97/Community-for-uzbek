@@ -619,9 +619,10 @@ function searchPost(){
 	            			txt += "<video controls>";
 	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 	            		}
 	            	}
+	            	txt += "</div>";
 	            }         
 	            txt += "<div class=comments-likes>";
 	            txt += "<div class=menu-likes-comments-share>";
@@ -859,9 +860,10 @@ function loadSearchWriting() {
 			            			txt += "<video controls>";
 			            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 			            		} else {
-			            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+			            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 			            		}
 			            	}
+			            	txt += "</div>";
 			            }         
 			            txt += "<div class=comments-likes>";
 			            txt += "<div class=menu-likes-comments-share>";
@@ -963,9 +965,10 @@ function getNoticeInfo() {
 	            			txt += "<video class='cam-video' controls>";
 	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 	            		}
 	            	}
+	            	txt += "</div>";
 	            }
 				txt += "</div></div></div>";
 	        }
@@ -1023,9 +1026,10 @@ function bestLikePostInfo() {
 	            			txt += "<video class='cam-video' controls>";
 	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 	            		}
 	            	}
+	            	txt += "</div>";
 	            }
 				txt += "</div></div></div>";
 	        }
@@ -1082,9 +1086,10 @@ function bestCommentPostInfo() {
 	            			txt += "<video class='cam-video' controls>";
 	            			txt += "<source src=http://localhost:8888/resources/uploadFile/"+fileName+" type=video/"+cmpExtension(fileName)+"></video>";
 	            		} else {
-	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+"></div>";
+	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 	            		}
 	            	}
+	            	txt += "</div>";
 	            }
 				txt += "</div></div></div>";
 	        }

@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!-- saved from url=(0046)https://demo.opensource-socialnetwork.org/home -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -141,10 +141,16 @@
 	}
 </script>
 
-<title>SGDG : Search</title>
+<title>SGDG : News Feed</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="/ssun/resources/img/SGDG_favicon_96x96.png">
+<link rel="shortcut icon" href="/resources/img/SGDG_favicon_96x96.png">
 
+<!-- 
+	Open Source Social Network (Ossn) https://www.opensource-socialnetwork.org/     
+	BY Informatikon Technologies (http://informatikon.com/)
+	BY SOFTLAB24 (https://www.softlab24.com/)
+	-->
+<!-- <link rel="stylesheet" type="text.css" href="resources/css/stylesheet.css"> -->
 <!-- <script type="text/javascript" async="" defer="" src="./News Feed _ OSSN Demo_files/piwik.js"></script>
 <script async="" src="./News Feed _ OSSN Demo_files/analytics.js"></script>
 <script src="./News Feed _ OSSN Demo_files/ARf53_7CZrph6eMZGwgXpTF2-tk.js"></script> -->
@@ -157,7 +163,7 @@
 <script type="text/javascript" src="/resources/js/jquery.scrolling.js"></script>
 <script type="text/javascript" src="/resources/js/places.min.js"></script>
 <script type="text/javascript" src="/resources/js/jquery.tokeninput.js"></script>
-<script type="text/javascript" src="/resources/js/sunmoon.socialnetwork_search.js"></script>
+<script type="text/javascript" src="/resources/js/sunmoon.socialnetwork.js"></script>
 <script type="text/javascript" src="/resources/js/opensource.socialnetwork.js"></script>
 <script type="text/javascript" src="/resources/js/ossn.chat.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
@@ -190,15 +196,15 @@
 		var user_name = "${sessionScope.user_name}";
 		var user_id = "${sessionScope.user_id}";
 		var user_img = "${sessionScope.user_img}";
+		var user_type = "${sessionScope.usertype}"
 		
 		console.info("--user_img: " + user_img);
-		console.info("--user_dep: " + user_dep);
 		
-		/* if(user_dep == "Admin") {
-			document.getElementById("user-department-info").innerHTML = "선문대 귀는 당나귀 귀";
+		/*if(user_type == "A") {
+			//document.getElementById("user-department-info").innerHTML = "선문대 귀는 당나귀 귀";
 		} else {
 			checkDepartment(user_dep);
-		} */
+		}*/
 		
 		//document.getElementById("user_dep").value = user_dep;
 		document.getElementById("user-name-info").innerHTML = user_name;
@@ -206,7 +212,7 @@
 		document.getElementById("user_img").value = user_img;
 		
 		if(user_img=="" || user_img==null) {
-			var url = "resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg";
+			var url = "resources/img/default-user-icon-11.jpg";
 			/* document.getElementById("user-profile-img").attr("src", url); */
 			$('#user-profile-img').attr("src", url);
 		} else {
@@ -230,6 +236,7 @@
 	         contentType : 'application/json',
 	         success : function(data) {
 	        	console.log("학과: " + data);
+	        	
 	        	document.getElementById("user-department-info").innerHTML = data;
 	         },
 	         error : function(data, status, err) {
@@ -241,8 +248,8 @@
 	function logout(){
 	      console.log("logout called!");
 	      
-	      var user_id  = ${sessionScope.user_id};
-	      console.log(" userId 값000:" + user_id);
+	      var user_id  = "${sessionScope.user_id}";
+	      console.log(" user_id 값000:" + user_id);
 
 	      $.ajax({
 	         url : 'http://localhost:8888/logout',
@@ -257,7 +264,7 @@
 
 	            loginCheckProc(data, user_id);
 	            alert("로그아웃 됩니다.");
-	         
+	 
 	         },
 	         error : function(data, status, err) {
 	            //alert('error');
@@ -269,7 +276,13 @@
 	   console.log("뉴스피드 user_id: " + "${sessionScope.user_id}");
 	   console.log("password: " + "${sessionScope.password}");
 	   
+	   $(document).ready(function() {
+	        //setTimeout("notRead()", 10);
+	        //setInterval("countMyMsg()", 3000);
+	   });
+	   
 </script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
 
 </head>
 
@@ -282,7 +295,61 @@
 
 	<div class="ossn-halt"></div>
 	
-<!-- 쪽지 보내기 -->
+	<!-- 보낸 쪽지함 -->
+ 
+ <div name="ossn-message-box-sendMsgList-post" id="ossn-message-box-sendMsgList-post" class="ossn-message-box-edit-post" style="display: none;">
+      <div class="title">
+         보낸 쪽지함
+         <div class="close-box" onclick="PostMessageBoxClose();">X</div>
+      </div>
+      <div class="contents">
+         <div class="ossn-box-inner">
+            <div style="width: 100%; margin: auto;">
+               <form
+                  action="https://demo.opensource-socialnetwork.org/action/wall/post/edit"
+                  id="ossn-post-sendMsgList-form" name="ossn-post-sendMsgList-form" class="ossn-form" method="post"
+                  enctype="multipart/form-data">
+                  <fieldset>
+                     <div id="sendMsgList-post-popup">
+
+                        <table class="sendMsgListTable" style="width: 100%">
+                           <tr style="background: #e6e6e6;">
+                              <th>받은사람</th>
+                              <th>제목</th>
+                              <th>날짜</th>
+                              <th>수신 확인</th>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <input type="" class="List_to" id="List_to" value="승민" disabled="disabled">
+                              </td>
+                              <td>
+                                 <li><a class="" href="http://localhost:8888/mypage"><i
+                                    class="fa fa-user fa-lg"></i>승미니에게</a></li>
+                                 <!-- <input type="text" class="List_title" id="List_title" value="승미니에게" disabled="disabled"> -->
+                              </td>
+                              <td>
+                                 <input type="" class="List_date" id="List_date" value="?" disabled="disabled">
+                              </td>
+                              <td>
+                                 <input type="" class="List_check" id="List_check" value="N" disabled="disabled">
+                              </td>
+                           </tr>
+                        </table>
+
+                        <input type="hidden" name="guid" value="89"> 
+                        <input type="submit" class="hidden" id="ossn-post-sendMsgList-save">
+                     </div>
+                  </fieldset>
+               </form>
+               
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+ <!-- 쪽지 보내기 -->
   <div name="ossn-message-box-send-msg" id="ossn-message-box-send-msg" class="ossn-message-box-send-msg" style="display: none;">
       <div class="title">
          쪽지 보내기
@@ -317,8 +384,8 @@
          </div>
       </div>
    </div>
- <!-- ===================================================================== -->	
-	
+ <!-- ===================================================================== -->
+ 
  <!-- ===================================================================== -->
  	<!-- 글 수정 창 -->
 	<div class="ossn-message-box-edit-post" style="display: none;">
@@ -338,6 +405,9 @@
 								type="hidden" name="ossn_token"
 								value="efd4a6afca12570625628c4ca9aa670a">
 							<div id="edit-post-popup">
+								<!-- <textarea id="post-edit" name="post">test</textarea>
+								<input type="hidden" name="guid" value="89"> <input
+									type="submit" class="hidden" id="ossn-post-edit-save"> -->
 							</div>
 						</fieldset>
 					</form>
@@ -346,8 +416,7 @@
 		</div>
 		<div class="control">
 			<div class="controls">
-				<a href="javascript:editPost();"
-					onclick="<!-- Ossn.Clk('#ossn-post-edit-save'); -->" class="btn btn-primary">저장</a>
+				<a href="javascript:editPost();" class="btn btn-primary">저장</a>
 				<a href="javascript:void(0);" onclick="PostMessageBoxClose();"
 					class="btn btn-default">취소</a>
 			</div>
@@ -383,8 +452,7 @@
 		</div>
 		<div class="control">
 			<div class="controls">
-				<a href="javascript:editComment();"
-					onclick="<!-- Ossn.Clk('#ossn-post-edit-save'); -->" class="btn btn-primary">저장</a>
+				<a href="javascript:editComment();" class="btn btn-primary">저장</a>
 				<a href="javascript:void(0);" onclick="CommentMessageBoxClose();"
 					class="btn btn-default">취소</a>
 			</div>
@@ -397,11 +465,8 @@
 		<div class="sidebar sidebar-close">
 			<div class="sidebar-contents">
 				<div id="newseed-uinfo" class="newseed-uinfo">
-					<img id="user-profile-img" src="">
-					<div class="name" style="width: 150px">
-						<br>
-						<div id="user-department-info" name="user-department-info"
-							style="font-weight: bold; display: block; color: #fff; font-size: 16px"></div>
+					<img id="user-profile-img" style="margin-top: 5px;" src="">
+					<div class="name" style="width: 150px; margin-top: 10px;">
 						<div id="user-name-info" name="user-name-info"
 							style="font-weight: bold; display: block; color: #fff; font-size: 16px"></div>
 					</div>
@@ -417,26 +482,13 @@
 									
 							<li><a class="" href="http://localhost:8888/fleaMarket"><i
 									class="fa fa-shopping-cart fa-lg"></i>플리마켓</a></li>
-
-							<!-- <li data-toggle="collapse" data-target="#1234"
-								class="menu-section-extra active collapsed" aria-expanded="true"><a
-								class="" href="javascript:void(0);"><i
-									class="fa fa-plus fa-lg"></i>부가기능<span class="arrow"></span></a></li>
-							<ul class="sub-menu collapse" id="1234" aria-expanded="true"
-								style="height: 0px;">
-								<li class="menu-section-item-bus">
-									<a class="menu-section-item-a-bus" href="http://localhost:8888/bus">한국생활 꿀팁</a>
-								</li>
-								<li class="menu-section-item-university">
-									<a class="menu-section-item-a-university" href="http://lily.sunmoon.ac.kr/MainDefault.aspx">여러 사이트 모음</a>
-								</li>
-							</ul> -->
-							
+									
 							<li data-toggle="collapse"
 								data-target="#1471e4e05a4db95d353cc867fe317314"
 								class="menu-section-groups active collapsed"
 								aria-expanded="false"><a class=""
-								href="javascript:void(0);"><i class="fa fa-plus fa-lg"></i>부가기능<i class="fa fa-angle-down fa-lg" style="float:right; margin-top:10px"></i></a></li>
+								href="javascript:void(0);"><i class="fa fa-plus fa-lg"></i>부가기능
+								<i class="fa fa-angle-down fa-lg" style="float:right; margin-top:10px"></i></a></li>
 							<ul class="su-menu collapse"
 								id="1471e4e05a4db95d353cc867fe317314" aria-expanded="false"
 								style="height: 0px;">
@@ -489,16 +541,19 @@
 							</div>
 						</div>
 						<div class="col-md-4 mainTl-site-name text-center hidden-xs hidden-sm">
-							<span><a href="http://localhost:8888/newsFeed" style="margin">😄 S.U.M Community 😄</a></span>
+							<span><a href="http://localhost:8888/newsFeed" style="margin">😄 S.M.U Community 😄</a></span>
 						</div>
 						<div>
-						<div class="col-md-5">
-							<select id="search-type" name="search-type" class="search-type" style="">
+						<div id="topbar-search-area" name="topbar-search-area" class="col-md-5">
+							<select id="search-limit" name="search-limit" class="search-limit" style="">
 								<option value="search-writing">글 내용</option>
 								<option value="search-user">사용자</option>
 							</select>
-							<input type="text" id="search-page-area" name="search-page-area" class="search-page-area" placeholder="Search" value="" onkeydown="javascript:search()">
+							<input type="text" id="search-area" name="search-area" class="search-area" placeholder="Search" value="" onkeydown="javascript:searchPost()">
 						</div>
+						<!-- <div class="col-md-3"> 
+							<input type="text" id="search-area" class="search-area" placeholder="Search" value="">
+						</div> -->
 						</div>
 						<div class="col-md-2 text-right right-side right-side-nospace">
 							<div class="topbar-menu-right">
@@ -509,11 +564,45 @@
 										<ul class="dropdown-menu multi-level" role="menu"
 											aria-labelledby="dropdownMenu">
 											<li><a class="menu-topbar-dropdown-account_settings"
-												href="https://demo.opensource-socialnetwork.org/u/administrator/edit">프로필 수정</a></li>
+												href="http://localhost:8888/mypage">프로필 수정</a></li>
 											<li><a class="menu-topbar-dropdown-logout2" onclick="javascript:logout()">로그아웃</a></li>
 										</ul>
 									</div>
 								</li>
+								<!-- <li id="ossn-notif-friends"><a
+									onclick="Ossn.NotificationFriendsShow(this);"
+									class="ossn-notifications-friends" href="javascript:void(0);">
+										<span> <span class="ossn-notification-container hidden"
+											style="display: none;"></span>
+											<div class="ossn-icon ossn-icons-topbar-friends">
+												<i class="fa fa-users"></i>
+											</div>
+									</span>
+								</a></li> -->
+								<li id="ossn-notif-messages"><a
+									href="#" onclick="window.open('http://localhost:8888/Msg', 'msgList', 'resizable=no width=800px height=500px');return false" 
+									class="ossn-notifications-messages"
+									role="button" data-toggle="dropdown"> <span> <span
+											class="ossn-notification-container hidden"
+											style="display: none;"></span>
+											<div class="ossn-icon ossn-icons-topbar-messages">
+												<i class="fa fa-envelope"></i>
+											</div>
+									</span>
+								</a></li>
+
+								<!-- <li id="ossn-notif-notification"><a
+									href="javascript:void(0);"
+									onclick="Ossn.NotificationShow(this)"
+									class="ossn-notifications-notification" role="button"
+									data-toggle="dropdown"> <span> <span
+											class="ossn-notification-container hidden"
+											style="display: none;"></span>
+											<div class="ossn-icon ossn-icons-topbar-notification">
+												<i class="fa fa-globe"></i>
+											</div>
+									</span>
+								</a></li> -->
 								<div class="dropdown">
 									<div
 										class="dropdown-menu multi-level dropmenu-topbar-icons ossn-notifications-box">
@@ -546,17 +635,70 @@
 						<div class="ossn-layout-newsfeed">
 							<div class="col-md-7">
 								<div class="newsfeed-middle">
-									<input type="hidden" id="user_dep" name="user_dep" value="">
-									<input type="hidden" id="user_id" name="user_id" value="">
-									<input type="hidden" id="user_img" name="user_img" value="">
-									<input type=hidden id="calledNum_search" value="1">
-									<p id="search-result" class="search-result"></p>
-									<div id="user-activity-search" class="user-activity-search">
+									<div id="writing-area" name="writing-area" class="ossn-wall-container">
+										<form id="ossn-wall-form" name="ossn-wall-form" class="ossn-form" method="post" enctype="multipart/form-data" >
+											<fieldset>
+												<!-- <input type="hidden" id="user_dep" name="user_dep" value=""> -->
+												<input type="hidden" id="user_id" name="user_id" value="">
+												<input type="hidden" id="user_img" name="user_img" value="">
+												<input type="hidden" id="page_dep_code" name="page_dep_code" value="">
+												<input type="hidden" name="ossn_ts" value="1541646439">
+												<input type="hidden" name="ossn_token"
+													value="bbcef9f5e5b67ccb7584a8c99a19116a">
+												<div class="tabs-input">
+													<div class="wall-tabs">
+														<li class="item ossn-wall-container-menu-post" data-name="post">
+															<i class="fa fa-pencil"></i>글쓰기
+														</li>
+													</div>
+												</div>
+												<div class="ossn-wall-container-data ossn-wall-container-data-post" data-type="post">
+													<textarea placeholder="" id="post_content" name="post_content"style="margin-bottom: 0px;"></textarea>
+													<div id="ossn-wall-photo" class="ossn-wall-photo-area" style="display: none;">
+														<input type="file" name="ossn_photo" multiple accept='image/*'>
+													</div>
+													<div id="ossn-wall-video" class="ossn-wall-video-area" style="display: none;">
+														<input type="file" name="ossn_video" multiple accept='video/*'>
+													</div>
+
+													<div class="controls">
+														<li class="ossn-wall-photo ossn-wall-container-control-menu-photo">
+															<i class="fa fa-picture-o"></i>
+														</li>
+														<li class="ossn-wall-video ossn-wall-container-control-menu-video">
+															<i class="fa fa-video-camera"></i>
+														</li>
+														<!-- <li class=" ossn-wall-container-control-menu-emojii-selector">
+														<i class="fa fa-smile-o"></i></li> -->
+
+														<div style="float: right;">
+															<div class="ossn-loading ossn-hidden"></div>
+															<input id="ossn-wall-post-up" name="ossn-wall-post-up"
+																class="btn btn-post btn-primary" type="button" value="올리기">
+														</div>
+														<li class="ossn-wall-privacy" style="padding-left: 10px;padding-right: 10px;padding-top: 5px;padding-bottom: 0px;">
+														<!-- <input type="checkbox" id="anonymity" name="anonymity" value="true" unchecked> 익명 -->
+														<select name="anonymity" class="anonymity" style="padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 5px">
+															<option value="non-anonymous">실명 공개</option>
+															<option value="anonymous">익명</option>
+														</select>
+														</li>
+													</div>
+													<!-- <input type="hidden" value="" name="wallowner"> <input
+														type="hidden" name="privacy" id="ossn-wall-privacy"
+														value="2"> -->
+												</div>
+											</fieldset>
+										</form>
+									</div>
+									<input type=hidden id="calledNum" value="1">
+									<div id="user-activity" class="user-activity">
 									</div>
 								</div>
+
 							</div>
 							<div class="col-md-4">
-								<div class="newsfeed-right">
+								<div id="notice-area" name="notice-area" class="newsfeed-right">
 									<style>
 										.download-section {
 											text-align: center;
@@ -634,7 +776,7 @@
 										.
 									</style>
 									<div class="widget-heading" style="margin-bottom: 10px;">오늘의 좋아요 많은 글 TOP3</div>
-									<div id="best-post-like-area-right" name="notice-area-right">
+									<div id="best-post-like-area-right" name="best-post-like-area-right">
 										<br>
 									</div>
 								</div>
@@ -675,7 +817,7 @@
 										.
 									</style>
 									<div class="widget-heading" style="margin-bottom: 10px;">오늘의 댓글 많은 글 TOP3</div>
-									<div id="best-post-area-comment-right" name="notice-area-right">
+									<div id="best-post-area-comment-right" name="best-post-area-comment-right">
 										<br>
 									</div>
 								</div>

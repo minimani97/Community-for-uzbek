@@ -200,7 +200,7 @@ public class MainTimelineDao {
 		String sqlStatement1 = "update timeline_post set comment_cnt = comment_cnt + 1 where w_num = " + c_info.getW_num();
 		jdbcTemplate.update(sqlStatement1);
 		
-		String sqlStatement2 = "insert into timeline_comment (w_num, w_writer, c_time, c_content, like_cnt) values(?,?,?,?,?)";
+		String sqlStatement2 = "insert into timeline_comment (w_num, c_writer, c_time, c_content, like_cnt) values(?,?,?,?,?)";
 		jdbcTemplate.update(sqlStatement2, c_info.getW_num(), c_info.getUser_id(), c_info.getC_time(),
 				c_info.getC_content(), c_info.getLike_cnt());
 	}
@@ -272,7 +272,7 @@ public class MainTimelineDao {
 		int w_num = jdbcTemplate.queryForObject(sqlStatement2, Integer.class);
 		
 		// 해당 글의 댓글 수 하나 줄이기
-		String sqlStatement3 = "update timeline_post set comment_num = comment_num - 1 where w_num = " + w_num;
+		String sqlStatement3 = "update timeline_post set comment_cnt = comment_cnt - 1 where w_num = " + w_num;
 		jdbcTemplate.update(sqlStatement3);
 		
 		// 해당 댓글이 달린 글 번호 가져오기
@@ -326,28 +326,28 @@ public class MainTimelineDao {
 	public int setPostLike(int w_num) {		
 		
 		// 현재 좋아요 개수 가져오기
-		String sqlStatement1 = "select like_num from timeline_post where w_num=" + w_num;
-		int like_num = jdbcTemplate.queryForObject(sqlStatement1, Integer.class);
+		String sqlStatement1 = "select like_cnt from timeline_post where w_num=" + w_num;
+		int like_cnt = jdbcTemplate.queryForObject(sqlStatement1, Integer.class);
 		
 		// 글 정보 담긴 테이블의 좋아요 컬럼 1 증가
-		String sqlStatement2 = "update timeline_post set like_num = like_num + 1 where w_num=" + w_num;
+		String sqlStatement2 = "update timeline_post set like_cnt = like_cnt + 1 where w_num=" + w_num;
 		jdbcTemplate.update(sqlStatement2);
 		
-		return like_num;
+		return like_cnt;
 	}
 	
 	// 댓글 좋아요 기능
 	public int setCommentLike(int c_num) {
 
 		// 현재 좋아요 개수 가져오기
-		String sqlStatement1 = "select like_num from timeline_comment where c_num=" + c_num;
-		int like_num = jdbcTemplate.queryForObject(sqlStatement1, Integer.class);
+		String sqlStatement1 = "select like_cnt from timeline_comment where c_num=" + c_num;
+		int like_cnt = jdbcTemplate.queryForObject(sqlStatement1, Integer.class);
 
 		// 댓글 정보 담긴 테이블의 좋아요 컬럼 1 증가
-		String sqlStatement2 = "update timeline_comment set like_num = like_num + 1 where c_num=" + c_num;
+		String sqlStatement2 = "update timeline_comment set like_cnt = like_cnt + 1 where c_num=" + c_num;
 		jdbcTemplate.update(sqlStatement2);
 
-		return like_num;
+		return like_cnt;
 	}
 	
 	// 검색 단어에 해당하는 처음 10개 글 불러오기
@@ -441,8 +441,8 @@ public class MainTimelineDao {
 				post.setUser_img(rs.getString("profile"));
 				post.setW_date(rs.getString("w_time"));
 				post.setW_content(rs.getString("w_content"));
-				post.setLike_cnt(rs.getInt("like_num"));
-				post.setComment_cnt(rs.getInt("comment_num"));
+				post.setLike_cnt(rs.getInt("like_cnt"));
+				post.setComment_cnt(rs.getInt("comment_cnt"));
 
 				String sqlStatement2 = "select * from timeline_file where w_num = " + rs.getInt("w_num")
 						+ " and dep_code='" + dep_code + "' and save_filename is not null and delYN='N'";

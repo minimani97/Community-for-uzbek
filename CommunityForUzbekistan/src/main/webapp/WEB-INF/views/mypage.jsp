@@ -15,6 +15,7 @@
 	BY Informatikon Technologies (http://informatikon.com/)
 	BY SOFTLAB24 (https://www.softlab24.com/)
 	-->
+	
 <!-- <script type="text/javascript" async="" defer="" src="./News Feed _ OSSN Demo_files/piwik.js"></script>
 <script async="" src="./News Feed _ OSSN Demo_files/analytics.js"></script>
 <script src="./News Feed _ OSSN Demo_files/ARf53_7CZrph6eMZGwgXpTF2-tk.js"></script> -->
@@ -68,7 +69,6 @@
 		var user_name = "${sessionScope.user_name}";
 		var user_id = "${sessionScope.user_id}";
 		var user_img = "${sessionScope.user_img}";
-		console.info("------user_img: " + user_img);
 
 		document.getElementById("user-name-info").innerHTML = user_name;
 		document.getElementById("mypage_id").value = user_id;
@@ -78,13 +78,9 @@
 		document.getElementById("user_img").value = user_img;
 		document.getElementById("mypage_tel").value = "${sessionScope.phone}";
 		document.getElementById("mypage_email").value = "${sessionScope.email}";
-
-		console.info("유저ㅓㅓㅓㅓㅓ네ㅔㅔㅔㅔ이미ㅣㅣㅣ??? : " + user_name);
 		
 		$('#user-name-area').text("");
 		$('#user-name-area').text(user_name);
-		// $('.user-fullname').prepend(user_name);
-		//document.getElementById("user-fullname").prepend(user_name);
 
 		if (user_img == "" || user_img == null) {
 			var url = "resources/img/default-user-icon-11.jpg";
@@ -258,11 +254,6 @@
 		
 	// 전화번호 및 이메일 정보 수정
 	function editUserInfo() {
-		/* var user_id = $("#user_id").val();
-		var input_tel = $("#mypage_tel").val();
-		var input_email = $("#mypage_email").val();
-		
-		var sendData = {u_id: user_id, phone: input_tel, email: input_email}; */
 		
 		var formData = new FormData($("#mypage_form")[0]);
 		
@@ -274,7 +265,29 @@
 			contentType : false,
 			success : function() {
 				alert("회원 정보 수정이 완료되었습니다.");
+				reSetSession();
 				
+			},
+			error : function(data, status, err) {
+				console.log(data);
+			}
+		});
+	}
+	
+	// 회원정보 수정 후 세션 재설정
+	function reSetSession() {
+		
+		var user_id = "${sessionScope.user_id}";
+		var sendData = {user_id: user_id};
+	
+		$.ajax({
+			url : 'http://localhost:8888/reSetSession',
+			method : 'POST',
+			data : JSON.stringify(sendData),
+			processData : false,
+			contentType : 'application/json',
+			success : function() {
+				location.reload();
 			},
 			error : function(data, status, err) {
 				console.log(data);
@@ -427,7 +440,7 @@
 							<li><a class="" href="http://localhost:8888/newsFeed"><i
 									class="fa fa-comments fa-lg"></i>소통공간</a></li>
 									
-							<li><a class="" href="http://localhost:8888/newsFeed?dep=F"><i
+							<li><a class="" href="http://localhost:8888/fleaMarket"><i
 									class="fa fa-shopping-cart fa-lg"></i>플리마켓</a></li>
 
 							<!-- <li data-toggle="collapse" data-target="#1234"
@@ -477,7 +490,7 @@
 										href="https://eps.hrdkorea.or.kr/e9/index.do?method=index">EPS 외국인고용지원</a></li>
 									<li class="menu-section-item-friends"><a
 										class="menu-section-item-a-friends"
-										href="http://localhost:8888/newsFeed?dep=BE">블라블라아~</a></li>
+										href="https://www.liveinkorea.kr/portal/main/intro.do">다누리(다문화가족지원포털)</a></li>
 								</ul>
 							</ul>
 
@@ -507,8 +520,7 @@
 							</div>
 						</div>
 						<div class="col-md-7 site-name text-center hidden-xs hidden-sm">
-							<span><a href="http://localhost:8888/newsFeed">😄 선문대
-									귀는 당나귀 귀 😄</a></span>
+							<span><a href="http://localhost:8888/newsFeed">😄 S.U.M Community 😄</a></span>
 						</div>
 						<div class="col-md-3 text-right right-side">
 							<div class="topbar-menu-right">
