@@ -45,10 +45,10 @@ public class MainTimelineDao {
 		 * ; jdbcTemplate.update(sqlTemp);
 		 */
 
-		String sqlStatement = "insert into timeline_post (w_writer, w_time, w_content, anonymity, like_cnt, comment_cnt, dep_code) values (?,?,?,?,?,?,?)";
+		String sqlStatement = "insert into timeline_post (w_writer, w_time, w_content, anonymity, like_cnt, comment_cnt, dep_code, sellYN) values (?,?,?,?,?,?,?,?)";
 
 		jdbcTemplate.update(sqlStatement, postInfo.getUser_id(), postInfo.getW_date(), postInfo.getW_content(),
-				postInfo.getAnonymity(), postInfo.getLike_cnt(), postInfo.getComment_cnt(), postInfo.getDep_code());
+				postInfo.getAnonymity(), postInfo.getLike_cnt(), postInfo.getComment_cnt(), postInfo.getDep_code(), postInfo.getSellFlg());
 
 		// 파일 저장
 		sqlStatement = "select MAX(w_num) from timeline_post";
@@ -93,6 +93,7 @@ public class MainTimelineDao {
 				post.setLike_cnt(rs.getInt("like_cnt"));
 				post.setComment_cnt(rs.getInt("comment_cnt"));
 				post.setNotice(rs.getString("notice"));
+				post.setSellFlg(rs.getString("sellYN"));
 
 				String sqlStatement2 = "select * from timeline_file where w_num = " + rs.getInt("w_num")
 						+ " and dep_code='"+dep_code+"' and save_filename is not null";
@@ -150,6 +151,7 @@ public class MainTimelineDao {
 				post.setW_content(rs.getString("w_content"));
 				post.setLike_cnt(rs.getInt("like_cnt"));
 				post.setComment_cnt(rs.getInt("comment_cnt"));
+				post.setSellFlg(rs.getString("sellYN"));
 
 				String sqlStatement2 = "select * from timeline_file where w_num = " + rs.getInt("w_num")
 						+ " and dep_code='"+dep_code+"' and save_filename is not null and delYN='N'";
@@ -676,6 +678,22 @@ public class MainTimelineDao {
 				return post;
 			}
 		});
+	}
+	
+	// 판매완료 처리하기 (sellYN 플래그 Y로 변경)
+	public void sellComplete(int w_num) {
+		
+		String sqlStatement1 = "update timeline_post set sellYN = 'Y' where w_num = " + w_num;
+		jdbcTemplate.update(sqlStatement1);
+		
+	}
+	
+	// 판매완료 취소 처리하기 (sellYN 플래그 N으로 변경)
+	public void sellCompleteCancel(int w_num) {
+		
+		String sqlStatement1 = "update timeline_post set sellYN = 'N' where w_num = " + w_num;
+		jdbcTemplate.update(sqlStatement1);
+		
 	}
 
 }

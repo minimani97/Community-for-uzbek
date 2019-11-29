@@ -52,11 +52,6 @@ public class HomeController {
 		return "newsFeed";
 	}
 	
-	@RequestMapping(value = "/fleaMarket")
-	public String goFleaMarket() {
-		return "fleaMarket";
-	}
-
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String goRegister(Model model) {
 		logger.info("goRegister enter!");

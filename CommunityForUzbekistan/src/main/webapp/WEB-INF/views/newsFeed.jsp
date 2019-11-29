@@ -480,7 +480,7 @@
 							<li><a class="" href="http://localhost:8888/newsFeed"><i
 									class="fa fa-comments fa-lg"></i>소통공간</a></li>
 									
-							<li><a class="" href="http://localhost:8888/fleaMarket"><i
+							<li><a class="" href="http://localhost:8888/newsFeed?dep=F"><i
 									class="fa fa-shopping-cart fa-lg"></i>플리마켓</a></li>
 
 							<!-- <li data-toggle="collapse" data-target="#1234"
@@ -655,9 +655,9 @@
 												<input type="hidden" id="user_id" name="user_id" value="">
 												<input type="hidden" id="user_img" name="user_img" value="">
 												<input type="hidden" id="page_dep_code" name="page_dep_code" value="">
-												<input type="hidden" name="ossn_ts" value="1541646439">
-												<input type="hidden" name="ossn_token"
-													value="bbcef9f5e5b67ccb7584a8c99a19116a">
+												<input type="hidden" id="sellFlg" name="sellFlg" value="-">
+												<!-- <input type="hidden" name="ossn_ts" value="1541646439">
+												<input type="hidden" name="ossn_token" value="bbcef9f5e5b67ccb7584a8c99a19116a"> -->
 												<div class="tabs-input">
 													<div class="wall-tabs">
 														<li class="item ossn-wall-container-menu-post" data-name="post">
@@ -666,7 +666,7 @@
 													</div>
 												</div>
 												<div class="ossn-wall-container-data ossn-wall-container-data-post" data-type="post">
-													<textarea placeholder="" id="post_content" name="post_content"style="margin-bottom: 0px;"></textarea>
+													<textarea placeholder="공유하고 싶은 순간을 적어주세요:)" id="post_content" name="post_content"style="margin-bottom: 0px;"></textarea>
 													<div id="ossn-wall-photo" class="ossn-wall-photo-area" style="display: none;">
 														<input type="file" name="ossn_photo" multiple accept='image/*'>
 													</div>
@@ -691,7 +691,7 @@
 														</div>
 														<li class="ossn-wall-privacy" style="padding-left: 10px;padding-right: 10px;padding-top: 5px;padding-bottom: 0px;">
 														<!-- <input type="checkbox" id="anonymity" name="anonymity" value="true" unchecked> 익명 -->
-														<select name="anonymity" class="anonymity" style="padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 5px">
+														<select id="anonymity" name="anonymity" class="anonymity" style="padding-left: 5px;padding-right: 5px;padding-top: 4px;padding-bottom: 5px">
 															<option value="non-anonymous">실명 공개</option>
 															<option value="anonymous">익명</option>
 														</select>

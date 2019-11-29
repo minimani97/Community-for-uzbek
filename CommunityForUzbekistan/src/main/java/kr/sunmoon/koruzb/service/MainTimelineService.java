@@ -133,4 +133,14 @@ public class MainTimelineService {
 	public List<PostInfo> bestCommentPostInfo() {
 		return mainTimelineDao.bestCommentPostInfo();
 	}
+	
+	// 판매완료 처리하기
+	public void sellComplete(int w_num) {
+		mainTimelineDao.sellComplete(w_num);
+	}
+	
+	// 판매완료 취소 처리하기
+	public void sellCompleteCancel(int w_num) {
+		mainTimelineDao.sellCompleteCancel(w_num);
+	}
 }

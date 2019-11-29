@@ -415,7 +415,7 @@
 							<li><a class="" href="http://localhost:8888/newsFeed"><i
 									class="fa fa-comments fa-lg"></i>소통공간</a></li>
 									
-							<li><a class="" href="http://localhost:8888/fleaMarket"><i
+							<li><a class="" href="http://localhost:8888/newsFeed?dep=F"><i
 									class="fa fa-shopping-cart fa-lg"></i>플리마켓</a></li>
 
 							<!-- <li data-toggle="collapse" data-target="#1234"

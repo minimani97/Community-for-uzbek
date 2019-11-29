@@ -12,6 +12,16 @@ $(document).ready(function() {
 		$('#notice-area').remove();
 		bestLikePostInfo();
 		bestCommentPostInfo();
+	} else if(document.location.href == "http://localhost:8888/newsFeed?dep=F") {
+		$("#post_content").attr("placeholder", "팔 물건에 대한 설명과 사진을 남겨주세요:)");
+		$("#anonymity").attr("style", "display:none");
+		setUserInfo();
+		setAdmin();
+		getAllWriting();
+		loadWriting();
+		getNoticeInfo();
+		bestLikePostInfo();
+		bestCommentPostInfo();
 	} else {
 		//$(".ossn-page-loading-annimation").attr("style", "display:none;");
 		setUserInfo();
@@ -41,6 +51,10 @@ $(document).ready(function() {
 			var param = url[1].split("=");
 			var code = param[1];
 			dep_code = code;	
+		}
+		
+		if(dep_code == "F") {
+			$("#sellFlg").val("F");
 		}
 		
 		/*var user_dep = document.getElementById("user_dep").value;
@@ -106,6 +120,9 @@ $(document).ready(function() {
 				    txt += "<a id=dLabel role='button' data-toggle='dropdown' class='btn btn-link' data-target=#>";
 				    txt += "<i class='fa fa-sort-desc'></i></a>";
 				    txt += "<ul class='dropdown-menu' multi-level role='menu' aria-labelledby=dropdownMenu>";
+				    if(dep_code == "F") {
+		            	txt += "<li><a id='post-sellComplete-btn-"+myObj.w_num+"' class='post-control-sellComplete ossn-wall-post-sellComplete' data-guid="+myObj[x].w_num+" href='javascript:sellComplete("+myObj[x].w_num+");'>판매완료</a></li>";
+		            }
 				    txt += "<li><a id='post-edit-btn' class='post-control-edit ossn-wall-post-edit' data-guid="+myObj.w_num+" href=javascript:editPost_getContent("+myObj.w_num+");>수정</a></li>";
 				    txt += "<li><a id='post-delete-btn' class='post-control-delete ossn-wall-post-delete' data-guid="+myObj.w_num+" href='javascript:deletePost("+myObj.w_num+");'>삭제</a></li>";
 				    txt += "</ul></div></div>";
@@ -417,6 +434,9 @@ function getAllWriting() {
 		            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
 		            txt += "<i class='fa fa-sort-desc'></i></a>";
 		            txt += "<ul class='dropdown-menu multi-level' role=menu aria-labelledby=dropdownMenu>";
+		            if(dep_code == "F") {
+		            	txt += "<li><a id='post-sellComplete-btn-"+myObj[x].w_num+"' class='post-control-sellComplete ossn-wall-post-sellComplete' data-guid="+myObj[x].w_num+" href='javascript:sellComplete("+myObj[x].w_num+");'>판매완료</a></li>";
+		            }
 		            txt += "<li><a id='post-edit-btn' class='post-control-edit ossn-wall-post-edit' data-guid="+myObj[x].w_num+" href=javascript:editPost_getContent("+myObj[x].w_num+");>수정</a></li>";
 		            txt += "<li><a id='post-delete-btn' class='post-control-delete ossn-wall-post-delete' data-guid="+myObj[x].w_num+" href='javascript:deletePost("+myObj[x].w_num+");'>삭제</a></li>";
 		            txt += "</ul></div></div>";
@@ -455,7 +475,7 @@ function getAllWriting() {
 	            			txt += "<img src=http://localhost:8888/resources/uploadFile/"+fileName+">";
 	            		}
 	            	}
-	            	txt += "</div>"; //수정쓴
+	            	txt += "</div>";
 	            }         
 	            txt += "<div class=comments-likes>";
 	            txt += "<div class=menu-likes-comments-share>";
@@ -504,6 +524,17 @@ function getAllWriting() {
 	            /*document.getElementById("last-page-num").value = myObj[x].w_num;*/
 	        }
 	        document.getElementById("user-activity").innerHTML = txt;
+	        
+	        var extraTxt = "<label id='sell-comp-label-"+myObj[x].w_num+"' style='color:red;font-size: 16px;'>판매 완료되었습니다.</label><br>";
+	        for (x in myObj) {
+	        	if(myObj[x].sellFlg == "Y") {
+	        		$("#writing-"+myObj[x].w_num).prepend(extraTxt);
+	        		$("#writing-"+myObj[x].w_num).append("</del>");
+	        		
+	        		$("#post-sellComplete-btn-"+myObj[x].w_num).attr("href", "javascript:sellCompleteCancel("+myObj[x].w_num+")");
+	    			$("#post-sellComplete-btn-"+myObj[x].w_num).text("판매완료 취소");
+	        	}
+	        }
 			
 			console.log("처음 10개 글 가져오기 성공:D");
 		},
@@ -836,6 +867,9 @@ function loadWriting() {
 				            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
 				            txt += "<i class='fa fa-sort-desc'></i></a>";
 				            txt += "<ul class='dropdown-menu multi-level' role=menu aria-labelledby=dropdownMenu>";
+				            if(dep_code == "F") {
+				            	txt += "<li><a id='post-sellComplete-btn-"+myObj[x].w_num+"' class='post-control-sellComplete ossn-wall-post-sellComplete' data-guid="+myObj[x].w_num+" href='javascript:sellComplete("+myObj[x].w_num+");'>판매완료</a></li>";
+				            }
 				            txt += "<li><a id='post-edit-btn' class='post-control-edit ossn-wall-post-edit' data-guid="+myObj[x].w_num+" href=javascript:editPost_getContent("+myObj[x].w_num+");>수정</a></li>";
 				            txt += "<li><a id='post-delete-btn' class='post-control-delete ossn-wall-post-delete' data-guid="+myObj[x].w_num+" href='javascript:deletePost("+myObj[x].w_num+");'>삭제</a></li>";
 				            txt += "</ul></div></div>";
@@ -925,6 +959,17 @@ function loadWriting() {
 					$('html', 'body').animate({scrollTop : height+400}, 600);*/
 					
 					$(".user-activity").append(txt);
+					
+					var extraTxt = "<label id='sell-comp-label-"+myObj[x].w_num+"' style='color:red;font-size: 16px;'>판매 완료되었습니다.</label><br>";
+			        for (x in myObj) {
+			        	if(myObj[x].sellFlg == "Y") {
+			        		$("#writing-"+myObj[x].w_num).prepend(extraTxt);
+			        		$("#writing-"+myObj[x].w_num).append("</del>");
+			        		
+			        		$("#post-sellComplete-btn-"+myObj[x].w_num).attr("href", "javascript:sellCompleteCancel("+myObj[x].w_num+")");
+			    			$("#post-sellComplete-btn-"+myObj[x].w_num).text("판매완료 취소");
+			        	}
+			        }
 					
 				},
 				error : function(data, status, err) {
@@ -1884,6 +1929,58 @@ function bestCommentPostInfo() {
 		},
 		error: function(data) {
 			
+		}
+	});
+}
+
+// 판매완료 처리
+function sellComplete(w_num) {
+	
+	var sendData = {w_num: w_num};
+	
+	$.ajax({
+		url : 'http://localhost:8888/sellComplete',
+		method : 'POST',
+		data : JSON.stringify(sendData),
+		processData : false,
+		contentType : 'application/json',
+		success : function() {
+			alert("판매완료 처리되었습니다.");
+			
+			var extraTxt = "<label id='sell-comp-label-"+w_num+"' style='color:red;font-size: 16px;'>판매 완료되었습니다.</label><br>";
+			$("#writing-"+w_num).prepend(extraTxt);
+    		//$("#writing-"+w_num).append("</del>");
+			
+			$("#post-sellComplete-btn-"+w_num).attr("href", "javascript:sellCompleteCancel("+w_num+")");
+			$("#post-sellComplete-btn-"+w_num).text("판매완료 취소");
+		},
+		error : function(data, status, err) {
+			console.log(data);
+		}
+	});
+}
+
+//판매완료 취소 처리
+function sellCompleteCancel(w_num) {
+	
+	var sendData = {w_num: w_num};
+	
+	$.ajax({
+		url : 'http://localhost:8888/sellCompleteCancel',
+		method : 'POST',
+		data : JSON.stringify(sendData),
+		processData : false,
+		contentType : 'application/json',
+		success : function() {
+			alert("판매완료 취소 처리되었습니다.");
+			
+			$("#sell-comp-label-"+w_num).remove(); 
+			
+			$("#post-sellComplete-btn-"+w_num).attr("href", "javascript:sellComplete("+w_num+")");
+			$("#post-sellComplete-btn-"+w_num).text("판매완료");
+		},
+		error : function(data, status, err) {
+			console.log(data);
 		}
 	});
 }

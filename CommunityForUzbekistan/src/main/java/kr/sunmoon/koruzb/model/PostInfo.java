@@ -16,6 +16,7 @@ public class PostInfo {
 	private int comment_cnt = 0;
 	private String dep_code;
 	private String notice;
+	private String sellFlg;
 	
 	public ArrayList<String> orig_filename = new ArrayList<String>();
 	public ArrayList<String> save_filename = new ArrayList<String>();
@@ -108,6 +109,14 @@ public class PostInfo {
 
 	public void setNotice(String notice) {
 		this.notice = notice;
+	}
+
+	public String getSellFlg() {
+		return sellFlg;
+	}
+
+	public void setSellFlg(String sellFlg) {
+		this.sellFlg = sellFlg;
 	}
 
 	public ArrayList<String> getOrig_filename() {

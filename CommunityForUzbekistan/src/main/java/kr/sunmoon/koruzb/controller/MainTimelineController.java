@@ -44,6 +44,7 @@ public class MainTimelineController {
 		w_info.setUser_id(post.get("user_id").toString());
 		w_info.setW_content(post.get("post_content").toString());
 		w_info.setDep_code(post.get("page_dep_code").toString());
+		w_info.setSellFlg(post.get("sellFlg").toString());
 		
 		logger.info("사용자 아이디: " + w_info.getUser_id());
 		logger.info("글 내용: " + w_info.getW_content());
@@ -491,5 +492,25 @@ public class MainTimelineController {
 		logger.info("Kwak @RequestMapping /bestCommentPostInfo");
 
 		return mainTimelineService.bestCommentPostInfo();
+	}
+	
+	// 판매완료 처리하기
+	@ResponseBody
+	@RequestMapping("/sellComplete")
+	public void sellComplete(@RequestBody Map<String, Object> info) throws Exception {
+		
+		int w_num = Integer.parseInt(info.get("w_num").toString());
+		
+		mainTimelineService.sellComplete(w_num);
+	}
+	
+	// 판매완료 취소 처리하기
+	@ResponseBody
+	@RequestMapping("/sellCompleteCancel")
+	public void sellCompleteCancel(@RequestBody Map<String, Object> info) throws Exception {
+		
+		int w_num = Integer.parseInt(info.get("w_num").toString());
+		
+		mainTimelineService.sellCompleteCancel(w_num);
 	}
 }	
