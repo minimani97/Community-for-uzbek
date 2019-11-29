@@ -14,7 +14,7 @@ $(document).ready(function() {
 // 사용자수 집계
 function countUser() {
 	$.ajax({
-		url:'http://localhost:8090/ssun/getUserNum',
+		url:'http://localhost:8888/getUserNum',
 		method:'POST',
 		processData:false,
 		contentType:false,
@@ -68,7 +68,7 @@ function countUser() {
 // 월별 글·댓글 수 집계
 function countPost() {
 	$.ajax({
-		url:'http://localhost:8090/ssun/countPost',
+		url:'http://localhost:8888/countPost',
 		method:'POST',
 		processData:false,
 		contentType:'application/json',
@@ -147,7 +147,7 @@ function countPost() {
 // 오늘 올라온 글 수 집계
 function countTodaysPost() {
 	$.ajax({
-		url:'http://localhost:8090/ssun/countTodaysPost',
+		url:'http://localhost:8888/countTodaysPost',
 		method:'POST',
 		processData:false,
 		contentType:false,
@@ -176,7 +176,7 @@ function countTodaysPost() {
 // 오늘 올라온 댓글 수 집계
 function countTodaysComment() {
 	$.ajax({
-		url:'http://localhost:8090/ssun/countTodaysComment',
+		url:'http://localhost:8888/countTodaysComment',
 		method:'POST',
 		processData:false,
 		contentType:false,
@@ -203,7 +203,7 @@ function countTodaysComment() {
 // 글 가장 많이 쓴 사용자 top5 집계
 function writerTop5() {
 	$.ajax({
-		url:'http://localhost:8090/ssun/writerTop5',
+		url:'http://localhost:8888/writerTop5',
 		method:'POST',
 		processData:false,
 		contentType:false,
@@ -233,7 +233,7 @@ function writerTop5() {
 // 댓글 가장 많이 쓴 사용자 top5 집계
 function c_writerTop5() {
 	$.ajax({
-		url:'http://localhost:8090/ssun/c_writerTop5',
+		url:'http://localhost:8888/c_writerTop5',
 		method:'POST',
 		processData:false,
 		contentType:false,
@@ -263,7 +263,7 @@ function c_writerTop5() {
 // 실명글·익명글 비율 집계
 function postRatio() {
 	$.ajax({
-		url:'http://localhost:8090/ssun/getPostRatio',
+		url:'http://localhost:8888/getPostRatio',
 		method:'POST',
 		processData:false,
 		contentType:false,
@@ -309,7 +309,7 @@ function postRatio() {
 // 댓글이 가장 많은 글 top5 집계
 function commentCount_Top5() {
 	$.ajax({
-		url:'http://localhost:8090/ssun/commentCount_Top5',
+		url:'http://localhost:8888/commentCount_Top5',
 		method:'POST',
 		processData:false,
 		contentType:false,
@@ -356,7 +356,7 @@ function commentCount_Top5() {
 // 좋아요가 가장 많은 글 top5 집계
 function likeCount_Top5() {
 	$.ajax({
-		url:'http://localhost:8090/ssun/likeCount_Top5',
+		url:'http://localhost:8888/likeCount_Top5',
 		method:'POST',
 		processData:false,
 		contentType:false,
@@ -405,7 +405,7 @@ function likeCount_Top5() {
 // 좋아요가 가장 많은 댓글 top5 집계
 function likeCommentCount_Top5() {
 	$.ajax({
-		url:'http://localhost:8090/ssun/likeCommentCount_Top5',
+		url:'http://localhost:8888/likeCommentCount_Top5',
 		method:'POST',
 		processData:false,
 		contentType:false,

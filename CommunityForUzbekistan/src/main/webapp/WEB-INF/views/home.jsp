@@ -80,20 +80,18 @@
 			    }
 
 				if(data.id == emptyName && data.password == emptyPw){
-					console.log("===============일치해==============");
-					window.location.href = "http://localhost:8888/newsFeed";
-					//alert("로그인성공\n" + ${sessionScope.user_num} +" 님 환영합니다.");
+					//window.location.href = "http://localhost:8888/newsFeed";
 					
-					/* if(data.certify == 'y'){
+					if(data.certify == 'y'){
 						console.log("===============일치해==============");
 						//console.log("세션 값!!!!!!!!!!!!!!!!!!: " + ${sessionScope.user_num});
-						window.location.href = "http://localhost:8090/ssun/newsFeed";
+						window.location.href = "http://localhost:8888/newsFeed";
 						//alert("로그인성공\n" + ${sessionScope.user_num} +" 님 환영합니다.");
 					}else if(data.certify == 'b'){
 						alert("차단된 사용자입니다.");
 					}else{
-						alert("메일인증을 완료해주세요.");
-					} */
+						
+					}
 					
 				} else{
 					alert("아이디와 비밀번호를 다시 확인해주세요!");

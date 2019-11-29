@@ -2,15 +2,20 @@ package kr.sunmoon.koruzb.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import kr.sunmoon.koruzb.model.UserInfo;
+import kr.sunmoon.koruzb.service.AdminUsersService;
 
 /**
  * Handles requests for the application home page.
@@ -19,14 +24,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	//private AdminUsersService adminUsersService;
+	private AdminUsersService adminUsersService;
 
 	//UserInformation user_info = new UserInformation();
 
-	/*@Autowired
+	@Autowired
 	public void setAdminUsersService(AdminUsersService adminUsersService) {
 		this.adminUsersService = adminUsersService;
-	}*/
+	}
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -105,7 +110,8 @@ public class HomeController {
 	public String goAdmin_userspage(Model model) {
 		logger.info("goAdminpage enter!");
 
-		//model.addAttribute("allUser", adminUsersService.adminInfo());
+		//List<UserInfo> user_list = adminUsersService.adminInfo();
+		model.addAttribute("allUser", adminUsersService.adminInfo());
 
 		return "admin_users";
 	}
@@ -114,7 +120,7 @@ public class HomeController {
 	public String goAdmin_edituserpage(Model model, @RequestParam("number") String number) throws Exception {
 		logger.info("goAdmin_edituserpage enter!");
 
-		//model.addAttribute("person", adminUsersService.adminEditInfo(number));
+		model.addAttribute("person", adminUsersService.adminEditInfo(number));
 
 		return "admin_edit";
 	}

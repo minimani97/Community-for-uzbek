@@ -49,6 +49,7 @@ public class LoginDao {
 					userInfo.setPhone(rs.getString("phone"));
 					userInfo.setEmail(rs.getString("email"));
 					userInfo.setUsertype(rs.getString("usertype"));
+					userInfo.setCertify(rs.getString("certify"));
 
 					logger.info("*******userinfo select Value*******: " + userInfo.toString());
 					// request.getSession().setAttribute("signedUser",

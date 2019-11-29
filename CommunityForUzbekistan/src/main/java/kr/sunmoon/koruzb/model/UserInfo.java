@@ -11,7 +11,7 @@ public class UserInfo {
 	private String phone;
 	private String email;
 	private String usertype;
-	//private String certify;
+	private String certify;
 	//private String portal_email;
 	
 	public String getId() {
@@ -61,6 +61,12 @@ public class UserInfo {
 	}
 	public void setUsertype(String usertype) {
 		this.usertype = usertype;
+	}
+	public String getCertify() {
+		return certify;
+	}
+	public void setCertify(String certify) {
+		this.certify = certify;
 	}
 	
 }

@@ -54,7 +54,7 @@ public class LoginController {
 	         request.getSession().setAttribute("phone", DBuserInfo.getPhone());
 	         request.getSession().setAttribute("email", DBuserInfo.getEmail());
 	         request.getSession().setAttribute("usertype", DBuserInfo.getUsertype());
-	         //request.getSession().setAttribute("certify", DBuserInfo.getCertify());
+	         request.getSession().setAttribute("certify", DBuserInfo.getCertify());
 	         
 	         logger.info("세션~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ : " + request.getSession().getAttribute("user_id"));
 	         logger.info("세션~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ : " + request.getSession().getAttribute("password"));
