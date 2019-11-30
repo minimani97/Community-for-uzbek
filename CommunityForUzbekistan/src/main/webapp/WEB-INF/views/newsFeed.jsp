@@ -277,8 +277,8 @@
 	   console.log("password: " + "${sessionScope.password}");
 	   
 	   $(document).ready(function() {
-	        //setTimeout("notRead()", 10);
-	        //setInterval("countMyMsg()", 3000);
+	        setTimeout("notRead()", 10);
+	        setInterval("countMyMsg()", 3000);
 	   });
 	   
 </script>

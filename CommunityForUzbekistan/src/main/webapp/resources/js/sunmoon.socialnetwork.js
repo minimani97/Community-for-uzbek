@@ -162,7 +162,7 @@ $(document).ready(function() {
 			    txt += "<div class=row>";
 			    txt += "<div class=col-md-1>";
 			    if(user_img == "" || user_img == null) {
-			    	txt += "<img class=comment-user-img src=resources/img/e9f94905272829984a707d6270721081.jpeg></div>";
+			    	txt += "<img class=comment-user-img src=resources/img/default-user-icon-11.jpg></div>";
 			    } else {
 			    	txt += "<img class=comment-user-img src=resources/userImage/"+user_img+"></div>";
 			    }
@@ -315,7 +315,7 @@ $(document).ready(function() {
 			    txt += "<div class=row>";
 			    txt += "<div class=col-md-1>";
 			    if(user_img == "" || user_img == null) {
-			    	txt += "<img class=comment-user-img src=resources/img/e9f94905272829984a707d6270721081.jpeg></div>";
+			    	txt += "<img class=comment-user-img src=resources/img/default-user-icon-11.jpg></div>";
 			    } else {
 			    	txt += "<img class=comment-user-img src=resources/userImage/"+user_img+"></div>";
 			    }
@@ -415,7 +415,7 @@ function getAllWriting() {
 		            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
 		            txt += "<i class='fa fa-sort-desc'></i></a>";
 		            txt += "<ul class='dropdown-menu multi-level' role=menu aria-labelledby=dropdownMenu>";
-		            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg("+myObj[x].user_id+");>글쓴이에게 쪽지 보내기</a></li>";
+		            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg('"+myObj[x].user_id+"');>글쓴이에게 쪽지 보내기</a></li>";
 		            txt += "<li><a id='post-edit-btn' class='post-control-edit ossn-wall-post-edit' data-guid="+myObj[x].w_num+" href=javascript:editPost_getContent("+myObj[x].w_num+");>수정</a></li>";
 		            txt += "<li><a id='post-delete-btn' class='post-control-delete ossn-wall-post-delete' data-guid="+myObj[x].w_num+" href='javascript:deletePost("+myObj[x].w_num+");'>삭제</a></li>";
 		            txt += "</ul></div></div>";
@@ -448,7 +448,7 @@ function getAllWriting() {
 		            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
 		            txt += "<i class='fa fa-sort-desc'></i></a>";
 		            txt += "<ul class='dropdown-menu multi-level' role=menu aria-labelledby=dropdownMenu>";
-		            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg("+myObj[x].user_id+");>글쓴이에게 쪽지 보내기</a></li>";
+		            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg('"+myObj[x].user_id+"');>글쓴이에게 쪽지 보내기</a></li>";
 		            txt += "</ul></div></div>";
 	            }
 	            txt += "<div class='user'>";
@@ -496,7 +496,7 @@ function getAllWriting() {
 	            txt += "<div class=row>";
 	            txt += "<div class=col-md-1>";
 	            if(user_img == "" || user_img == null) {
-			    	txt += "<img class=comment-user-img src=resources/img/e9f94905272829984a707d6270721081.jpeg></div>";
+			    	txt += "<img class=comment-user-img src=resources/img/default-user-icon-11.jpg></div>";
 			    } else {
 			    	txt += "<img class=comment-user-img src=resources/userImage/"+user_img+"></div>";
 			    }
@@ -602,7 +602,7 @@ function showCommentBox(w_num){
 					txt += "<div class='col-md-1'>";
 					txt += "<img class='comment-user-img' ";
 					if(myObj[x].user_img == "" || myObj[x].user_img == null) {
-						txt += "src='resources/img/e9f94905272829984a707d6270721081.jpeg'></div>";
+						txt += "src='resources/img/default-user-icon-11.jpg'></div>";
 					} else {
 						txt += "src='resources/userImage/"+myObj[x].user_img+"'></div>";
 					}
@@ -721,7 +721,7 @@ function postComment(w_num){
 					txt += "<div class='col-md-1'>";
 					txt += "<img class='comment-user-img' ";
 					if(user_img == "" || user_img == null) {
-						txt += "src='resources/img/e9f94905272829984a707d6270721081.jpeg'></div>";
+						txt += "src='resources/img/default-user-icon-11.jpg'></div>";
 					} else {
 						txt += "src='resources/userImage/"+user_img+"'></div>";
 					}
@@ -848,7 +848,7 @@ function loadWriting() {
 				            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
 				            txt += "<i class='fa fa-sort-desc'></i></a>";
 				            txt += "<ul class='dropdown-menu multi-level' role=menu aria-labelledby=dropdownMenu>";
-				            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg("+myObj[x].user_id+");>글쓴이에게 쪽지 보내기</a></li>";
+				            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg('"+myObj[x].user_id+"');>글쓴이에게 쪽지 보내기</a></li>";
 				            txt += "<li><a id='post-edit-btn' class='post-control-edit ossn-wall-post-edit' data-guid="+myObj[x].w_num+" href=javascript:editPost_getContent("+myObj[x].w_num+");>수정</a></li>";
 				            txt += "<li><a id='post-delete-btn' class='post-control-delete ossn-wall-post-delete' data-guid="+myObj[x].w_num+" href='javascript:deletePost("+myObj[x].w_num+");'>삭제</a></li>";
 				            txt += "</ul></div></div>";
@@ -881,7 +881,7 @@ function loadWriting() {
 				            txt += "<a id=dLabel role=button data-toggle=dropdown class='btn btn-link' data-target=#>";
 				            txt += "<i class='fa fa-sort-desc'></i></a>";
 				            txt += "<ul class='dropdown-menu multi-level' role=menu aria-labelledby=dropdownMenu>";
-				            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg("+myObj[x].user_id+");>글쓴이에게 쪽지 보내기</a></li>";
+				            txt += "<li><a id='post-sendMsg-btn' class='post-control-sendMsg ossn-wall-post-sendMsg' data-guid="+myObj[x].w_num+" href=javascript:sendMsg('"+myObj[x].user_id+"');>글쓴이에게 쪽지 보내기</a></li>";
 				            txt += "</ul></div></div>";
 			            }
 			            txt += "<div class=user>";
@@ -928,7 +928,7 @@ function loadWriting() {
 			            txt += "<div class=row>";
 			            txt += "<div class=col-md-1>";
 			            if(user_img == "" || user_img == null) {
-					    	txt += "<img class=comment-user-img src=resources/img/e9f94905272829984a707d6270721081.jpeg></div>";
+					    	txt += "<img class=comment-user-img src=resources/img/default-user-icon-11.jpg></div>";
 					    } else {
 					    	txt += "<img class=comment-user-img src=resources/userImage/"+user_img+"></div>";
 					    }
@@ -1511,7 +1511,7 @@ function getAllNotice() {
 	            txt += "<div class=row>";
 	            txt += "<div class=col-md-1>";
 	            if(user_img == "" || user_img == null) {
-			    	txt += "<img class=comment-user-img src=resources/img/e9f94905272829984a707d6270721081.jpeg></div>";
+			    	txt += "<img class=comment-user-img src=resources/img/default-user-icon-11.jpg></div>";
 			    } else {
 			    	txt += "<img class=comment-user-img src=resources/userImage/"+user_img+"></div>";
 			    }
@@ -1669,7 +1669,7 @@ $(window).scroll(function() {
 			            txt += "<div class=row>";
 			            txt += "<div class=col-md-1>";
 			            if(user_img == "" || user_img == null) {
-					    	txt += "<img class=comment-user-img src=resources/img/e9f94905272829984a707d6270721081.jpeg></div>";
+					    	txt += "<img class=comment-user-img src=resources/img/default-user-icon-11.jpg></div>";
 					    } else {
 					    	txt += "<img class=comment-user-img src=resources/userImage/"+user_img+"></div>";
 					    }

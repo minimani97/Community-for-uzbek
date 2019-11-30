@@ -39,8 +39,6 @@ public class AdminUsersDao {
 				info.setPhone(rs.getString("phone"));
 				//info.setAdmin_dep(rs.getString("dep_name"));
 				
-				System.out.println("NAME IS: " + info.getName());
-				
 				return info;
 			}
 

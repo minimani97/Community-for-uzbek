@@ -763,5 +763,8 @@ PostMessageBoxClose = function() {
     $('.ossn-message-box-edit-comment').hide();
     $('.ossn-halt').removeClass('ossn-light').hide();
     $('.ossn-halt').attr('style', '');
-    $('#ossn-msg-send-form')[0].reset();
+    $('#post-edit').text("");
+    $('#who_content').val("");
+    $('#sendTime_content').val("");
+    $('#msgtitle').val("");
 };
