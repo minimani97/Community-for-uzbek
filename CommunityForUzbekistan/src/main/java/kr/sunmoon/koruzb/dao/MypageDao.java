@@ -9,18 +9,15 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
 import kr.sunmoon.koruzb.model.UserInfo;
-import kr.sunmoon.koruzb.util.MailHandler;
 
 @Repository
 public class MypageDao {
 	// private static final Logger logger = (Logger)
 	// LoggerFactory.getLogger(RegisterDAO.class);
 	@Inject
-	private JavaMailSender mailSender;
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
