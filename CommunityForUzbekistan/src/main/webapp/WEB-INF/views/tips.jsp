@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!-- saved from url=(0046)https://demo.opensource-socialnetwork.org/home -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -141,32 +142,35 @@
 	}
 </script>
 
-<title>SGDG : Search</title>
+<title>SGDG:BUS :)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="/ssun/resources/img/SGDG_favicon_96x96.png">
 
-<!-- <script type="text/javascript" async="" defer="" src="./News Feed _ OSSN Demo_files/piwik.js"></script>
-<script async="" src="./News Feed _ OSSN Demo_files/analytics.js"></script>
-<script src="./News Feed _ OSSN Demo_files/ARf53_7CZrph6eMZGwgXpTF2-tk.js"></script> -->
-<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/ossn.default.css">
-<script type="text/javascript" src="/resources/js/ossn.en.language.js"></script>
-<script type="text/javascript" src="/resources/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="/resources/js/jquery-ui.min.js"></script>
-<!-- <script type="text/javascript" src="./News Feed _ OSSN Demo_files/jquery-arhandler-1.1-min.js"></script> -->
-<script type="text/javascript" src="/resources/js/jquery.scrolling.js"></script>
-<script type="text/javascript" src="/resources/js/places.min.js"></script>
-<script type="text/javascript" src="/resources/js/jquery.tokeninput.js"></script>
-<script type="text/javascript" src="/resources/js/sunmoon.socialnetwork_search.js"></script>
-<script type="text/javascript" src="/resources/js/opensource.socialnetwork.js"></script>
-<script type="text/javascript" src="/resources/js/ossn.chat.js"></script>
-<link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
+<!-- 
+	Open Source Social Network (Ossn) https://www.opensource-socialnetwork.org/     
+	BY Informatikon Technologies (http://informatikon.com/)
+	BY SOFTLAB24 (https://www.softlab24.com/)
+	-->
+
+<link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/ossn.default.css">
+<script type="text/javascript" src="resources/js/ossn.en.language.js"></script>
+<script type="text/javascript" src="resources/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.scrolling.js"></script>
+<script type="text/javascript" src="resources/js/places.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.tokeninput.js"></script>
+<script type="text/javascript" src="resources/js/opensource.socialnetwork.js"></script>
+<script type="text/javascript" src="resources/js/ossn.chat.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- <link rel="stylesheet" type="text/css" href="./News Feed _ OSSN Demo_files/css"> -->
-<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/resources/css/jquery-ui.css">
-   <!-- 20181120 민정추가  -->
-<script type="text/javascript" src="/resources/js/sunmoon.socialnetwork.common.js"></script>
+<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/jquery-ui.css">
+<script type="text/javascript" src="resources/js/sunmoon.socialnetwork.js"></script>
+
+<!-- 20181120 민정추가  -->
+<script type="text/javascript" src="resources/js/sunmoon.socialnetwork.common.js"></script>
+
 
 <script>
 	Ossn.site_url = 'https://demo.opensource-socialnetwork.org/';
@@ -178,61 +182,32 @@
 	};
 	Ossn.Init();
 	$(document).ready(function() {
-		checkSession();
-		
 		setInterval(function() {
 			Ossn.NotificationsCheck()
 		}, 5000 * 12);
 	});
-	
-	function checkSession() {
-	   var user_id = "${sessionScope.user_id}";
-	   var user_certify = "${sessionScope.certify}";
-	   
-	   if(user_id == "") {
-		   alert("로그인이 필요합니다.");
-		   window.location.href = "http://localhost:8888";
-	   } else {
-		   if(user_certify == "b") {
-			   alert("로그인이 필요합니다.");
-			   window.location.href = "http://localhost:8888";
-		   }
-	   }
-   }
-	
 
+	loginCheckProc();
+	
 	function setUserInfo() {
-		var txt="";
+		var txt = "";
 		//var user_dep = "${sessionScope.department}";
 		var user_name = "${sessionScope.user_name}";
 		var user_id = "${sessionScope.user_id}";
 		var user_img = "${sessionScope.user_img}";
-		
-		console.info("--user_img: " + user_img);
-		console.info("--user_dep: " + user_dep);
-		
-		/* if(user_dep == "Admin") {
-			document.getElementById("user-department-info").innerHTML = "선문대 귀는 당나귀 귀";
-		} else {
-			checkDepartment(user_dep);
-		} */
-		
-		//document.getElementById("user_dep").value = user_dep;
+
 		document.getElementById("user-name-info").innerHTML = user_name;
 		document.getElementById("user_id").value = user_id;
 		document.getElementById("user_img").value = user_img;
 		
 		if(user_img=="" || user_img==null) {
-			var url = "resources/img/e3852c91cacea4a823e607cccccb29c2.jpeg";
-			/* document.getElementById("user-profile-img").attr("src", url); */
+			var url = "resources/img/default-user-icon-11.jpg";
 			$('#user-profile-img').attr("src", url);
 		} else {
 			var url = "resources/userImage/" + user_img;
-			/* document.getElementById("user_img").attr("src", url); */
 			$('#user-profile-img').attr("src", url);
 		}
-		
-		
+
 		/* document.getElementById("user-activity").innerHTML = txt; */
 	}
 	
@@ -254,12 +229,12 @@
 	         }
 	      });
 	}
-	
+
 	function logout(){
 	      console.log("logout called!");
 	      
 	      var user_id  = "${sessionScope.user_id}";
-	      console.log(" userId 값000:" + user_id);
+	      console.log(" userNum 값000:" + user_id);
 
 	      $.ajax({
 	         url : 'http://localhost:8888/logout',
@@ -275,6 +250,14 @@
 	            loginCheckProc(data, user_id);
 	            alert("로그아웃 됩니다.");
 	         
+	            /* if("${sessionScope.user_id}" != null){
+	               console.log("값2:" + "${sessionScope.user_id}");
+	               loginCheckProc(data, user_id);
+	               console.log("값3:" + "${sessionScope.user_id}");
+	               alert("로그아웃 됩니다.");
+	               //window.location.href = "http://localhost:8888/";
+	            } */
+	 
 	         },
 	         error : function(data, status, err) {
 	            //alert('error');
@@ -283,8 +266,10 @@
 	      });         
 	      
 	   }
+	   console.log("BUS 페이지: " + "${sessionScope.user_id}");
 	   
 </script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
 
 </head>
 
@@ -295,64 +280,42 @@
 		</div>
 	</div>
 
-	<div class="ossn-halt"></div>
-	
-<!-- 쪽지 보내기 -->
-  <div name="ossn-message-box-send-msg" id="ossn-message-box-send-msg" class="ossn-message-box-send-msg" style="display: none;">
-      <div class="title">
-         쪽지 보내기
-         <div class="close-box" onclick="PostMessageBoxClose();">X</div>
-      </div>
-      <div class="contents">
-         <div class="ossn-box-inner">
-            <div style="width: 100%; margin: auto;">
-               <form id="ossn-msg-send-form" name="ossn-msg-send-form"
-                  action="https://demo.opensource-socialnetwork.org/action/wall/post/edit"
-                  enctype="multipart/form-data">
-                  <fieldset>
-                     <div id="send-post-popup">
-                      
-                           <input class="title_name" id="title_name" value="제목" disabled="disabled" style="height:36px; ">
-                           <input type="text" class="title_input" id="title_input" name="title_input" value="" style="width: 398px">
-                           
-                           <textarea id="post-send-msg" name="post-send-msg" class="post-send-msg" 
-                              placeholder="내용을 입력해주세요"></textarea>
-                     </div>
-                  </fieldset>
-               </form>
-               
-            </div>
-         </div>
-      </div>
-      <div class="control">
-         <div class="controls">
-            <a href="javascript:send()" onclick="" class="btn btn-primary">보내기</a>
-            <a href="javascript:void(0);" onclick="PostMessageBoxClose();"
-               class="btn btn-default">취소</a>
-         </div>
-      </div>
-   </div>
- <!-- ===================================================================== -->	
-	
- <!-- ===================================================================== -->
- 	<!-- 글 수정 창 -->
-	<div class="ossn-message-box-edit-post" style="display: none;">
+	<div class="ossn-halt ossn-light"></div>
+	<div class="ossn-message-box" id="ossn-message-box"
+		style="display: none; width: 50%; height: 30%">
 		<div class="title">
-			글 수정
-			<div class="close-box" onclick="PostMessageBoxClose();">X</div>
+
+			Privacy
+			<div class="close-box" onclick="Ossn.MessageBoxClose();">X</div>
 		</div>
 		<div class="contents">
 			<div class="ossn-box-inner">
 				<div style="width: 100%; margin: auto;">
-					<form
-						action="https://demo.opensource-socialnetwork.org/action/wall/post/edit"
-						id="ossn-post-edit-form" class="ossn-form" method="post"
-						enctype="multipart/form-data">
+					<form id="ossn-wall-privacy-container" class="ossn-form"
+						method="post">
 						<fieldset>
-							<input type="hidden" name="ossn_ts" value="1542761066"> <input
+							<input type="hidden" name="ossn_ts" value="1541749358"> <input
 								type="hidden" name="ossn_token"
-								value="efd4a6afca12570625628c4ca9aa670a">
-							<div id="edit-post-popup">
+								value="30eabc32d2d6617788d9c87a6ca5e55c">
+							<div style="font-size: 12px;">Please select privacy for
+								wall post</div>
+							<div class="ossn-privacy">
+								<table border="0">
+									<tbody>
+										<tr>
+											<td style="vertical-align: top;"><label>Privacy</label>
+
+											</td>
+											<td><input type="radio" name="privacy" value="2"
+												checked="checked"> <span>Public</span>
+
+												<p>Everyone on this site can see this.</p> <input
+												type="radio" name="privacy" value="3"> <span>Friends</span>
+
+												<p>Only your friends can see this.</p></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</fieldset>
 					</form>
@@ -361,60 +324,25 @@
 		</div>
 		<div class="control">
 			<div class="controls">
-				<a href="javascript:editPost();"
-					onclick="<!-- Ossn.Clk('#ossn-post-edit-save'); -->" class="btn btn-primary">저장</a>
-				<a href="javascript:void(0);" onclick="PostMessageBoxClose();"
-					class="btn btn-default">취소</a>
+				<a href="javascript:void(0);"
+					onclick="Ossn.Clk('#ossn-wall-privacy');" class="btn btn-primary">Save</a>
+				<a href="javascript:void(0);" onclick="Ossn.MessageBoxClose();"
+					class="btn btn-default">Cancel</a>
 			</div>
 		</div>
 	</div>
-	
-	<!-- 댓글 수정 창 -->
-	<div class="ossn-message-box-edit-comment" style="display: none;">
-		<div class="title">
-			댓글 수정
-			<div class="close-box" onclick="CommentMessageBoxClose();">X</div>
-		</div>
-		<div class="contents">
-			<div class="ossn-box-inner">
-				<div style="width: 100%; margin: auto;">
-					<form
-						action="https://demo.opensource-socialnetwork.org/action/wall/post/edit"
-						id="ossn-post-edit-form" class="ossn-form" method="post"
-						enctype="multipart/form-data">
-						<fieldset>
-							<input type="hidden" name="ossn_ts" value="1542761066"> <input
-								type="hidden" name="ossn_token"
-								value="efd4a6afca12570625628c4ca9aa670a">
-							<div id="edit-comment-popup">
-								<!-- <textarea id="post-edit" name="post">test</textarea>
-								<input type="hidden" name="guid" value="89"> <input
-									type="submit" class="hidden" id="ossn-post-edit-save"> -->
-							</div>
-						</fieldset>
-					</form>
-				</div>
-			</div>
-		</div>
-		<div class="control">
-			<div class="controls">
-				<a href="javascript:editComment();"
-					onclick="<!-- Ossn.Clk('#ossn-post-edit-save'); -->" class="btn btn-primary">저장</a>
-				<a href="javascript:void(0);" onclick="CommentMessageBoxClose();"
-					class="btn btn-default">취소</a>
-			</div>
-		</div>
-	</div>
- <!-- ===================================================================== -->
 	<div class="ossn-viewer" style="display: none"></div>
 
 	<div class="opensource-socalnetwork">
-		<div class="sidebar sidebar-close">
+		<div class="sidebar sidebar-close" style="height: 2796px;">
 			<div class="sidebar-contents">
 				<div id="newseed-uinfo" class="newseed-uinfo">
 					<img id="user-profile-img" src="">
 					<div class="name" style="width: 150px">
-						<br>
+						<br> 
+						<input type="hidden" id="user_dep" name="user_dep" value="">
+						<input type="hidden" id="user_id" name="user_id" value=""> 
+						<input type="hidden" id="user_img" name="user_img" value="">
 						<div id="user-department-info" name="user-department-info"
 							style="font-weight: bold; display: block; color: #fff; font-size: 16px"></div>
 						<div id="user-name-info" name="user-name-info"
@@ -481,8 +409,6 @@
 									<li class="menu-section-item-friends"><a
 										class="menu-section-item-a-friends"
 										href="https://www.liveinkorea.kr/portal/main/intro.do">다누리(다문화가족지원포털)</a></li>
-									<li class="menu-section-item-friends"><a
-										class="menu-section-item-a-friends" href="https://www.livinkor.com/">리빈코(livinkor)</a></li>
 								</ul>
 							</ul>
 
@@ -498,26 +424,18 @@
 			<div class="topbar">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-1 left-side left">
+						<div class="col-md-2 left-side left">
 							<div class="topbar-menu-left">
 								<li id="sidebar-toggle" data-toggle="0"><a
 									class="sidebar-toggle" role="button" data-target="#"> <i
 										class="fa fa-th-list"></i></a></li>
 							</div>
 						</div>
-						<div class="col-md-4 mainTl-site-name text-center hidden-xs hidden-sm">
-							<span><a href="http://localhost:8888/newsFeed" style="margin">😄 S.U.M Community 😄</a></span>
+						<div class="col-md-7 site-name text-center hidden-xs hidden-sm">
+							<span><a href="http://localhost:8888/newsFeed">😄선문대 귀는
+									당나귀 귀😄</a></span>
 						</div>
-						<div>
-						<div class="col-md-5">
-							<select id="search-type" name="search-type" class="search-type" style="">
-								<option value="search-writing">글 내용</option>
-								<option value="search-user">사용자</option>
-							</select>
-							<input type="text" id="search-page-area" name="search-page-area" class="search-page-area" placeholder="Search" value="" onkeydown="javascript:search()">
-						</div>
-						</div>
-						<div class="col-md-2 text-right right-side right-side-nospace">
+						<div class="col-md-3 text-right right-side right-side-nospace">
 							<div class="topbar-menu-right">
 								<li class="ossn-topbar-dropdown-menu">
 									<div class="dropdown">
@@ -526,11 +444,25 @@
 										<ul class="dropdown-menu multi-level" role="menu"
 											aria-labelledby="dropdownMenu">
 											<li><a class="menu-topbar-dropdown-account_settings"
-												href="https://demo.opensource-socialnetwork.org/u/administrator/edit">프로필 수정</a></li>
-											<li><a class="menu-topbar-dropdown-logout2" onclick="javascript:logout()">로그아웃</a></li>
+												href="https://demo.opensource-socialnetwork.org/u/administrator/edit">프로필
+													수정</a></li>
+											<li><a class="menu-topbar-dropdown-logout2"
+												onclick="javascript:logout()">로그아웃</a></li>
 										</ul>
 									</div>
 								</li>
+								
+								<li id="ossn-notif-messages"><a
+										href="#" onclick="window.open('http://localhost:8888/Msg', 'msgList', 'resizable=no width=800px height=500px');return false"
+										class="ossn-notifications-messages"
+										role="button" data-toggle="dropdown"> <span> <span
+												class="ossn-notification-container hidden"></span>
+												<div class="ossn-icon ossn-icons-topbar-messages">
+													<i class="fa fa-envelope"></i>
+												</div>
+										</span>
+								</a></li>
+								
 								<div class="dropdown">
 									<div
 										class="dropdown-menu multi-level dropmenu-topbar-icons ossn-notifications-box">
@@ -562,16 +494,74 @@
 						</div>
 						<div class="ossn-layout-newsfeed">
 							<div class="col-md-7">
-								<div class="newsfeed-middle">
-									<input type="hidden" id="user_dep" name="user_dep" value="">
-									<input type="hidden" id="user_id" name="user_id" value="">
-									<input type="hidden" id="user_img" name="user_img" value="">
-									<input type=hidden id="calledNum_search" value="1">
-									<p id="search-result" class="search-result"></p>
-									<div id="user-activity-search" class="user-activity-search">
+								<form id="busform">
+									<div class="cnt">
+										<dl>
+											<dt>&nbsp;&nbsp;평일</dt>
+											<dd class="btnBus">
+												<div class="btnArea btn1">
+													<!-- <a title="천안역/아산(KTX)역" class="btn_gray">천안역/아산(KTX)역</a>
+												<a title="천안터미널" class="btn_gray">천안터미널</a>
+												<a title="온양역/터미널" class="btn_gray">온양역/터미널</a>
+												<a title="천안캠퍼스" class="btn_gray">천안캠퍼스</a>	 -->
+													&nbsp;&nbsp;&nbsp; 
+													<input type="button" title="천안역/아산(KTX)역" id="name_p_ca" name="name_p_ca"
+														class="btn_gray" value=" 천안역/아산(KTX)역 " onclick="javascript:getBusData_p_ca()"> 
+													<input type="button" title="천안터미널" id="name_p_ct" name="name_p_ct" 
+														class="btn_gray" value=" 천안터미널 " onclick="javascript:getBusData_p_ct()"> 
+													<input type="button" title="온양역/터미널" id="name_p_ot" name="name_p_ot"
+													    class="btn_gray" value=" 온양역/터미널 " onclick="javascript:getBusData_p_ot()"> 
+													<input type="button" title="천안캠퍼스" id="name_p_cc" name="name_p_cc" 
+														class="btn_gray" value=" 천안캠퍼스 " onclick="javascript:getBusData_p_cc()">
+												</div>
+											</dd>
+										</dl>
+										<dl>
+											<dt>&nbsp;&nbsp;토요일/공휴일</dt>
+											<dd class="btnBus">
+												<div class="btnArea btn1">
+													&nbsp;&nbsp;&nbsp; <input type="button"
+														title="천안역/아산(KTX)역" id="name_tg_ca" name="name_tg_ca"
+														class="btn_gray" value=" 천안역/아산(KTX)역 "
+														onclick="javascript:getBusData_t_ca()"> <input
+														type="button" title="천안터미널" id="name_tg_ct"
+														name="name_tg_ct" class="btn_gray" value="천안터미널 "
+														onclick="javascript:getBusData_t_ct()">
+												</div>
+											</dd>
+										</dl>
+										<dl>
+											<dt>&nbsp;&nbsp;일요일</dt>
+											<dd class="btnBus">
+												<div class="btnArea btn1">
+													&nbsp;&nbsp;&nbsp; <input type="button"
+														title="천안역/아산(KTX)역" id="name_i_ca" name="name_i_ca"
+														class="btn_gray" value=" 천안역/아산(KTX)역 "
+														onclick="javascript:getBusData_i_ca()">
+													<!-- <a href="../img/christmas.png"></a> -->
+													<input type="button" title="천안터미널" id="name_i_ct"
+														name="name_i_ct" class="btn_gray" value=" 천안터미널 "
+														onclick="javascript:getBusData_i_ct()">
+												</div>
+											</dd>
+										</dl>
+									</div>
+								</form>
+								<div class="ossn-wall-container businfo">
+									<div>
+										<!-- 시간표띄우기 -->
+										<br>
+										<p id="bus_timeTable" class="bus_timeTable">원하는 정보를 클릭하세요! :)</p>
+										<div id=insertBusData>
+										
+										</div>
+										<!-- <img class="bus_img" src="url" width="" height=""> -->
+										
+										
 									</div>
 								</div>
 							</div>
+							<br>
 							<div class="col-md-4">
 								<div class="newsfeed-right">
 									<style>
@@ -743,10 +733,7 @@
 		})();
 	</script>
 
-
 	<div class="token-input-dropdown" style="display: none;"></div>
-
-
 
 </body>
 </html>

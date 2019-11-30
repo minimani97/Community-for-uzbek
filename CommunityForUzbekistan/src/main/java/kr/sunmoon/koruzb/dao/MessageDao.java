@@ -148,8 +148,6 @@ public class MessageDao {
 		String sqlStatement = "select count(*) from sendmsg where open='N' and to_user_id='"+to_user_id+"'";
 		int result = jdbcTemplate.queryForObject(sqlStatement, Integer.class);
 		
-		System.out.println("=====notRead value=====: " + result);
-		
 		return Integer.toString(result);
 	}
 	

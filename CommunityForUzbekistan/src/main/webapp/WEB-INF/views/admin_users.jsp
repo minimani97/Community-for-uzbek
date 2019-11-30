@@ -102,9 +102,26 @@
 	
 	//페이징 처리
 	$(document).ready(function() {	
-		 $('#paging').DataTable();
-		 responsive: true
+		checkSession();
+		
+		$('#paging').DataTable();
+		responsive: true
 	});
+	   
+   function checkSession() {
+	   var user_id = "${sessionScope.user_id}";
+	   var user_certify = "${sessionScope.certify}";
+	   
+	   if(user_id == "") {
+		   alert("로그인이 필요합니다.");
+		   window.location.href = "http://localhost:8888";
+	   } else {
+		   if(user_certify == "b") {
+			   alert("로그인이 필요합니다.");
+			   window.location.href = "http://localhost:8888";
+		   }
+	   }
+   }
 	
 </script>
 

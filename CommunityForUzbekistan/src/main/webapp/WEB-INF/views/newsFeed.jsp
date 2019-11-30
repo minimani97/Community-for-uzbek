@@ -235,8 +235,6 @@
 	         processData : false,
 	         contentType : 'application/json',
 	         success : function(data) {
-	        	console.log("학과: " + data);
-	        	
 	        	document.getElementById("user-department-info").innerHTML = data;
 	         },
 	         error : function(data, status, err) {
@@ -246,11 +244,9 @@
 	}
 	
 	function logout(){
-	      console.log("logout called!");
 	      
 	      var user_id  = "${sessionScope.user_id}";
-	      console.log(" user_id 값000:" + user_id);
-
+	      
 	      $.ajax({
 	         url : 'http://localhost:8888/logout',
 	         method : 'POST',
@@ -258,13 +254,7 @@
 	         processData : false,
 	         contentType : false,
 	         success : function(data) {
-
-	            console.log(data);
-	            console.log("값1:" + user_id);
-
-	            loginCheckProc(data, user_id);
-	            alert("로그아웃 됩니다.");
-	 
+	            loginCheckProc(data, user_id);	 
 	         },
 	         error : function(data, status, err) {
 	            //alert('error');
@@ -273,13 +263,27 @@
 	      });         
 	      
 	   }
-	   console.log("뉴스피드 user_id: " + "${sessionScope.user_id}");
-	   console.log("password: " + "${sessionScope.password}");
 	   
 	   $(document).ready(function() {
-	        setTimeout("notRead()", 10);
-	        setInterval("countMyMsg()", 3000);
+	       checkSession(); 
+		   setTimeout("notRead()", 10);
+	       setInterval("countMyMsg()", 3000);
 	   });
+	   
+	   function checkSession() {
+		   var user_id = "${sessionScope.user_id}";
+		   var user_certify = "${sessionScope.certify}";
+		   
+		   if(user_id == "") {
+			   alert("로그인이 필요합니다.");
+			   window.location.href = "http://localhost:8888";
+		   } else {
+			   if(user_certify == "b") {
+				   alert("로그인이 필요합니다.");
+				   window.location.href = "http://localhost:8888";
+			   }
+		   }
+	   }
 	   
 </script>
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
@@ -483,20 +487,6 @@
 							<li><a class="" href="http://localhost:8888/newsFeed?dep=F"><i
 									class="fa fa-shopping-cart fa-lg"></i>플리마켓</a></li>
 
-							<!-- <li data-toggle="collapse" data-target="#1234"
-								class="menu-section-extra active collapsed" aria-expanded="true"><a
-								class="" href="javascript:void(0);"><i
-									class="fa fa-plus fa-lg"></i>부가기능<span class="arrow"></span></a></li>
-							<ul class="sub-menu collapse" id="1234" aria-expanded="true"
-								style="height: 0px;">
-								<li class="menu-section-item-bus">
-									<a class="menu-section-item-a-bus" href="http://localhost:8888/bus">한국생활 꿀팁</a>
-								</li>
-								<li class="menu-section-item-university">
-									<a class="menu-section-item-a-university" href="http://lily.sunmoon.ac.kr/MainDefault.aspx">여러 사이트 모음</a>
-								</li>
-							</ul> -->
-							
 							<li data-toggle="collapse"
 								data-target="#1471e4e05a4db95d353cc867fe317314"
 								class="menu-section-groups active collapsed"
@@ -531,6 +521,9 @@
 									<li class="menu-section-item-friends"><a
 										class="menu-section-item-a-friends"
 										href="https://www.liveinkorea.kr/portal/main/intro.do">다누리(다문화가족지원포털)</a></li>
+									<li class="menu-section-item-friends"><a
+										class="menu-section-item-a-friends"
+										href="https://www.livinkor.com/">리빈코(livinkor)</a></li>
 								</ul>
 							</ul>
 

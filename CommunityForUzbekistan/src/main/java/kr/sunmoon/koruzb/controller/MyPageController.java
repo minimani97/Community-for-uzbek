@@ -145,13 +145,10 @@ public class MyPageController {
 	@RequestMapping(value = "/findPassword")
 	public String findPassword(@RequestParam Map<String, Object> user_info) throws Exception {
 		
-		logger.info("값님 : "+ user_info.get("find_email").toString());
-		logger.info("값님 : "+ user_info.get("find_user_id").toString());
-		
-		String portal_email = (user_info.get("find_email").toString());
+		String phone = (user_info.get("find_phone").toString());
 		String user_id = user_info.get("find_user_id").toString();
 		
-		return mypageService.findPassword(portal_email, user_id);
+		return mypageService.findPassword(phone, user_id);
 		
 	}
 	

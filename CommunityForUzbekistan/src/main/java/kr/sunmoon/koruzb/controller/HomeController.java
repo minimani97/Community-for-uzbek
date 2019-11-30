@@ -138,4 +138,9 @@ public class HomeController {
 
 		return "Msg";
 	}
+	
+	@RequestMapping(value = "/tips")
+	public String goTipsPage() {
+		return "tips";
+	}
 }

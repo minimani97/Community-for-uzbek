@@ -160,7 +160,8 @@
 
 	//마이페이지 유저정보 가져오기	
 	$(document).ready(function() {
-
+		checkSession();
+		
 		function mypageInfo() {
 			console.log("마이페이지 에이젝스 현장");
 			var formData = new FormData($("#mypage_form")[0]);
@@ -185,6 +186,21 @@
 		}
 
 	});
+	   
+   function checkSession() {
+	   var user_id = "${sessionScope.user_id}";
+	   var user_certify = "${sessionScope.certify}";
+	   
+	   if(user_id == "") {
+		   alert("로그인이 필요합니다.");
+		   window.location.href = "http://localhost:8888";
+	   } else {
+		   if(user_certify == "b") {
+			   alert("로그인이 필요합니다.");
+			   window.location.href = "http://localhost:8888";
+		   }
+	   }
+   }
 </script>
 
 <script>
@@ -491,6 +507,8 @@
 									<li class="menu-section-item-friends"><a
 										class="menu-section-item-a-friends"
 										href="https://www.liveinkorea.kr/portal/main/intro.do">다누리(다문화가족지원포털)</a></li>
+									<li class="menu-section-item-friends"><a class="menu-section-item-a-friends"
+										href="https://www.livinkor.com/">리빈코(livinkor)</a></li>
 								</ul>
 							</ul>
 

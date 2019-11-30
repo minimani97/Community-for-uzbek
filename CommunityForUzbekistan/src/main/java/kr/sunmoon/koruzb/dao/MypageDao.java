@@ -29,30 +29,39 @@ public class MypageDao {
 	}
 	
 	// 비밀번호 찾기
-	public String findPassword(String portal_email, String user_id) throws Exception{
+	public String findPassword(String phone, String user_id) throws Exception{
 		
 		String sql = "select count(*) from user_info where id = '"+user_id+"';";
 		int result = Integer.parseInt(jdbcTemplate.queryForObject(sql, String.class));
 		
-		// 메일 보내기
+		// 비밀번호 랜덤 생성 후 데이터베이스에서 변경
 		if(result == 1){
-			String sqlStatement = "select password from user_info where id = '"+user_id+"';";
-			String rst = jdbcTemplate.queryForObject(sqlStatement, String.class);
-
-			MailHandler sendMail = new MailHandler(mailSender);
-			sendMail.setSubject("[선문대 귀는 당나귀 귀 ★ 비밀번호 찾기 안내]");
-			sendMail.setText(new StringBuffer().append("<h1>비밀번호 안내</h1>").append("찾으신 비밀번호 : ")
-					.append(rst).toString());
-			sendMail.setFrom("dpfls96@gmail.com", "선귀당귀 관리자");
-			sendMail.setTo(portal_email);
-			sendMail.send();
 			
-			return jdbcTemplate.queryForObject(sqlStatement, String.class);
+			String random_pw_val = getRandomPassword(10);
+			System.out.println("랜덤 생성된 Password값: " + random_pw_val);
 			
+			String sqlStatement = "update user_info set password = '"+random_pw_val+"' where id = '"+user_id+"'";
+			jdbcTemplate.update(sqlStatement);
 			
+			return random_pw_val;
 		}else{
-		return "fail"; 
+			return "fail"; 
 		}
+	}
+	
+	// 비밀번호 랜덤 생성
+	public String getRandomPassword(int len) { 
+		char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 
+									'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 
+									'T', 'U', 'V', 'W', 'X', 'Y', 'Z' }; 
+		int idx = 0; 
+		StringBuffer sb = new StringBuffer(); 
+				
+		for (int i = 0; i < len; i++) { 
+			idx = (int) (charSet.length * Math.random()); // 36 * 생성된 난수를 Int로 추출 (소숫점제거) 
+			sb.append(charSet[idx]); 
+		} 
+		return sb.toString(); 
 	}
 	
 	public void saveProfileDao(String imgUrl, String user_id) throws Exception {

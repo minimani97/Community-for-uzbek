@@ -20,9 +20,8 @@ public class MypageService {
 		this.mypagedao = mypagedao;
 	}
 
-	public String findPassword(String email, String user_id) throws Exception {
-		
-		return mypagedao.findPassword(email, user_id);
+	public String findPassword(String phone, String user_id) throws Exception {
+		return mypagedao.findPassword(phone, user_id);
 	}
 
 	public void saveProfileService(String imgUrl, String user_id) throws Exception {

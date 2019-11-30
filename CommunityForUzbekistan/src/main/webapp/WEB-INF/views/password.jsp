@@ -11,46 +11,33 @@
 	BY Informatikon Technologies (http://informatikon.com/)
 	BY SOFTLAB24 (https://www.softlab24.com/)
 	-->
-<script type="text/javascript" async="" defer=""
-	src="./News Feed _ OSSN Demo_files/piwik.js"></script>
+<!-- <script type="text/javascript" async="" defer="" src="./News Feed _ OSSN Demo_files/piwik.js"></script>
 <script async="" src="./News Feed _ OSSN Demo_files/analytics.js"></script>
-<script
-	src="./News Feed _ OSSN Demo_files/ARf53_7CZrph6eMZGwgXpTF2-tk.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="resources/css/ossn.default.css">
+<script src="./News Feed _ OSSN Demo_files/ARf53_7CZrph6eMZGwgXpTF2-tk.js"></script> -->
+<link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/ossn.default.css">
 <script type="text/javascript" src="resources/js/ossn.en.language.js"></script>
 <script type="text/javascript" src="resources/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="resources/js/jquery-ui.min.js"></script>
-<script type="text/javascript"
-	src="./News Feed _ OSSN Demo_files/jquery-arhandler-1.1-min.js"></script>
+<!-- <script type="text/javascript" src="./News Feed _ OSSN Demo_files/jquery-arhandler-1.1-min.js"></script> -->
 <script type="text/javascript" src="resources/js/jquery.scrolling.js"></script>
 <script type="text/javascript" src="resources/js/places.min.js"></script>
 <script type="text/javascript" src="resources/js/jquery.tokeninput.js"></script>
-<script type="text/javascript"
-	src="resources/js/opensource.socialnetwork.js"></script>
+<script type="text/javascript" src="resources/js/opensource.socialnetwork.js"></script>
 <script type="text/javascript" src="resources/js/ossn.chat.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="resources/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css"
-	href="./News Feed _ OSSN Demo_files/css">
+<link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="./News Feed _ OSSN Demo_files/css"> -->
 <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="resources/css/jquery-ui.css">
-<script type="text/javascript"
-	src="resources/js/sunmoon.socialnetwork.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/jquery-ui.css">
+<!-- <script type="text/javascript" src="resources/js/sunmoon.socialnetwork.js"></script> -->
 <!-- 20181120 민정추가  -->
-<script type="text/javascript"
-	src="resources/js/sunmoon.socialnetwork.common.js"></script>
+<!-- <script type="text/javascript" src="resources/js/sunmoon.socialnetwork.common.js"></script> -->
 
 <script>
 	//비밀번호찾기
 	function findPassword() {
 		var formData = new FormData($("#mypage_form")[0]);
-		
 		
 		$.ajax({
 			url : 'http://localhost:8888/findPassword',
@@ -60,17 +47,44 @@
 			contentType : false,
 			success : function(data) {
 				if(data == "fail"){
-					alert("비밀번호 찾기 실패! \n포털 아이디와 학(사)번을 다시 확인해주세요.");
+					alert("비밀번호 찾기 실패! \n이메일과 아이디를 다시 확인해주세요.");
 					console.log(data);
 				}else{
-				alert("비밀번호 찾기 성공! \n메일을 확인해주세요.");
-				console.log(data);
+					alert("비밀번호가 " + data + " 로 재설정 되었습니다. \n로그인 후 반드시 비밀번호를 재설정 해주세요!");
+					console.log(data);
+					window.location.href="http://localhost:8888";
 				}
 			},
 			error : function(data, status, err) {
 				
 							}
 		});
+	}
+	
+	function inputPhoneNumber(obj) {
+		var number = obj.value.replace(/[^0-9]/g, "");
+		var phone = "";
+
+		if (number.length < 4) {
+			return number;
+		} else if (number.length < 7) {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3);
+		} else if (number.length < 11) {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3, 3);
+			phone += "-";
+			phone += number.substr(6);
+		} else {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3, 4);
+			phone += "-";
+			phone += number.substr(7);
+		}
+		obj.value = phone;
 	}
 </script>
 
@@ -132,26 +146,23 @@
 														enctype='multipart/form-data'>
 														<fieldset>
 															<input type="hidden" name="ossn_ts" value="1541659967" />
-															<input type="hidden" name="ossn_token"
-																value="c8b51be7bd1e5ddcc3fff53e4ac1a99c" /> <label>선문대학교
-																포털 이메일</label>
+															<input type="hidden" name="ossn_token" value="c8b51be7bd1e5ddcc3fff53e4ac1a99c" />
+															<p>※ 입력한 정보가 일치하면 비밀번호를 재설정할 수 있습니다.</p>
+															
 															<div>
-																<input type="text" id="find_email" name="find_email"
-																	placeholder="ex) haedal2" style="width: 130px;" />
-																@sunmoon.ac.kr
+																<label>아이디</label>
+																<input type="text" id="find_user_id" name="find_user_id"/>
 															</div>
-
+															
 															<div>
-																<label>학번(사번)</label> <input type="text" id="find_user_id"
-																	name="find_user_id" placeholder="ex) 2016244025" />
-
+																<label>전화번호</label>
+																<input type="text" id="find_phone" name="find_phone" onKeyup="inputPhoneNumber(this);" maxlength="13" />
 															</div>
 
 															<div class="widget-contents">
 
 																<div>
-																	<p>학교 포털 이메일로 비밀번호를 발송해드립니다.</p>
-																	<input type="button" value="비밀번호 찾기"
+																	<input type="button" value="비밀번호 재설정하기"
 																		onclick="findPassword()" class="btn btn-primary" />
 																</div>
 															</div>
