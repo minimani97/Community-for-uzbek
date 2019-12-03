@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script src="/cdn-cgi/apps/head/ARf53_7CZrph6eMZGwgXpTF2-tk.js"></script>
-<title>SGDG : Admin_Edit User</title>
-<link rel="shortcut icon" href="/resources/img/SGDG_favicon_96x96.png">
+<title>SUMC : Admin_Edit User</title>
+<!-- <link rel="shortcut icon" href="/resources/img/SGDG_favicon_96x96.png"> -->
 
 <!-- 
 	Open Source Social Network (Ossn) https://www.opensource-socialnetwork.org/     

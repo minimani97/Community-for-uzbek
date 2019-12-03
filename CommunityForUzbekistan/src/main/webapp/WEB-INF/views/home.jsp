@@ -5,9 +5,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>SGDG :D</title>
+<title>SUMC :D</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="/ssun/resources/img/SGDG_favicon_96x96.png">
+<!-- <link rel="shortcut icon" href="/ssun/resources/img/SGDG_favicon_96x96.png"> -->
 
 <!-- 
 	Open Source Social Network (Ossn) https://www.opensource-socialnetwork.org/     

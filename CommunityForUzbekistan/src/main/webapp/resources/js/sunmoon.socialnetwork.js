@@ -22,6 +22,12 @@ $(document).ready(function() {
 		getNoticeInfo();
 		bestLikePostInfo();
 		bestCommentPostInfo();
+	} else if(window.location.href == "http://localhost:8888/tips") {
+		setUserInfo();
+		setAdmin();
+		getNoticeInfo();
+		bestLikePostInfo();
+		bestCommentPostInfo();
 	} else {
 		//$(".ossn-page-loading-annimation").attr("style", "display:none;");
 		setUserInfo();
@@ -1758,7 +1764,7 @@ function putDownNotice(w_num) {
 	});
 }
 
-// 각 페이지의 우측에 공지 설정한 글 띄우기
+// 각 페이지의 우측에  설정한 글 띄우기
 function getNoticeInfo() {
 	//var user_dep = document.getElementById("user_dep").value;
 	var user_id = document.getElementById("user_id").value;

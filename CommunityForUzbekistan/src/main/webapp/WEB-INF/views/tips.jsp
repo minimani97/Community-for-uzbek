@@ -136,15 +136,17 @@
 }
 </style>
 
+<script type="text/javascript" async="" defer=""
+	src="//analytic.softlab24.com/piwik.js"></script>
 <script>
 	function privacyShow() {
 		document.getElementById("ossn-message-box").style.display = "block";
 	}
 </script>
 
-<title>SGDG:BUS :)</title>
+<title>SUMC : Tips</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="/ssun/resources/img/SGDG_favicon_96x96.png">
+<!-- <link rel="shortcut icon" href="/resources/img/SGDG_favicon_96x96.png"> -->
 
 <!-- 
 	Open Source Social Network (Ossn) https://www.opensource-socialnetwork.org/     
@@ -158,7 +160,7 @@
 <script type="text/javascript" src="resources/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="resources/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="resources/js/jquery.scrolling.js"></script>
-<script type="text/javascript" src="resources/js/places.min.js"></script>
+<!-- <script type="text/javascript" src="resources/js/places.min.js"></script> -->
 <script type="text/javascript" src="resources/js/jquery.tokeninput.js"></script>
 <script type="text/javascript" src="resources/js/opensource.socialnetwork.js"></script>
 <script type="text/javascript" src="resources/js/ossn.chat.js"></script>
@@ -188,19 +190,19 @@
 	});
 
 	loginCheckProc();
-	
+
 	function setUserInfo() {
 		var txt = "";
-		//var user_dep = "${sessionScope.department}";
-		var user_name = "${sessionScope.user_name}";
-		var user_id = "${sessionScope.user_id}";
-		var user_img = "${sessionScope.user_img}";
+		//var user_dep = "";
+		var user_name = "곽승민";
+		var user_id = "minimani";
+		var user_img = "1574962542351.jpg";
 
 		document.getElementById("user-name-info").innerHTML = user_name;
 		document.getElementById("user_id").value = user_id;
 		document.getElementById("user_img").value = user_img;
-		
-		if(user_img=="" || user_img==null) {
+
+		if (user_img == "" || user_img == null) {
 			var url = "resources/img/default-user-icon-11.jpg";
 			$('#user-profile-img').attr("src", url);
 		} else {
@@ -210,8 +212,27 @@
 
 		/* document.getElementById("user-activity").innerHTML = txt; */
 	}
-	
-	function checkDepartment(dep_code) {
+
+	$(document).ready(function() {
+		checkSession();
+	});
+
+	function checkSession() {
+		var user_id = "minimani";
+		var user_certify = "y";
+
+		if (user_id == "") {
+			alert("로그인이 필요합니다.");
+			window.location.href = "http://localhost:8888";
+		} else {
+			if (user_certify == "b") {
+				alert("로그인이 필요합니다.");
+				window.location.href = "http://localhost:8888";
+			}
+		}
+	}
+
+	/* function checkDepartment(dep_code) {
 		var depCode = {dep_code: dep_code};
 		
 		$.ajax({
@@ -228,46 +249,36 @@
 	            console.log("error: " + data);
 	         }
 	      });
+	} */
+
+	function logout() {
+		console.log("logout called!");
+
+		var user_id = "minimani";
+		console.log(" userNum 값000:" + user_id);
+
+		$.ajax({
+			url : 'http://localhost:8888/logout',
+			method : 'POST',
+			data : user_id,
+			processData : false,
+			contentType : false,
+			success : function(data) {
+
+				console.log(data);
+				console.log("값1:" + user_id);
+
+				loginCheckProc(data, user_id);
+				alert("로그아웃 됩니다.");
+
+			},
+			error : function(data, status, err) {
+				//alert('error');
+				console.log("error: " + data);
+			}
+		});
+
 	}
-
-	function logout(){
-	      console.log("logout called!");
-	      
-	      var user_id  = "${sessionScope.user_id}";
-	      console.log(" userNum 값000:" + user_id);
-
-	      $.ajax({
-	         url : 'http://localhost:8888/logout',
-	         method : 'POST',
-	         data : user_id,
-	         processData : false,
-	         contentType : false,
-	         success : function(data) {
-
-	            console.log(data);
-	            console.log("값1:" + user_id);
-
-	            loginCheckProc(data, user_id);
-	            alert("로그아웃 됩니다.");
-	         
-	            /* if("${sessionScope.user_id}" != null){
-	               console.log("값2:" + "${sessionScope.user_id}");
-	               loginCheckProc(data, user_id);
-	               console.log("값3:" + "${sessionScope.user_id}");
-	               alert("로그아웃 됩니다.");
-	               //window.location.href = "http://localhost:8888/";
-	            } */
-	 
-	         },
-	         error : function(data, status, err) {
-	            //alert('error');
-	            console.log("error: " + data);
-	         }
-	      });         
-	      
-	   }
-	   console.log("BUS 페이지: " + "${sessionScope.user_id}");
-	   
 </script>
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
 
@@ -337,16 +348,17 @@
 		<div class="sidebar sidebar-close" style="height: 2796px;">
 			<div class="sidebar-contents">
 				<div id="newseed-uinfo" class="newseed-uinfo">
-					<img id="user-profile-img" src="">
+					<img id="user-profile-img"
+						src="resources/userImage/1574962542351.jpg">
 					<div class="name" style="width: 150px">
-						<br> 
-						<input type="hidden" id="user_dep" name="user_dep" value="">
-						<input type="hidden" id="user_id" name="user_id" value=""> 
-						<input type="hidden" id="user_img" name="user_img" value="">
+						<br> <input type="hidden" id="user_dep" name="user_dep"
+							value=""> <input type="hidden" id="user_id"
+							name="user_id" value="minimani"> <input type="hidden"
+							id="user_img" name="user_img" value="1574962542351.jpg">
 						<div id="user-department-info" name="user-department-info"
 							style="font-weight: bold; display: block; color: #fff; font-size: 16px"></div>
 						<div id="user-name-info" name="user-name-info"
-							style="font-weight: bold; display: block; color: #fff; font-size: 16px"></div>
+							style="font-weight: bold; display: block; color: #fff; font-size: 16px">곽승민</div>
 					</div>
 				</div>
 				<div class="sidebar-menu-nav">
@@ -354,10 +366,10 @@
 						<ul id="menu-content" class="menu-content collapse out">
 							<li><a class="" href="http://localhost:8888/notice"><i
 									class="fa fa-bullhorn fa-lg"></i>홍보공간</a></li>
-						
+
 							<li><a class="" href="http://localhost:8888/newsFeed"><i
 									class="fa fa-comments fa-lg"></i>소통공간</a></li>
-									
+
 							<li><a class="" href="http://localhost:8888/newsFeed?dep=F"><i
 									class="fa fa-shopping-cart fa-lg"></i>플리마켓</a></li>
 
@@ -374,12 +386,14 @@
 									<a class="menu-section-item-a-university" href="http://lily.sunmoon.ac.kr/MainDefault.aspx">여러 사이트 모음</a>
 								</li>
 							</ul> -->
-							
+
 							<li data-toggle="collapse"
 								data-target="#1471e4e05a4db95d353cc867fe317314"
 								class="menu-section-groups active collapsed"
 								aria-expanded="false"><a class=""
-								href="javascript:void(0);"><i class="fa fa-plus fa-lg"></i>부가기능<i class="fa fa-angle-down fa-lg" style="float:right; margin-top:10px"></i></a></li>
+								href="javascript:void(0);"><i class="fa fa-plus fa-lg"></i>부가기능<i
+									class="fa fa-angle-down fa-lg"
+									style="float: right; margin-top: 10px"></i></a></li>
 							<ul class="su-menu collapse"
 								id="1471e4e05a4db95d353cc867fe317314" aria-expanded="false"
 								style="height: 0px;">
@@ -390,8 +404,9 @@
 								<li data-toggle="collapse" data-target="#2222"
 									class="menu-section-links active in collapsed"
 									aria-expanded="false"><a class=""
-									href="javascript:void(0);"><i
-										class="fa fa-link"></i>유용한 사이트 링크<i class="fa fa-angle-down fa-lg" style="float:right; margin-top:10px"></i></a></li>
+									href="javascript:void(0);"><i class="fa fa-link"></i>유용한
+										사이트 링크<i class="fa fa-angle-down fa-lg"
+										style="float: right; margin-top: 10px"></i></a></li>
 								<ul class="sub-sub-menu collapse" id="2222"
 									aria-expanded="false" style="height: 0px;">
 									<li class="menu-section-item-friends"><a
@@ -405,15 +420,20 @@
 										href="http://www.liveinkorea.kr/center/main/main.do?centerId=asansi">아산다문화가족지원센터</a></li>
 									<li class="menu-section-item-friends"><a
 										class="menu-section-item-a-friends"
-										href="https://eps.hrdkorea.or.kr/e9/index.do?method=index">EPS 외국인고용지원</a></li>
+										href="https://eps.hrdkorea.or.kr/e9/index.do?method=index">EPS
+											외국인고용지원</a></li>
 									<li class="menu-section-item-friends"><a
 										class="menu-section-item-a-friends"
 										href="https://www.liveinkorea.kr/portal/main/intro.do">다누리(다문화가족지원포털)</a></li>
+									<li class="menu-section-item-friends"><a
+										class="menu-section-item-a-friends"
+										href="https://www.livinkor.com/">리빈코(livinkor)</a></li>
 								</ul>
 							</ul>
 
 							<li><a class="" href="http://localhost:8888/mypage"><i
 									class="fa fa-user fa-lg"></i>마이페이지</a></li>
+						</ul>
 					</div>
 				</div>
 				<br>
@@ -432,8 +452,8 @@
 							</div>
 						</div>
 						<div class="col-md-7 site-name text-center hidden-xs hidden-sm">
-							<span><a href="http://localhost:8888/newsFeed">😄선문대 귀는
-									당나귀 귀😄</a></span>
+							<span><a href="http://localhost:8888/newsFeed">😄
+									S.U.M Community 😄</a></span>
 						</div>
 						<div class="col-md-3 text-right right-side right-side-nospace">
 							<div class="topbar-menu-right">
@@ -451,18 +471,18 @@
 										</ul>
 									</div>
 								</li>
-								
-								<li id="ossn-notif-messages"><a
-										href="#" onclick="window.open('http://localhost:8888/Msg', 'msgList', 'resizable=no width=800px height=500px');return false"
-										class="ossn-notifications-messages"
-										role="button" data-toggle="dropdown"> <span> <span
-												class="ossn-notification-container hidden"></span>
-												<div class="ossn-icon ossn-icons-topbar-messages">
-													<i class="fa fa-envelope"></i>
-												</div>
-										</span>
+
+								<li id="ossn-notif-messages"><a href="#"
+									onclick="window.open('http://localhost:8888/Msg', 'msgList', 'resizable=no width=800px height=500px');return false"
+									class="ossn-notifications-messages" role="button"
+									data-toggle="dropdown"> <span> <span
+											class="ossn-notification-container hidden"></span>
+											<div class="ossn-icon ossn-icons-topbar-messages">
+												<i class="fa fa-envelope"></i>
+											</div>
+									</span>
 								</a></li>
-								
+
 								<div class="dropdown">
 									<div
 										class="dropdown-menu multi-level dropmenu-topbar-icons ossn-notifications-box">
@@ -496,52 +516,36 @@
 							<div class="col-md-7">
 								<form id="busform">
 									<div class="cnt">
-										<dl>
-											<dt>&nbsp;&nbsp;평일</dt>
+										<dl style="margin-top: 15px;">
+											<dt
+												style="margin-left: 15px; margin-bottom: 10px; font-size: 17px;">&nbsp;&nbsp;카테고리</dt>
 											<dd class="btnBus">
-												<div class="btnArea btn1">
-													<!-- <a title="천안역/아산(KTX)역" class="btn_gray">천안역/아산(KTX)역</a>
-												<a title="천안터미널" class="btn_gray">천안터미널</a>
-												<a title="온양역/터미널" class="btn_gray">온양역/터미널</a>
-												<a title="천안캠퍼스" class="btn_gray">천안캠퍼스</a>	 -->
-													&nbsp;&nbsp;&nbsp; 
-													<input type="button" title="천안역/아산(KTX)역" id="name_p_ca" name="name_p_ca"
-														class="btn_gray" value=" 천안역/아산(KTX)역 " onclick="javascript:getBusData_p_ca()"> 
-													<input type="button" title="천안터미널" id="name_p_ct" name="name_p_ct" 
-														class="btn_gray" value=" 천안터미널 " onclick="javascript:getBusData_p_ct()"> 
-													<input type="button" title="온양역/터미널" id="name_p_ot" name="name_p_ot"
-													    class="btn_gray" value=" 온양역/터미널 " onclick="javascript:getBusData_p_ot()"> 
-													<input type="button" title="천안캠퍼스" id="name_p_cc" name="name_p_cc" 
-														class="btn_gray" value=" 천안캠퍼스 " onclick="javascript:getBusData_p_cc()">
-												</div>
-											</dd>
-										</dl>
-										<dl>
-											<dt>&nbsp;&nbsp;토요일/공휴일</dt>
-											<dd class="btnBus">
-												<div class="btnArea btn1">
-													&nbsp;&nbsp;&nbsp; <input type="button"
-														title="천안역/아산(KTX)역" id="name_tg_ca" name="name_tg_ca"
-														class="btn_gray" value=" 천안역/아산(KTX)역 "
-														onclick="javascript:getBusData_t_ca()"> <input
-														type="button" title="천안터미널" id="name_tg_ct"
-														name="name_tg_ct" class="btn_gray" value="천안터미널 "
-														onclick="javascript:getBusData_t_ct()">
-												</div>
-											</dd>
-										</dl>
-										<dl>
-											<dt>&nbsp;&nbsp;일요일</dt>
-											<dd class="btnBus">
-												<div class="btnArea btn1">
-													&nbsp;&nbsp;&nbsp; <input type="button"
-														title="천안역/아산(KTX)역" id="name_i_ca" name="name_i_ca"
-														class="btn_gray" value=" 천안역/아산(KTX)역 "
-														onclick="javascript:getBusData_i_ca()">
-													<!-- <a href="../img/christmas.png"></a> -->
-													<input type="button" title="천안터미널" id="name_i_ct"
-														name="name_i_ct" class="btn_gray" value=" 천안터미널 "
-														onclick="javascript:getBusData_i_ct()">
+												<div class="btnArea btn1"
+													style="margin-left: 20px; margin-right: 20px;">
+													<input type="button" title="쓰레기 분리수거" id="tip_recycle"
+														name="tip_recycle" class="btn_gray" value=" 쓰레기 분리수거 "
+														onclick="javascript:clickTipBtn('recycle')"> <input
+														type="button" title="음식점" id="tip_restaurant"
+														name="tip_restaurant" class="btn_gray" value=" 음식점 "
+														onclick="javascript:clickTipBtn('restaurant')"> <input
+														type="button" title="대중교통" id="tip_transportation"
+														name="tip_transportation" class="btn_gray" value=" 대중교통 "
+														onclick="javascript:clickTipBtn('transportation')">
+													<input type="button" title="가전/전자기기" id="tip_electronic"
+														name="tip_electronic" class="btn_gray" value=" 가전/전자기기 "
+														onclick="javascript:clickTipBtn('electronic')"> <input
+														type="button" title="옷" id="tip_clothes"
+														name="tip_clothes" class="btn_gray" value=" 옷 "
+														onclick="javascript:clickTipBtn('clothes')"> <input
+														type="button" title="여가생활" id="tip_leisure"
+														name="tip_leisure" class="btn_gray" value=" 여가생활 "
+														onclick="javascript:clickTipBtn('leisure')"> <input
+														type="button" title="병원" id="tip_hospital"
+														name="tip_hospital" class="btn_gray" value=" 병원 "
+														onclick="javascript:clickTipBtn('hospital')"> <input
+														type="button" title="기타" id="tip_etc" name="tip_etc"
+														class="btn_gray" value=" 기타 "
+														onclick="javascript:clickTipBtn('etc')">
 												</div>
 											</dd>
 										</dl>
@@ -549,15 +553,15 @@
 								</form>
 								<div class="ossn-wall-container businfo">
 									<div>
-										<!-- 시간표띄우기 -->
+										<!-- 카테고리에 맞는 정보 띄우기 -->
 										<br>
-										<p id="bus_timeTable" class="bus_timeTable">원하는 정보를 클릭하세요! :)</p>
-										<div id=insertBusData>
-										
-										</div>
+										<p id="bus_timeTable" class="bus_timeTable">원하는 정보를 클릭하세요! :)
+										</p>
+
+										<div id="tips-content-area"></div>
 										<!-- <img class="bus_img" src="url" width="" height=""> -->
-										
-										
+
+
 									</div>
 								</div>
 							</div>
@@ -597,12 +601,9 @@
 										.spacing-download {
 											margin-top: 35px
 										}
-										.
 									</style>
 									<div class="widget-heading" style="margin-bottom: 10px;">공지사항</div>
-									<div id="notice-area-right" name="notice-area-right">
-										<br>
-									</div>
+									<div id="notice-area-right" name="notice-area-right"></div>
 								</div>
 								<div class="newsfeed-right">
 									<style>
@@ -640,51 +641,49 @@
 										}
 										.
 									</style>
-									<div class="widget-heading" style="margin-bottom: 10px;">오늘의 좋아요 많은 글 TOP3</div>
-									<div id="best-post-like-area-right" name="notice-area-right">
-										<br>
-									</div>
+									<div class="widget-heading" style="margin-bottom: 10px;">오늘의
+										좋아요 많은 글 TOP3</div>
+									<div id="best-post-like-area-right" name="notice-area-right"></div>
 								</div>
 								<div class="newsfeed-right">
 									<style>
-										.download-section {
-											text-align: center;
-										}
-										
-										.text-download-m {
-											text-align: justify
-										}
-										
-										.stars-download {
-											display: block;
-										}
-										
-										.stars-download .fa {
-											color: #f9db29;
-											margin-right: 5px;
-										}
-										
-										.title-download {
-											font-size: 20px;
-											font-weight: bold;
-											text-align: center;
-											text-transform: uppercase;
-											color: #676565
-										}
-										
-										.download-section {
-											text-align: center
-										}
-										
-										.spacing-download {
-											margin-top: 35px
-										}
-										.
-									</style>
-									<div class="widget-heading" style="margin-bottom: 10px;">오늘의 댓글 많은 글 TOP3</div>
-									<div id="best-post-area-comment-right" name="notice-area-right">
-										<br>
-									</div>
+.download-section {
+	text-align: center;
+}
+
+.text-download-m {
+	text-align: justify
+}
+
+.stars-download {
+	display: block;
+}
+
+.stars-download .fa {
+	color: #f9db29;
+	margin-right: 5px;
+}
+
+.title-download {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	color: #676565
+}
+
+.download-section {
+	text-align: center
+}
+
+.spacing-download {
+	margin-top: 35px
+}
+.
+</style>
+									<div class="widget-heading" style="margin-bottom: 10px;">오늘의
+										댓글 많은 글 TOP3</div>
+									<div id="best-post-area-comment-right" name="notice-area-right"></div>
 								</div>
 							</div>
 						</div>
@@ -734,6 +733,7 @@
 	</script>
 
 	<div class="token-input-dropdown" style="display: none;"></div>
+
 
 </body>
 </html>

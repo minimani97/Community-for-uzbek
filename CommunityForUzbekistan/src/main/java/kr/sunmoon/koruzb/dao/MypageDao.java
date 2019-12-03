@@ -15,9 +15,8 @@ import kr.sunmoon.koruzb.model.UserInfo;
 
 @Repository
 public class MypageDao {
-	// private static final Logger logger = (Logger)
-	// LoggerFactory.getLogger(RegisterDAO.class);
-	@Inject
+	
+	//@Inject
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired

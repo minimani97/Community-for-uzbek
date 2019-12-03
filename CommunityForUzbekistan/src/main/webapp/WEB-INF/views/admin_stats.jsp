@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SGDG : Stats</title>
-<link rel="shortcut icon" href="/ssun/resources/img/SGDG_favicon_96x96.png">
+<title>SUMC : Stats</title>
+<!-- <link rel="shortcut icon" href="/resources/img/SGDG_favicon_96x96.png"> -->
 
 <!-- 
 	Open Source Social Network (Ossn) https://www.opensource-socialnetwork.org/     

@@ -141,9 +141,9 @@
 	}
 </script>
 
-<title>SGDG : Search</title>
+<title>SUMC : Search</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="/ssun/resources/img/SGDG_favicon_96x96.png">
+<!-- <link rel="shortcut icon" href="/resources/img/SGDG_favicon_96x96.png"> -->
 
 <!-- <script type="text/javascript" async="" defer="" src="./News Feed _ OSSN Demo_files/piwik.js"></script>
 <script async="" src="./News Feed _ OSSN Demo_files/analytics.js"></script>

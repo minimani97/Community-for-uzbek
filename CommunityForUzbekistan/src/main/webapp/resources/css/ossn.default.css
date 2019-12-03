@@ -167,9 +167,16 @@ ul.tab li.current {
 .bus_timeTable{
    text-indent:20px;
    font-size: 20px;
-   
 }
 /* 20181121 민정 추가 */
+
+#tips-content-area {
+	font-size: 16 px;
+	margin-left: 10px;
+	margin-right: 10px;
+	line-height: 1.4;
+	margin-bottom: 20px;
+}
 
 .ossn-required {
 	color: #a94442

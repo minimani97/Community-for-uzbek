@@ -3,9 +3,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>SGDG : Register</title>
+<title>SUMC : Register</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="shortcut icon" href="/ssun/resources/img/SGDG_favicon_96x96.png">
+<!-- <link rel="shortcut icon" href="/resources/img/SGDG_favicon_96x96.png"> -->
 
 <!-- 
 	Open Source Social Network (Ossn) https://www.opensource-socialnetwork.org/     

@@ -141,9 +141,9 @@
 	}
 </script>
 
-<title>SGDG : News Feed</title>
+<title>SUMC : News Feed</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="/resources/img/SGDG_favicon_96x96.png">
+<!-- <link rel="shortcut icon" href="/resources/img/SGDG_favicon_96x96.png"> -->
 
 <!-- 
 	Open Source Social Network (Ossn) https://www.opensource-socialnetwork.org/     
@@ -547,7 +547,7 @@
 							</div>
 						</div>
 						<div class="col-md-4 mainTl-site-name text-center hidden-xs hidden-sm">
-							<span><a href="http://localhost:8888/newsFeed" style="margin">😄 S.M.U Community 😄</a></span>
+							<span><a href="http://localhost:8888/newsFeed" style="margin">😄 S.U.M Community 😄</a></span>
 						</div>
 						<div>
 						<div id="topbar-search-area" name="topbar-search-area" class="col-md-5">

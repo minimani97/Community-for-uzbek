@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script src="/resources/js/ARf53_7CZrph6eMZGwgXpTF2-tk.js"></script>
-<title>SGDG : User List</title>
-<link rel="shortcut icon" href="/resources/img/SGDG_favicon_96x96.png">
+<title>SUMC : User List</title>
+<!-- <link rel="shortcut icon" href="/resources/img/SGDG_favicon_96x96.png"> -->
 
 
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css" />
